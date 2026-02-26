@@ -85,7 +85,7 @@
       "skills": [
         {
           "name": "React",
-          "level": 72
+          "level": 62
         },
         {
           "name": "Tailwind CSS",
@@ -170,32 +170,6 @@
       ]
     }
   ],
-  "toolsList": [
-    "React",
-    "TypeScript",
-    "JavaScript",
-    "Python",
-    "Flask",
-    "Tailwind CSS",
-    "Vite",
-    "Git",
-    "GitHub",
-    "Vercel",
-    "Render",
-    "M-Pesa Daraja API",
-    "HTML5",
-    "CSS3",
-    "Postman",
-    "Burp Suite",
-    "Web Security",
-    "LAN/WAN Networking",
-    "System Troubleshooting",
-    "Windows OS",
-    "Linux",
-    "Adobe Photoshop",
-    "Adobe Illustrator",
-    "Canva"
-  ],
   "education": [
     {
       "period": "2023 – Present",
@@ -255,9 +229,9 @@
   ],
   "projects": [
     {
-      "title": "AquaFlow — Gamified Hydration Tracker",
-      "problem": "Busy professionals often neglect hydration and need an engaging system to track their daily water intake.",
-      "solution": "Developed a gamified hydration tracker boasting fluid animations, dynamic streaks, and leveling features independent of a backend.",
+      "title": "AquaFlow — Hydration Tracker",
+      "problem": "People frequently forget to drink enough water throughout the day, with no engaging way to build a daily habit",
+      "solution": "Built a gamified hydration tracking web app with level progression, streak tracking, achievements, personalised reminders, and a beautiful animated UI to make staying hydrated fun",
       "tools": [
         "React",
         "TypeScript",
@@ -265,9 +239,9 @@
         "Vite",
         "Vercel"
       ],
-      "role": "Lead Frontend Engineer",
-      "challenges": "Engineering robust local-storage state management and orchestrating performant React micro-animations for UX delight.",
-      "impact": "Deployed a highly responsive, fast web app delivering an engaging UX that fosters healthy daily hydration habits.",
+      "role": "Lead Developer & Designer",
+      "challenges": "Implementing persistent state without a backend, smooth animations, and a rewarding progression system that feels genuinely engaging rather than just functional",
+      "impact": "Live web application with gamified hydration tracking — levels from 'Thirsty Noob' to 'Aqua God', streak system, achievements, and smart reminders",
       "status": "Live",
       "links": {
         "demo": "https://water-intake-delta.vercel.app/",
@@ -276,17 +250,17 @@
     },
     {
       "title": "Business Website/Portfolio",
-      "problem": "A client needed an authoritative, lightning-fast digital storefront to capture and convert local leads.",
-      "solution": "Architected a high-converting, responsive landing site optimized for SEO, speed, and cross-device accessibility.",
+      "problem": "A local business needed a professional online presence to showcase its services and make it easy for customers to get in touch",
+      "solution": "Designed and developed a fully responsive business website with modern UI/UX principles using HTML5, CSS3, and JavaScript",
       "tools": [
         "HTML5",
         "CSS3",
         "JavaScript",
         "Web Hosting"
       ],
-      "role": "Lead Web Developer",
-      "challenges": "Optimizing image assets, fine-tuning CSS architectures, and implementing secure direct contact interactions.",
-      "impact": "Successfully established the business's core online presence, significantly elevating prospect engagement and brand trust.",
+      "role": "Lead Developer & Designer",
+      "challenges": "Ensuring responsive design across all devices while maintaining fast load times and implementing basic security practices",
+      "impact": "Live operational website that effectively showcases the client's services and drives customer engagement",
       "status": "Live",
       "links": {
         "demo": "https://skitech-website.vercel.app/",
@@ -295,8 +269,8 @@
     },
     {
       "title": "Lipana STK Push Payment System",
-      "problem": "Merchants required an automated, hands-free integration with Kenya's M-Pesa mobile money system for online sales.",
-      "solution": "Engineered a Python/Flask microservice communicating securely with Daraja APIs, paired with a React frontend.",
+      "problem": "Clients needed a seamless, automated mobile money payment integration for web applications",
+      "solution": "Built a full-stack M-Pesa Lipana STK Push integration with a Python/Flask backend, real-time payment status tracking, and a responsive React frontend with success/failure feedback",
       "tools": [
         "Python",
         "Flask",
@@ -306,8 +280,8 @@
         "Render"
       ],
       "role": "Full-Stack Developer",
-      "challenges": "Securing OAuth token lifecycles, processing asynchronous webhooks safely, and polling real-time system statuses.",
-      "impact": "Launched a robust, production-ready payment pipeline supporting end-to-end automated mobile transactions.",
+      "challenges": "Handling async payment callbacks, real-time status polling, securing API credentials, and deploying on a free cloud tier with cold-start latency",
+      "impact": "Live payment solution enabling seamless M-Pesa transactions directly from a web interface, demonstrating real-world backend integration skills",
       "status": "Live",
       "links": {
         "demo": "https://skitech-lipana-stk-push.onrender.com/",
@@ -315,37 +289,37 @@
       }
     },
     {
-      "title": "Personal Portfolio Platform",
-      "problem": "Required a dynamic platform to consolidate technical capabilities, achievements, and real-world projects into a single hub.",
-      "solution": "Designed and deployed an interactive digital CV. Integrated automated dark mode, deep-scroll navigation, and modern glassmorphism.",
+      "title": "Personal Portfolio Website",
+      "problem": "Need for a modern, interactive portfolio to showcase skills, projects, and professional background to employers and clients",
+      "solution": "Built a fully responsive single-page portfolio using React, TypeScript, and Tailwind CSS with dark mode, animated sections, CV download, and an integrated contact form",
       "tools": [
         "React",
         "TypeScript",
         "Tailwind CSS",
         "Vite",
-        "Vercel"
+        "Lucide Icons"
       ],
-      "role": "Architect & Developer",
-      "challenges": "Managing complex state for global themes, orchestrating fluid typography typing effects, and structuring scalable code.",
-      "impact": "Acts as the primary professional demonstrator of capabilities, actively attracting employers and high-quality leads.",
+      "role": "Developer & Designer",
+      "challenges": "Implementing seamless dark mode, animated name reveal, accessible contact form with email integration, and ensuring consistent experience across devices",
+      "impact": "Live, professional portfolio actively used to attract clients and job opportunities",
       "status": "Live",
       "links": {
-        "demo": "https://mainaericportfolio.vercel.app/",
+        "demo": "/",
         "repo": null
       }
     },
     {
       "title": "Identity Rebrand Project",
-      "problem": "Small local businesses lacked professional, modern digital branding to compete effectively in online spaces.",
-      "solution": "Produced comprehensive digital branding materials including logos, colour harmony systems, and brand guidelines for clients.",
+      "problem": "Small local businesses lacked professional digital branding to compete online",
+      "solution": "Created comprehensive digital branding materials including logos, colour schemes, and brand guidelines for multiple clients",
       "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator",
         "Canva"
       ],
-      "role": "Brand Design Specialist",
-      "challenges": "Synthesizing varied client needs into distinctive, memorable visual identities across multiple digital platforms.",
-      "impact": "Sharpened online presence and elevated professional perception for multiple SMBs in the regional community.",
+      "role": "Brand Designer",
+      "challenges": "Understanding diverse client needs and translating business values into cohesive visual identities",
+      "impact": "Improved online presence and professional perception for multiple small businesses in the local community",
       "status": "Completed",
       "links": {
         "demo": null,
@@ -354,16 +328,16 @@
     },
     {
       "title": "Burp Suite Vulnerability Assessment",
-      "problem": "Web applications were intrinsically vulnerable to common, devastating security threats like XSS and SQL injection.",
-      "solution": "Conducted exhaustive security audits using advanced proxy tools to identify, document, and triage vulnerabilities securely.",
+      "problem": "Web applications vulnerable to common security threats like XSS and SQL injection",
+      "solution": "Conducted comprehensive security audits using Burp Suite to identify and document vulnerabilities in test environments",
       "tools": [
         "Burp Suite",
-        "Web Security",
+        "Web Security Principles",
         "Vulnerability Testing"
       ],
-      "role": "Cybersecurity Analyst",
-      "challenges": "Executing deep penetration tests without permanently disrupting live system operations or violating compliance.",
-      "impact": "Uncovered critical cross-site scripting and injection flaws, supplying actionable fixes that hardened the systems.",
+      "role": "Security Analyst",
+      "challenges": "Identifying vulnerabilities without disrupting live systems and documenting findings effectively",
+      "impact": "Identified critical XSS and SQLi vulnerabilities, providing actionable recommendations for remediation",
       "status": "Completed",
       "links": {
         "demo": null,

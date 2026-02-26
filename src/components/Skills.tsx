@@ -16,7 +16,6 @@ interface SkillsProps {
     category: string;
     skills: string[];
   }>;
-  tools?: string[];
 }
 
 function SkillBar({ name, level }: { name: string; level: number }) {
@@ -61,22 +60,56 @@ function SkillBar({ name, level }: { name: string; level: number }) {
   );
 }
 
-export function Skills({ technicalSkills, competencies, tools }: SkillsProps) {
+function InteractiveTools() {
+  const tools = [
+    'React', 'TypeScript', 'Python', 'Flask', 'JavaScript', 'HTML5', 'CSS3',
+    'Tailwind CSS', 'Vite', 'Git', 'GitHub', 'Vercel', 'Render',
+    'Burp Suite', 'M-Pesa API', 'Adobe Photoshop', 'Adobe Illustrator', 'Canva',
+    'REST APIs', 'Linux', 'Networking', 'Web Security'
+  ];
+
+  // We duplicate the array to create a seamless infinite scroll loop
+  const displayTools = [...tools, ...tools, ...tools];
+
+  return (
+    <div className="mb-20 overflow-hidden relative py-6">
+      {/* Gradient masks for smooth fade on edges */}
+      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+
+      <div className="flex animate-marquee hover:[animation-play-state:paused] w-max">
+        {displayTools.map((tool, index) => (
+          <div
+            key={index}
+            className="flex-shrink-0 mx-3 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-800 text-gray-700 dark:text-gray-300 font-semibold text-sm shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all cursor-default select-none"
+          >
+            {tool}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function Skills({ technicalSkills, competencies }: SkillsProps) {
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3 block">
             Expertise
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Skills & Competencies
+            Skills, Tools & Competencies
           </h2>
           <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
             A blend of technical proficiency and soft skills developed through real-world projects and continuous learning.
           </p>
         </div>
+
+        {/* Gamified Marquee */}
+        <InteractiveTools />
 
         {/* Technical Skills */}
         <div className="mb-16">
@@ -130,33 +163,6 @@ export function Skills({ technicalSkills, competencies, tools }: SkillsProps) {
             ))}
           </div>
         </div>
-
-        {/* Tools Marquee */}
-        {tools && tools.length > 0 && (
-          <div className="mt-20">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white text-sm">🛠️</span>
-              Technologies & Tools
-            </h3>
-            <div className="relative flex overflow-hidden group py-4 -my-4">
-              {/* Fade gradients */}
-              <div className="absolute pt-4 left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50/80 via-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
-              <div className="absolute pt-4 right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
-
-              <div className="flex w-fit animate-marquee group-hover:[animation-play-state:paused] gap-4">
-                {/* Triple the array for smooth ultra-wide screens continuous loop */}
-                {[...tools, ...tools, ...tools].map((tool, i) => (
-                  <div
-                    key={i}
-                    className="whitespace-nowrap px-6 py-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 font-semibold text-gray-700 dark:text-gray-300 shadow-sm transition-all hover:scale-110 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md hover:text-blue-600 dark:hover:text-blue-400 cursor-default"
-                  >
-                    {tool}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

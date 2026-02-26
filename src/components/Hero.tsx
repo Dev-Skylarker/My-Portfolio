@@ -16,44 +16,41 @@ interface HeroProps {
 export function Hero({ profile, onViewCV }: HeroProps) {
   const [displayedName, setDisplayedName] = useState('');
   const [nameComplete, setNameComplete] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Trigger animation when scrolled into view
+  // Typewriter animation triggered when section is visible
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // Typewriter animation for the name
-  useEffect(() => {
-    if (!isVisible) {
-      setDisplayedName('');
-      setNameComplete(false);
-      return;
-    }
-
     const name = profile.name;
-    let i = 0;
-    const delay = 80;
+    let interval: NodeJS.Timeout;
 
-    const interval = setInterval(() => {
-      i++;
-      setDisplayedName(name.slice(0, i));
-      if (i >= name.length) {
-        clearInterval(interval);
-        setNameComplete(true);
-      }
-    }, delay);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Reset and start typing
+          let i = 0;
+          setDisplayedName('');
+          setNameComplete(false);
+          clearInterval(interval);
+          interval = setInterval(() => {
+            i++;
+            setDisplayedName(name.slice(0, i));
+            if (i >= name.length) {
+              clearInterval(interval);
+              setNameComplete(true);
+            }
+          }, 80);
+        }
+      },
+      { threshold: 0.2 } // Trigger when 20% visible
+    );
 
-    return () => clearInterval(interval);
-  }, [profile.name, isVisible]);
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => {
+      clearInterval(interval);
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, [profile.name]);
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
@@ -73,7 +70,7 @@ export function Hero({ profile, onViewCV }: HeroProps) {
           {/* Animated name */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 tracking-tight">
             <span className="relative inline-block">
-              <span className={`bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:via-indigo-400 dark:to-violet-400 bg-clip-text text-transparent ${nameComplete ? 'animate-glow' : ''}`}>
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:via-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
                 {displayedName}
               </span>
               {/* Blinking cursor while typing */}

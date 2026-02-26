@@ -43,7 +43,6 @@ function App() {
         <Skills
           technicalSkills={cvData.technicalSkills}
           competencies={cvData.competencies}
-          tools={cvData.toolsList || []}
         />
         <Timeline
           experience={cvData.experience}
