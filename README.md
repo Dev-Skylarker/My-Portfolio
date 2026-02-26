@@ -1,5 +1,7 @@
 # Maina Eric Kariuki — Portfolio
 
+**Live site:** [mainaericportfolio.vercel.app](https://mainaericportfolio.vercel.app/)
+
 Personal portfolio website for Maina Eric Kariuki, ICT Professional & Web Developer.
 
 ## Tech Stack
