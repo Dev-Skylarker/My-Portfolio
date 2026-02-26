@@ -13,6 +13,7 @@ interface Project {
   links: {
     demo: string | null;
     repo: string | null;
+    catalog?: string | null;
   };
 }
 
@@ -70,8 +71,8 @@ export function Projects({ projects }: ProjectsProps) {
               key={cat.label}
               onClick={() => setActiveCategory(i)}
               className={`px-5 py-2 rounded-full text-sm font-semibold transition-all hover:scale-105 active:scale-95 ${activeCategory === i
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/20'
-                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400'
+                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/20'
+                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400'
                 }`}
             >
               {cat.label}
@@ -167,7 +168,7 @@ export function Projects({ projects }: ProjectsProps) {
                         <h4 className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Impact</h4>
                         <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.impact}</p>
                       </div>
-                      {(project.links.demo || project.links.repo) && (
+                      {(project.links.demo || project.links.repo || project.links.catalog) && (
                         <div className="flex gap-3 pt-2">
                           {project.links.demo && (
                             <a
@@ -178,6 +179,17 @@ export function Projects({ projects }: ProjectsProps) {
                             >
                               <ExternalLink size={15} />
                               Visit Live Site
+                            </a>
+                          )}
+                          {project.links.catalog && (
+                            <a
+                              href={project.links.catalog}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-medium transition-all shadow-md shadow-blue-600/20 hover:scale-105"
+                            >
+                              <ExternalLink size={15} />
+                              View Brand Catalogue
                             </a>
                           )}
                           {project.links.repo && (

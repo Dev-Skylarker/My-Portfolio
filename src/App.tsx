@@ -47,7 +47,7 @@ function App() {
       />
 
       <main>
-        <Hero profile={cvData.profile} onViewCV={handleViewCV} />
+        <Hero profile={cvData.profile} onDownloadCV={handleDownloadCV} />
         <Projects projects={cvData.projects} />
         <Skills
           technicalSkills={cvData.technicalSkills}
@@ -61,10 +61,10 @@ function App() {
         <Contact profile={cvData.profile} />
       </main>
 
-      <Footer softSkills={cvData.softSkills} email={cvData.profile.email} githubUrl="https://github.com/Dev-Skylarker" />
+      <Footer softSkills={cvData.softSkills} githubUrl="https://github.com/Dev-Skylarker" />
 
       <FloatingActions
-        onDownloadCV={handleDownloadCV}
+        onViewCV={handleViewCV}
         phone={cvData.profile.phone}
         name={cvData.profile.name}
       />

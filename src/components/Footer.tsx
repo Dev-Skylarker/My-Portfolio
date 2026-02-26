@@ -2,11 +2,10 @@ import { Mail, Github, Linkedin } from 'lucide-react';
 
 interface FooterProps {
   softSkills: string[];
-  email: string;
   githubUrl?: string;
 }
 
-export function Footer({ softSkills, email, githubUrl }: FooterProps) {
+export function Footer({ softSkills, githubUrl }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -31,7 +30,7 @@ export function Footer({ softSkills, email, githubUrl }: FooterProps) {
             {/* Buttons */}
             <div className="flex flex-wrap gap-3">
               <a
-                href={`mailto:${email}?subject=Job%20Opportunity%20%E2%80%94%20Let%27s%20Work%20Together`}
+                href="#contact"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm font-semibold rounded-full transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 hover:scale-105 active:scale-95"
               >
                 <Mail size={15} />

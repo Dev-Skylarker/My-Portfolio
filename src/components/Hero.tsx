@@ -10,45 +10,46 @@ interface HeroProps {
     location: string;
     summary: string;
   };
-  onViewCV: () => void;
+  onDownloadCV: () => void;
 }
 
-export function Hero({ profile, onViewCV }: HeroProps) {
+export function Hero({ profile, onDownloadCV }: HeroProps) {
   const [displayedName, setDisplayedName] = useState('');
   const [nameComplete, setNameComplete] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Typewriter animation triggered when section is visible
+  // Typewriter animation triggered on mount and custom event
   useEffect(() => {
     const name = profile.name;
     let interval: NodeJS.Timeout;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          // Reset and start typing
-          let i = 0;
-          setDisplayedName('');
-          setNameComplete(false);
+    const tryAnimate = () => {
+      let i = 0;
+      setDisplayedName('');
+      setNameComplete(false);
+      clearInterval(interval);
+      interval = setInterval(() => {
+        i++;
+        setDisplayedName(name.slice(0, i));
+        if (i >= name.length) {
           clearInterval(interval);
-          interval = setInterval(() => {
-            i++;
-            setDisplayedName(name.slice(0, i));
-            if (i >= name.length) {
-              clearInterval(interval);
-              setNameComplete(true);
-            }
-          }, 80);
+          setNameComplete(true);
         }
-      },
-      { threshold: 0.2 } // Trigger when 20% visible
-    );
+      }, 80);
+    };
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    // run once on mount (refresh/reload)
+    tryAnimate();
+
+    const handleCustomEvent = () => {
+      tryAnimate();
+    };
+
+    window.addEventListener('triggerNameAnimation', handleCustomEvent);
 
     return () => {
       clearInterval(interval);
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      window.removeEventListener('triggerNameAnimation', handleCustomEvent);
     };
   }, [profile.name]);
 
@@ -145,11 +146,11 @@ export function Hero({ profile, onViewCV }: HeroProps) {
               }`}
           >
             <button
-              onClick={onViewCV}
+              onClick={onDownloadCV}
               className="flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 active:scale-95"
             >
               <FileText size={18} />
-              View CV
+              Download CV
             </button>
             <button
               onClick={handleWhatsApp}
