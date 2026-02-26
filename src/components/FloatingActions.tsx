@@ -53,8 +53,8 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
       <button
         onClick={onViewCV}
         className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
-        aria-label="View CV"
-        title="View CV"
+        aria-label="Download CV"
+        title="Download CV"
       >
         <FileText size={20} />
       </button>

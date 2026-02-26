@@ -1,5 +1,6 @@
 import { Mail, Phone, MessageCircle, Send, CheckCircle, AlertCircle, Loader2, MapPin, Github, Linkedin } from 'lucide-react';
 import { useState, FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 
 interface ContactProps {
   profile: {
@@ -39,36 +40,41 @@ export function Contact({ profile }: ContactProps) {
     setSubmitStatus('sending');
 
     try {
-      // Using FormSubmit.co for free, no-account-needed email delivery
-      // Note: First time submission requires clicking an activation link sent to your email
-      const response = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          subject: form.subject,
-          message: form.message,
-          _subject: `Portfolio Contact: ${form.subject}`,
-          _template: 'table'
-        }),
+      // Setup your EmailJS service in the .env file
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS is not configured. Falling back to mailto.');
+      }
+
+      const templateParams = {
+        from_name: form.name,
+        to_name: profile.name,
+        reply_to: form.email,
+        subject: form.subject,
+        message: form.message,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, {
+        publicKey: publicKey,
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setForm({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setSubmitStatus('idle'), 6000);
-      } else {
-        throw new Error('failed');
-      }
-    } catch {
+      setSubmitStatus('success');
+      setForm({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 6000);
+    } catch (error) {
+      console.error('Email sending failed:', error);
       // Fallback: open email client with pre-filled content
       const subject = encodeURIComponent(`Portfolio Contact: ${form.subject}`);
       const body = encodeURIComponent(
         `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
       );
       window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-      setSubmitStatus('idle');
+      setSubmitStatus('error');
+      // Reset from error state
+      setTimeout(() => setSubmitStatus('idle'), 3000);
     }
   };
 
