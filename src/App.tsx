@@ -38,12 +38,12 @@ function App() {
       />
 
       <main>
-        <Hero profile={cvData.profile} onViewCV={handleViewCV} isActive={activeSection === 'profile'} />
+        <Hero profile={cvData.profile} onViewCV={handleViewCV} />
         <Projects projects={cvData.projects} />
         <Skills
           technicalSkills={cvData.technicalSkills}
           competencies={cvData.competencies}
-          tools={cvData.tools}
+          tools={cvData.toolsList || []}
         />
         <Timeline
           experience={cvData.experience}

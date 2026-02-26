@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, FileText, MessageCircle, Github, Linkedin } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface HeroProps {
   profile: {
@@ -11,36 +11,49 @@ interface HeroProps {
     summary: string;
   };
   onViewCV: () => void;
-  isActive?: boolean;
 }
 
-export function Hero({ profile, onViewCV, isActive }: HeroProps) {
+export function Hero({ profile, onViewCV }: HeroProps) {
   const [displayedName, setDisplayedName] = useState('');
   const [nameComplete, setNameComplete] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  // Typewriter animation — retriggers whenever the hero section becomes active
+  // Trigger animation when scrolled into view
   useEffect(() => {
-    if (isActive === false) return; // don't re-run while navigated away
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Typewriter animation for the name
+  useEffect(() => {
+    if (!isVisible) {
+      setDisplayedName('');
+      setNameComplete(false);
+      return;
+    }
+
     const name = profile.name;
     let i = 0;
     const delay = 80;
-    setDisplayedName('');
-    setNameComplete(false);
 
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        i++;
-        setDisplayedName(name.slice(0, i));
-        if (i >= name.length) {
-          clearInterval(interval);
-          setNameComplete(true);
-        }
-      }, delay);
-      return () => clearInterval(interval);
-    }, 120); // small delay so it feels intentional on re-entry
+    const interval = setInterval(() => {
+      i++;
+      setDisplayedName(name.slice(0, i));
+      if (i >= name.length) {
+        clearInterval(interval);
+        setNameComplete(true);
+      }
+    }, delay);
 
-    return () => clearTimeout(timer);
-  }, [profile.name, isActive]);
+    return () => clearInterval(interval);
+  }, [profile.name, isVisible]);
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
@@ -50,7 +63,7 @@ export function Hero({ profile, onViewCV, isActive }: HeroProps) {
   };
 
   return (
-    <section id="profile" className="relative pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section ref={sectionRef} id="profile" className="relative pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Decorative blobs */}
       <div className="absolute top-20 left-1/4 w-72 h-72 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-400/10 dark:bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -60,7 +73,7 @@ export function Hero({ profile, onViewCV, isActive }: HeroProps) {
           {/* Animated name */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 tracking-tight">
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:via-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
+              <span className={`bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:via-indigo-400 dark:to-violet-400 bg-clip-text text-transparent ${nameComplete ? 'animate-glow' : ''}`}>
                 {displayedName}
               </span>
               {/* Blinking cursor while typing */}

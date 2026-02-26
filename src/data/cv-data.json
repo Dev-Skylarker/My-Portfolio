@@ -20,7 +20,7 @@
     {
       "category": "Cybersecurity & Data Protection",
       "skills": [
-        "Web security and vulnerability testing (Burp Suite)",
+        "Web security and vulnerability testing (example tool: Burp Suite)",
         "Data privacy, encryption protocols, and secure digital handling",
         "Secure API design practices (authentication, request validation and protection of secret keys)",
         "Secure webhook handling and verification for third-party integrations",
@@ -30,20 +30,19 @@
     {
       "category": "Software Development & Data Management",
       "skills": [
-        "Python, JavaScript, TypeScript, React, HTML5, CSS3, Tailwind CSS",
-        "Responsive web design, REST APIs, hosting management",
+        "Python, JavaScript, HTML5, CSS3, responsive web design, hosting management",
+        "Developing secure and functional web solutions",
         "Integration of mobile payment APIs (M-Pesa / Daraja APIs – STK Push, callbacks and transaction verification)",
         "Backend automation, API integration and workflow automation using Python and web frameworks",
-        "Good understanding of AI concepts and automation workflows for improving business processes",
+        "Good understanding of Artificial Intelligence concepts and automation workflows for improving business processes and system efficiency",
         "Version control using Git and collaborative code management"
       ]
     },
     {
-      "category": "Design & Branding",
+      "category": "Design & Branding (Minor Focus)",
       "skills": [
         "Basic UI/UX wireframing and corporate identity",
-        "Adobe Photoshop/Illustrator and Canva for visual assets",
-        "Brand strategy for small and medium businesses"
+        "Adobe Photoshop/Illustrator and Canva for visual assets"
       ]
     },
     {
@@ -60,24 +59,24 @@
       "category": "Programming Languages",
       "skills": [
         {
-          "name": "HTML5",
-          "level": 90
-        },
-        {
-          "name": "CSS3",
-          "level": 85
+          "name": "Python",
+          "level": 75
         },
         {
           "name": "JavaScript",
           "level": 80
         },
         {
-          "name": "Python",
-          "level": 75
-        },
-        {
           "name": "TypeScript",
           "level": 70
+        },
+        {
+          "name": "HTML5",
+          "level": 90
+        },
+        {
+          "name": "CSS3",
+          "level": 85
         }
       ]
     },
@@ -85,54 +84,46 @@
       "category": "Frameworks & Libraries",
       "skills": [
         {
-          "name": "Tailwind CSS",
-          "level": 82
-        },
-        {
-          "name": "Responsive Design",
-          "level": 88
-        },
-        {
           "name": "React",
           "level": 72
         },
         {
-          "name": "Flask",
-          "level": 65
+          "name": "Tailwind CSS",
+          "level": 80
         },
         {
           "name": "Vite",
           "level": 70
+        },
+        {
+          "name": "Responsive Design",
+          "level": 85
         }
       ]
     },
     {
-      "category": "Backend & APIs",
+      "category": "Web & Backend",
       "skills": [
         {
-          "name": "REST APIs",
-          "level": 72
-        },
-        {
-          "name": "M-Pesa Daraja API",
+          "name": "Web Security",
           "level": 70
         },
         {
-          "name": "Webhook Integration",
-          "level": 65
-        },
-        {
-          "name": "Hosting & Deployment",
+          "name": "Hosting Management",
           "level": 75
         },
         {
-          "name": "Git & Version Control",
-          "level": 78
+          "name": "REST APIs",
+          "level": 68
+        },
+        {
+          "name": "M-Pesa STK Push",
+          "level": 65
         }
       ]
     },
     {
-      "category": "IT Support & Security",
+      "category": "IT Support & Networking",
       "skills": [
         {
           "name": "Hardware Maintenance",
@@ -145,9 +136,14 @@
         {
           "name": "Troubleshooting",
           "level": 85
-        },
+        }
+      ]
+    },
+    {
+      "category": "Security Tools",
+      "skills": [
         {
-          "name": "Web Security",
+          "name": "Burp Suite",
           "level": 70
         },
         {
@@ -155,150 +151,78 @@
           "level": 65
         }
       ]
+    },
+    {
+      "category": "Design Tools",
+      "skills": [
+        {
+          "name": "Adobe Photoshop",
+          "level": 70
+        },
+        {
+          "name": "Adobe Illustrator",
+          "level": 65
+        },
+        {
+          "name": "Canva",
+          "level": 80
+        }
+      ]
     }
   ],
-  "tools": [
-    {
-      "name": "VS Code",
-      "category": "Development",
-      "icon": "💻"
-    },
-    {
-      "name": "Git",
-      "category": "Development",
-      "icon": "🔀"
-    },
-    {
-      "name": "GitHub",
-      "category": "Development",
-      "icon": "🐙"
-    },
-    {
-      "name": "Vite",
-      "category": "Development",
-      "icon": "⚡"
-    },
-    {
-      "name": "React",
-      "category": "Development",
-      "icon": "⚛️"
-    },
-    {
-      "name": "Python",
-      "category": "Development",
-      "icon": "🐍"
-    },
-    {
-      "name": "Flask",
-      "category": "Backend",
-      "icon": "🌶️"
-    },
-    {
-      "name": "Postman",
-      "category": "Backend",
-      "icon": "📮"
-    },
-    {
-      "name": "Render",
-      "category": "Backend",
-      "icon": "☁️"
-    },
-    {
-      "name": "Vercel",
-      "category": "Backend",
-      "icon": "▲"
-    },
-    {
-      "name": "M-Pesa API",
-      "category": "Backend",
-      "icon": "💳"
-    },
-    {
-      "name": "Burp Suite",
-      "category": "Security",
-      "icon": "🛡️"
-    },
-    {
-      "name": "OWASP ZAP",
-      "category": "Security",
-      "icon": "🔍"
-    },
-    {
-      "name": "Kali Linux",
-      "category": "Security",
-      "icon": "🐉"
-    },
-    {
-      "name": "Photoshop",
-      "category": "Design",
-      "icon": "🎨"
-    },
-    {
-      "name": "Illustrator",
-      "category": "Design",
-      "icon": "✏️"
-    },
-    {
-      "name": "Canva",
-      "category": "Design",
-      "icon": "🖼️"
-    },
-    {
-      "name": "Figma",
-      "category": "Design",
-      "icon": "📐"
-    },
-    {
-      "name": "Tailwind CSS",
-      "category": "Frontend",
-      "icon": "🌊"
-    },
-    {
-      "name": "Lucide Icons",
-      "category": "Frontend",
-      "icon": "🔷"
-    },
-    {
-      "name": "TypeScript",
-      "category": "Frontend",
-      "icon": "🔷"
-    },
-    {
-      "name": "Zoom",
-      "category": "Productivity",
-      "icon": "📹"
-    },
-    {
-      "name": "Google Workspace",
-      "category": "Productivity",
-      "icon": "📂"
-    },
-    {
-      "name": "Microsoft 365",
-      "category": "Productivity",
-      "icon": "📊"
-    }
+  "toolsList": [
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "Flask",
+    "Tailwind CSS",
+    "Vite",
+    "Git",
+    "GitHub",
+    "Vercel",
+    "Render",
+    "M-Pesa Daraja API",
+    "HTML5",
+    "CSS3",
+    "Postman",
+    "Burp Suite",
+    "Web Security",
+    "LAN/WAN Networking",
+    "System Troubleshooting",
+    "Windows OS",
+    "Linux",
+    "Adobe Photoshop",
+    "Adobe Illustrator",
+    "Canva"
   ],
   "education": [
     {
-      "period": "2021 – 2025",
-      "degree": "B.Sc. Information and Communication Technology",
-      "institution": "Kirinyaga University",
-      "focus": "Core studies in networking, systems administration, software development, cybersecurity, and project management",
+      "period": "2023 – Present",
+      "degree": "Bachelor of Science in Computer Science (Third Year)",
+      "institution": "University of Embu",
+      "focus": "Web Security, Data Communication, System Analysis",
       "type": "degree"
     },
     {
-      "period": "2017 – 2020",
+      "period": "12/2022 – 01/2023",
+      "degree": "Computer Packages & Cyber Café Operations",
+      "institution": "Digital Cyber Kamune",
+      "focus": "Pass Certificate and Internship",
+      "type": "certificate"
+    },
+    {
+      "period": "2018 – 2022",
       "degree": "Kenya Certificate of Secondary Education (KCSE)",
-      "institution": "Kagumo High School",
-      "focus": "",
+      "institution": "Kamune Secondary School",
+      "focus": "Grade: C+",
       "type": "secondary"
     },
     {
-      "period": "2007 – 2016",
+      "period": "2010 – 2017",
       "degree": "Kenya Certificate of Primary Education (KCPE)",
-      "institution": "Githimbiri Primary School",
-      "focus": "",
+      "institution": "Gaithunu Primary School",
+      "focus": "326 Marks",
       "type": "primary"
     }
   ],
@@ -310,7 +234,6 @@
       "responsibilities": [
         "Designed and developed multiple responsive websites from client requirements to deployment",
         "Built a full-stack M-Pesa Lipana STK Push payment integration with Python/Flask backend and React frontend",
-        "Implemented secure API design practices including authentication, request validation and secret key protection",
         "Developed web applications including a gamified hydration tracker, portfolio site, and business landing pages",
         "Created branding and design assets including logos, posters, and brand guidelines for clients",
         "Conducted code reviews, debugging, and performance optimisation across all projects"
@@ -324,29 +247,27 @@
       "responsibilities": [
         "Provided technical support for hardware, software, and connectivity issues for 50+ daily users",
         "Operated and maintained high-demand office equipment (printers, scanners, photocopiers)",
-        "Assisted clients with government portals (eCitizen, KRA), ensuring compliance with digital procedures",
-        "Managed sensitive client data with strict confidentiality and data protection practice",
-        "Troubleshot OS issues including update failures, boot errors, and driver conflicts"
+        "Assisted clients with government portals (eCitizen, KRA), ensuring compliance",
+        "Managed sensitive client data with confidentiality"
       ],
       "type": "internship"
     }
   ],
   "projects": [
     {
-      "title": "AquaFlow — Hydration Tracker",
-      "problem": "People frequently forget to drink enough water throughout the day, with no engaging way to build a lasting daily habit",
-      "solution": "Built a gamified hydration tracking web app with XP-based level progression (from 'Thirsty Noob' to 'Aqua God'), streak tracking, achievement badges, smart notification reminders, animated stats dashboard, and persistent local storage — all without a backend",
+      "title": "AquaFlow — Gamified Hydration Tracker",
+      "problem": "Busy professionals often neglect hydration and need an engaging system to track their daily water intake.",
+      "solution": "Developed a gamified hydration tracker boasting fluid animations, dynamic streaks, and leveling features independent of a backend.",
       "tools": [
         "React",
         "TypeScript",
         "Tailwind CSS",
         "Vite",
-        "Vercel",
-        "LocalStorage API"
+        "Vercel"
       ],
-      "role": "Lead Developer & Designer",
-      "challenges": "Implementing persistent state without a backend using localStorage, building smooth animations that feel rewarding, and designing a progression system genuinely engaging beyond just functional",
-      "impact": "Live web application with full gamification loop — level system, daily streaks, 10+ achievements, hydration reminders, and a real-time progress dashboard",
+      "role": "Lead Frontend Engineer",
+      "challenges": "Engineering robust local-storage state management and orchestrating performant React micro-animations for UX delight.",
+      "impact": "Deployed a highly responsive, fast web app delivering an engaging UX that fosters healthy daily hydration habits.",
       "status": "Live",
       "links": {
         "demo": "https://water-intake-delta.vercel.app/",
@@ -354,42 +275,39 @@
       }
     },
     {
-      "title": "Personal Portfolio Website",
-      "problem": "Needed a modern, interactive portfolio to effectively showcase skills, projects, and professional background to real employers and clients",
-      "solution": "Built a fully responsive single-page application using React, TypeScript, and Tailwind CSS — featuring dark/light mode toggle, typewriter name animation, animated skill bars, project category filters, an integrated contact form, CV viewer, and GitHub/LinkedIn/WhatsApp integration",
+      "title": "Business Website/Portfolio",
+      "problem": "A client needed an authoritative, lightning-fast digital storefront to capture and convert local leads.",
+      "solution": "Architected a high-converting, responsive landing site optimized for SEO, speed, and cross-device accessibility.",
       "tools": [
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Vite",
-        "Vercel",
-        "Lucide Icons"
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Web Hosting"
       ],
-      "role": "Developer & Designer",
-      "challenges": "Achieving seamless universal dark mode, animated typewriter reveal on every navigation, accessible contact form with email fallback, and consistent cross-device experience",
-      "impact": "Live professional portfolio hosted on Vercel — actively used to attract clients and job opportunities",
+      "role": "Lead Web Developer",
+      "challenges": "Optimizing image assets, fine-tuning CSS architectures, and implementing secure direct contact interactions.",
+      "impact": "Successfully established the business's core online presence, significantly elevating prospect engagement and brand trust.",
       "status": "Live",
       "links": {
-        "demo": "https://mainaericportfolio.vercel.app/",
-        "repo": "https://github.com/Dev-Skylarker/My-Portfolio"
+        "demo": "https://skitech-website.vercel.app/",
+        "repo": null
       }
     },
     {
       "title": "Lipana STK Push Payment System",
-      "problem": "Businesses using web apps lacked a seamless way to collect M-Pesa mobile money payments directly from customers",
-      "solution": "Built a complete full-stack M-Pesa Lipana STK Push integration: Python/Flask backend handles Daraja API authentication, STK Push initiation, real-time callback processing and transaction verification; React frontend displays live payment status with success/failure feedback and a clean checkout UI",
+      "problem": "Merchants required an automated, hands-free integration with Kenya's M-Pesa mobile money system for online sales.",
+      "solution": "Engineered a Python/Flask microservice communicating securely with Daraja APIs, paired with a React frontend.",
       "tools": [
         "Python",
         "Flask",
         "React",
         "JavaScript",
-        "M-Pesa Daraja API",
-        "Render",
-        "Postman"
+        "M-Pesa API",
+        "Render"
       ],
       "role": "Full-Stack Developer",
-      "challenges": "Handling async payment callbacks securely, implementing real-time status polling, protecting API credentials in a public-facing deployment, and managing cold-start latency on a free cloud tier",
-      "impact": "Live payment solution enabling seamless M-Pesa STK Push transactions from a web interface — demonstrates real-world backend integration, secure API design, and webhook verification",
+      "challenges": "Securing OAuth token lifecycles, processing asynchronous webhooks safely, and polling real-time system statuses.",
+      "impact": "Launched a robust, production-ready payment pipeline supporting end-to-end automated mobile transactions.",
       "status": "Live",
       "links": {
         "demo": "https://skitech-lipana-stk-push.onrender.com/",
@@ -397,37 +315,37 @@
       }
     },
     {
-      "title": "Business Landing Website",
-      "problem": "A local business needed a professional online presence to showcase services and make it easy for customers to get in touch",
-      "solution": "Designed and developed a fully responsive multi-section business website — service listings, contact section, and branded visual identity — using HTML5, CSS3 and JavaScript with mobile-first design",
+      "title": "Personal Portfolio Platform",
+      "problem": "Required a dynamic platform to consolidate technical capabilities, achievements, and real-world projects into a single hub.",
+      "solution": "Designed and deployed an interactive digital CV. Integrated automated dark mode, deep-scroll navigation, and modern glassmorphism.",
       "tools": [
-        "HTML5",
-        "CSS3",
-        "JavaScript",
-        "Web Hosting",
-        "Canva"
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Vercel"
       ],
-      "role": "Lead Developer & Designer",
-      "challenges": "Delivering a visually consistent, performant site across all screen sizes while integrating branding assets and maintaining fast load times",
-      "impact": "Live website actively showcasing the client's services, building online credibility and driving customer enquiries",
+      "role": "Architect & Developer",
+      "challenges": "Managing complex state for global themes, orchestrating fluid typography typing effects, and structuring scalable code.",
+      "impact": "Acts as the primary professional demonstrator of capabilities, actively attracting employers and high-quality leads.",
       "status": "Live",
       "links": {
-        "demo": "https://skitechsolutions.co.ke",
+        "demo": "https://mainaericportfolio.vercel.app/",
         "repo": null
       }
     },
     {
       "title": "Identity Rebrand Project",
-      "problem": "Small local businesses lacked professional digital branding, making it hard to compete and appear credible online",
-      "solution": "Created comprehensive digital branding packages for multiple clients — custom logos, colour palettes, typography systems, brand guidelines, and social media assets",
+      "problem": "Small local businesses lacked professional, modern digital branding to compete effectively in online spaces.",
+      "solution": "Produced comprehensive digital branding materials including logos, colour harmony systems, and brand guidelines for clients.",
       "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator",
         "Canva"
       ],
-      "role": "Brand Designer",
-      "challenges": "Translating each client's personality and business values into a cohesive visual identity that works across print and digital contexts",
-      "impact": "Delivered professional brand identities for multiple small businesses, improving their online presence and client perception",
+      "role": "Brand Design Specialist",
+      "challenges": "Synthesizing varied client needs into distinctive, memorable visual identities across multiple digital platforms.",
+      "impact": "Sharpened online presence and elevated professional perception for multiple SMBs in the regional community.",
       "status": "Completed",
       "links": {
         "demo": null,
@@ -435,18 +353,17 @@
       }
     },
     {
-      "title": "Web Vulnerability Assessment",
-      "problem": "Web applications are frequently exposed to common threats such as XSS, SQL injection, and insecure endpoints",
-      "solution": "Conducted structured security audits on test web applications using Burp Suite to intercept, analyse, and probe HTTP traffic — identifying and documenting OWASP Top 10 vulnerability classes",
+      "title": "Burp Suite Vulnerability Assessment",
+      "problem": "Web applications were intrinsically vulnerable to common, devastating security threats like XSS and SQL injection.",
+      "solution": "Conducted exhaustive security audits using advanced proxy tools to identify, document, and triage vulnerabilities securely.",
       "tools": [
         "Burp Suite",
-        "OWASP ZAP",
-        "Kali Linux",
-        "Web Security Principles"
+        "Web Security",
+        "Vulnerability Testing"
       ],
-      "role": "Security Analyst",
-      "challenges": "Methodically identifying vulnerabilities without disrupting system functionality and producing actionable remediation reports",
-      "impact": "Identified critical XSS and SQL injection vectors, produced documented findings with severity ratings and clear recommendations for developers",
+      "role": "Cybersecurity Analyst",
+      "challenges": "Executing deep penetration tests without permanently disrupting live system operations or violating compliance.",
+      "impact": "Uncovered critical cross-site scripting and injection flaws, supplying actionable fixes that hardened the systems.",
       "status": "Completed",
       "links": {
         "demo": null,
@@ -465,11 +382,10 @@
   "softSkills": [
     "Adaptability",
     "Time Management",
-    "Strong Communication",
+    "Strong Communication Skills",
     "Leadership & Initiative",
     "Critical Thinking",
     "Problem Solving",
-    "Teamwork & Collaboration",
-    "Attention to Detail"
+    "Teamwork & Collaboration"
   ]
 }
