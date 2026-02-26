@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { Navigation } from './components/Navigation';
@@ -9,7 +8,6 @@ import { Timeline } from './components/Timeline';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
-import { downloadCV } from './utils/pdfExport';
 import cvData from './data/cv-data.json';
 
 const sections = [
@@ -23,15 +21,9 @@ const sections = [
 function App() {
   const { theme, toggleTheme } = useTheme();
   const activeSection = useScrollSpy(sections.map(s => s.id));
-  const [feedback, setFeedback] = useState<string>('');
-
-  const showFeedback = (message: string) => {
-    setFeedback(message);
-    setTimeout(() => setFeedback(''), 3000);
-  };
 
   const handleViewCV = () => {
-    downloadCV(cvData, 'general', showFeedback);
+    window.open('/Maina Eric  CV.pdf', '_blank');
   };
 
   return (
@@ -67,12 +59,6 @@ function App() {
         phone={cvData.profile.phone}
         name={cvData.profile.name}
       />
-
-      {feedback && (
-        <div className="fixed bottom-24 right-6 z-50 px-4 py-2 bg-green-600 text-white rounded-lg shadow-lg text-sm font-medium animate-fade-in">
-          {feedback}
-        </div>
-      )}
     </div>
   );
 }
