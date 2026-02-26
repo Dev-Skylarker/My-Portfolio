@@ -1,0 +1,360 @@
+{
+  "profile": {
+    "name": "Maina Eric Kariuki",
+    "title": "ICT Professional & Web Developer",
+    "email": "erickaris0521@gmail.com",
+    "phone": "+254741909607",
+    "location": "Kiriaini-Murang'a, Kenya",
+    "summary": "Motivated ICT professional with hands-on experience in web development, IT support, and digital design. Skilled in transforming technical ideas into practical solutions, managing digital platforms, and delivering meaningful results. Experienced in managing projects, coordinating technical workflows, and deploying live solutions. Adaptable, self-driven, and eager to contribute across diverse areas of computing and ICT, with strong problem-solving, communication, and teamwork skills."
+  },
+  "competencies": [
+    {
+      "category": "Systems Administration & ICT Support",
+      "skills": [
+        "Hardware/software maintenance, LAN/WAN networking, troubleshooting",
+        "High-volume printing, scanning, and document management",
+        "Providing user support and assisting clients with ICT tools and systems"
+      ]
+    },
+    {
+      "category": "Cybersecurity & Data Protection",
+      "skills": [
+        "Web security and vulnerability testing (Burp Suite)",
+        "Data privacy, encryption protocols, and secure digital handling",
+        "Ensuring compliance with government and organizational regulations"
+      ]
+    },
+    {
+      "category": "Software Development & Data Management",
+      "skills": [
+        "Python, JavaScript, TypeScript, React, HTML5, CSS3, Tailwind CSS",
+        "Responsive web design, REST APIs, STK Push integration",
+        "Developing secure and functional web solutions"
+      ]
+    },
+    {
+      "category": "Design & Branding",
+      "skills": [
+        "UI/UX wireframing, corporate identity design",
+        "Adobe Photoshop/Illustrator and Canva for visual assets",
+        "Brand strategy for small and medium businesses"
+      ]
+    },
+    {
+      "category": "Project Management & Corporate Skills",
+      "skills": [
+        "Managing multiple ICT projects from planning to delivery",
+        "Project coordination, time management, and workflow optimization",
+        "Customer interaction, conflict management, and business communication"
+      ]
+    }
+  ],
+  "technicalSkills": [
+    {
+      "category": "Programming Languages",
+      "skills": [
+        {
+          "name": "Python",
+          "level": 75
+        },
+        {
+          "name": "JavaScript",
+          "level": 80
+        },
+        {
+          "name": "TypeScript",
+          "level": 70
+        },
+        {
+          "name": "HTML5",
+          "level": 90
+        },
+        {
+          "name": "CSS3",
+          "level": 85
+        }
+      ]
+    },
+    {
+      "category": "Frameworks & Libraries",
+      "skills": [
+        {
+          "name": "React",
+          "level": 72
+        },
+        {
+          "name": "Tailwind CSS",
+          "level": 80
+        },
+        {
+          "name": "Vite",
+          "level": 70
+        },
+        {
+          "name": "Responsive Design",
+          "level": 85
+        }
+      ]
+    },
+    {
+      "category": "Web & Backend",
+      "skills": [
+        {
+          "name": "Web Security",
+          "level": 70
+        },
+        {
+          "name": "Hosting Management",
+          "level": 75
+        },
+        {
+          "name": "REST APIs",
+          "level": 68
+        },
+        {
+          "name": "M-Pesa STK Push",
+          "level": 65
+        }
+      ]
+    },
+    {
+      "category": "IT Support & Networking",
+      "skills": [
+        {
+          "name": "Hardware Maintenance",
+          "level": 80
+        },
+        {
+          "name": "LAN/WAN Networking",
+          "level": 75
+        },
+        {
+          "name": "Troubleshooting",
+          "level": 85
+        }
+      ]
+    },
+    {
+      "category": "Security Tools",
+      "skills": [
+        {
+          "name": "Burp Suite",
+          "level": 70
+        },
+        {
+          "name": "Vulnerability Testing",
+          "level": 65
+        }
+      ]
+    },
+    {
+      "category": "Design Tools",
+      "skills": [
+        {
+          "name": "Adobe Photoshop",
+          "level": 70
+        },
+        {
+          "name": "Adobe Illustrator",
+          "level": 65
+        },
+        {
+          "name": "Canva",
+          "level": 80
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "period": "2023 – Present",
+      "degree": "Bachelor of Science in Computer Science (Third Year)",
+      "institution": "University of Embu",
+      "focus": "Web Security, Data Communication, System Analysis",
+      "type": "degree"
+    },
+    {
+      "period": "12/2022 – 01/2023",
+      "degree": "Computer Packages & Cyber Café Operations",
+      "institution": "Digital Cyber Kamune",
+      "focus": "Pass Certificate and Internship",
+      "type": "certificate"
+    },
+    {
+      "period": "2018 – 2022",
+      "degree": "Kenya Certificate of Secondary Education (KCSE)",
+      "institution": "Kamune Secondary School",
+      "focus": "Grade: C+",
+      "type": "secondary"
+    },
+    {
+      "period": "2010 – 2017",
+      "degree": "Kenya Certificate of Primary Education (KCPE)",
+      "institution": "Gaithunu Primary School",
+      "focus": "326 Marks",
+      "type": "primary"
+    }
+  ],
+  "experience": [
+    {
+      "period": "01/2024 – Present",
+      "role": "Freelance Web Developer",
+      "company": "Self-employed",
+      "responsibilities": [
+        "Designed and developed multiple responsive websites from client requirements to deployment",
+        "Built a full-stack M-Pesa Lipana STK Push payment integration with Python/Flask backend and React frontend",
+        "Developed web applications including a gamified hydration tracker, portfolio site, and business landing pages",
+        "Created branding and design assets including logos, posters, and brand guidelines for clients",
+        "Conducted code reviews, debugging, and performance optimisation across all projects"
+      ],
+      "type": "work"
+    },
+    {
+      "period": "01/2023 – 08/2023",
+      "role": "Technical Support & Cyber Attendant (Intern)",
+      "company": "Digital Cyber Kamune",
+      "responsibilities": [
+        "Provided technical support for hardware, software, and connectivity issues for 50+ daily users",
+        "Operated and maintained high-demand office equipment (printers, scanners, photocopiers)",
+        "Assisted clients with government portals (eCitizen, KRA), ensuring compliance",
+        "Managed sensitive client data with confidentiality"
+      ],
+      "type": "internship"
+    }
+  ],
+  "projects": [
+    {
+      "title": "AquaFlow — Hydration Tracker",
+      "problem": "People frequently forget to drink enough water throughout the day, with no engaging way to build a daily habit",
+      "solution": "Built a gamified hydration tracking web app with level progression, streak tracking, achievements, personalised reminders, and a beautiful animated UI to make staying hydrated fun",
+      "tools": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Vercel"
+      ],
+      "role": "Lead Developer & Designer",
+      "challenges": "Implementing persistent state without a backend, smooth animations, and a rewarding progression system that feels genuinely engaging rather than just functional",
+      "impact": "Live web application with gamified hydration tracking — levels from 'Thirsty Noob' to 'Aqua God', streak system, achievements, and smart reminders",
+      "status": "Live",
+      "links": {
+        "demo": "https://water-intake-delta.vercel.app/",
+        "repo": null
+      }
+    },
+    {
+      "title": "Business Landing Website",
+      "problem": "A local business needed a professional online presence to showcase its services and make it easy for customers to get in touch",
+      "solution": "Designed and developed a fully responsive business website with modern UI/UX principles using HTML5, CSS3, and JavaScript",
+      "tools": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Web Hosting"
+      ],
+      "role": "Lead Developer & Designer",
+      "challenges": "Ensuring responsive design across all devices while maintaining fast load times and implementing basic security practices",
+      "impact": "Live operational website that effectively showcases the client's services and drives customer engagement",
+      "status": "Live",
+      "links": {
+        "demo": "https://skitechsolutions.co.ke",
+        "repo": null
+      }
+    },
+    {
+      "title": "Lipana STK Push Payment System",
+      "problem": "Clients needed a seamless, automated mobile money payment integration for web applications",
+      "solution": "Built a full-stack M-Pesa Lipana STK Push integration with a Python/Flask backend, real-time payment status tracking, and a responsive React frontend with success/failure feedback",
+      "tools": [
+        "Python",
+        "Flask",
+        "React",
+        "JavaScript",
+        "M-Pesa API",
+        "Render"
+      ],
+      "role": "Full-Stack Developer",
+      "challenges": "Handling async payment callbacks, real-time status polling, securing API credentials, and deploying on a free cloud tier with cold-start latency",
+      "impact": "Live payment solution enabling seamless M-Pesa transactions directly from a web interface, demonstrating real-world backend integration skills",
+      "status": "Live",
+      "links": {
+        "demo": "https://skitech-lipana-stk-push.onrender.com/",
+        "repo": null
+      }
+    },
+    {
+      "title": "Personal Portfolio Website",
+      "problem": "Need for a modern, interactive portfolio to showcase skills, projects, and professional background to employers and clients",
+      "solution": "Built a fully responsive single-page portfolio using React, TypeScript, and Tailwind CSS with dark mode, animated sections, CV download, and an integrated contact form",
+      "tools": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Lucide Icons"
+      ],
+      "role": "Developer & Designer",
+      "challenges": "Implementing seamless dark mode, animated name reveal, accessible contact form with email integration, and ensuring consistent experience across devices",
+      "impact": "Live, professional portfolio actively used to attract clients and job opportunities",
+      "status": "Live",
+      "links": {
+        "demo": "https://mainaericportfolio.bolt.host/",
+        "repo": null
+      }
+    },
+    {
+      "title": "Identity Rebrand Project",
+      "problem": "Small local businesses lacked professional digital branding to compete online",
+      "solution": "Created comprehensive digital branding materials including logos, colour schemes, and brand guidelines for multiple clients",
+      "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Canva"
+      ],
+      "role": "Brand Designer",
+      "challenges": "Understanding diverse client needs and translating business values into cohesive visual identities",
+      "impact": "Improved online presence and professional perception for multiple small businesses in the local community",
+      "status": "Completed",
+      "links": {
+        "demo": null,
+        "repo": null
+      }
+    },
+    {
+      "title": "Burp Suite Vulnerability Assessment",
+      "problem": "Web applications vulnerable to common security threats like XSS and SQL injection",
+      "solution": "Conducted comprehensive security audits using Burp Suite to identify and document vulnerabilities in test environments",
+      "tools": [
+        "Burp Suite",
+        "Web Security Principles",
+        "Vulnerability Testing"
+      ],
+      "role": "Security Analyst",
+      "challenges": "Identifying vulnerabilities without disrupting live systems and documenting findings effectively",
+      "impact": "Identified critical XSS and SQLi vulnerabilities, providing actionable recommendations for remediation",
+      "status": "Completed",
+      "links": {
+        "demo": null,
+        "repo": null
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "name": "IBM Web Development Series",
+      "issuer": "IBM",
+      "date": "2023",
+      "description": "Completed training in modern web development concepts, tools and deployment practices, with focus on building and maintaining functional web and digital applications"
+    }
+  ],
+  "softSkills": [
+    "Adaptability",
+    "Time Management",
+    "Strong Communication Skills",
+    "Leadership & Initiative",
+    "Critical Thinking",
+    "Problem Solving",
+    "Teamwork & Collaboration"
+  ]
+}
