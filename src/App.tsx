@@ -26,6 +26,15 @@ function App() {
     window.open('/Maina Eric  CV.pdf', '_blank');
   };
 
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Maina Eric  CV.pdf';
+    link.download = 'Maina_Eric_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="relative min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950 animate-gradient" />
@@ -55,7 +64,7 @@ function App() {
       <Footer softSkills={cvData.softSkills} email={cvData.profile.email} githubUrl="https://github.com/Dev-Skylarker" />
 
       <FloatingActions
-        onViewCV={handleViewCV}
+        onDownloadCV={handleDownloadCV}
         phone={cvData.profile.phone}
         name={cvData.profile.name}
       />

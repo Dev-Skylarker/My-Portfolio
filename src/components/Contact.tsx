@@ -248,7 +248,7 @@ export function Contact({ profile }: ContactProps) {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5" htmlFor="contact-name">
-                        Your Name *
+                        Full Name *
                       </label>
                       <input
                         id="contact-name"
@@ -256,7 +256,7 @@ export function Contact({ profile }: ContactProps) {
                         name="name"
                         value={form.name}
                         onChange={handleChange}
-                        placeholder="John Doe"
+                        placeholder="Enter your name"
                         required
                         className={inputClass}
                       />
@@ -271,7 +271,7 @@ export function Contact({ profile }: ContactProps) {
                         name="email"
                         value={form.email}
                         onChange={handleChange}
-                        placeholder="john@example.com"
+                        placeholder="Enter your email address"
                         required
                         className={inputClass}
                       />
@@ -280,23 +280,17 @@ export function Contact({ profile }: ContactProps) {
 
                   <div>
                     <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5" htmlFor="contact-subject">
-                      Subject *
+                      Subject
                     </label>
-                    <select
+                    <input
                       id="contact-subject"
+                      type="text"
                       name="subject"
                       value={form.subject}
                       onChange={handleChange}
-                      required
+                      placeholder="What is this regarding?"
                       className={inputClass}
-                    >
-                      <option value="">Select a topic...</option>
-                      <option value="Web Development Project">Web Development Project</option>
-                      <option value="IT Support Services">IT Support Services</option>
-                      <option value="Internship / Job Opportunity">Internship / Job Opportunity</option>
-                      <option value="Collaboration">Collaboration</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                    </select>
+                    />
                   </div>
 
                   <div>
@@ -308,7 +302,7 @@ export function Contact({ profile }: ContactProps) {
                       name="message"
                       value={form.message}
                       onChange={handleChange}
-                      placeholder="Tell me about your project or how I can help..."
+                      placeholder="Tell me about your project or inquiry..."
                       required
                       rows={5}
                       className={`${inputClass} resize-none`}

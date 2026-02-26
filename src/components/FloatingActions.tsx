@@ -2,12 +2,12 @@ import { FileText, MessageCircle, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface FloatingActionsProps {
-  onViewCV: () => void;
+  onDownloadCV: () => void;
   phone: string;
   name: string;
 }
 
-export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps) {
+export function FloatingActions({ onDownloadCV, phone, name }: FloatingActionsProps) {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
       </button>
 
       <button
-        onClick={onViewCV}
+        onClick={onDownloadCV}
         className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
         aria-label="Download CV"
         title="Download CV"

@@ -149,7 +149,7 @@ export function Hero({ profile, onViewCV }: HeroProps) {
               className="flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 active:scale-95"
             >
               <FileText size={18} />
-              Download CV
+              View CV
             </button>
             <button
               onClick={handleWhatsApp}
