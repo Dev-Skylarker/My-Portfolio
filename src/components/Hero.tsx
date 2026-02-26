@@ -11,31 +11,36 @@ interface HeroProps {
     summary: string;
   };
   onViewCV: () => void;
+  isActive?: boolean;
 }
 
-export function Hero({ profile, onViewCV }: HeroProps) {
+export function Hero({ profile, onViewCV, isActive }: HeroProps) {
   const [displayedName, setDisplayedName] = useState('');
   const [nameComplete, setNameComplete] = useState(false);
 
-  // Typewriter animation for the name
+  // Typewriter animation — retriggers whenever the hero section becomes active
   useEffect(() => {
+    if (isActive === false) return; // don't re-run while navigated away
     const name = profile.name;
     let i = 0;
     const delay = 80;
     setDisplayedName('');
     setNameComplete(false);
 
-    const interval = setInterval(() => {
-      i++;
-      setDisplayedName(name.slice(0, i));
-      if (i >= name.length) {
-        clearInterval(interval);
-        setNameComplete(true);
-      }
-    }, delay);
+    const timer = setTimeout(() => {
+      const interval = setInterval(() => {
+        i++;
+        setDisplayedName(name.slice(0, i));
+        if (i >= name.length) {
+          clearInterval(interval);
+          setNameComplete(true);
+        }
+      }, delay);
+      return () => clearInterval(interval);
+    }, 120); // small delay so it feels intentional on re-entry
 
-    return () => clearInterval(interval);
-  }, [profile.name]);
+    return () => clearTimeout(timer);
+  }, [profile.name, isActive]);
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
