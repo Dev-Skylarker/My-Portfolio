@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mainaericportfolio.vercel.app/sitemap.xml
