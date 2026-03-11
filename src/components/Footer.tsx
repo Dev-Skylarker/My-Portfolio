@@ -1,4 +1,5 @@
-import { Mail, Github, Linkedin } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Github, Linkedin, X } from 'lucide-react';
 
 interface FooterProps {
   softSkills: string[];
@@ -7,6 +8,7 @@ interface FooterProps {
 
 export function Footer({ softSkills, githubUrl }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const [showImage, setShowImage] = useState(false);
 
   return (
     <footer className="bg-gray-950 dark:bg-gray-950 text-white py-14 px-4 sm:px-6 lg:px-8">
@@ -19,9 +21,12 @@ export function Footer({ softSkills, githubUrl }: FooterProps) {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-lg">
                 ME
               </div>
-              <div>
-                <p className="font-bold text-white">Maina Eric Kariuki</p>
-                <p className="text-xs text-gray-400">ICT Professional & Web Developer</p>
+              <div 
+                className="cursor-pointer group"
+                onClick={() => setShowImage(true)}
+              >
+                <p className="font-bold text-white group-hover:text-blue-400 transition-colors">Maina Eric Kariuki</p>
+                <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">ICT Professional & Web Developer</p>
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs mb-5">
@@ -83,16 +88,30 @@ export function Footer({ softSkills, githubUrl }: FooterProps) {
         </div>
       </div>
 
-      {/* Footer Banner Image */}
-      <div className="mt-12 max-w-6xl mx-auto px-4 sm:px-0">
-        <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10 border border-gray-800/50">
-          <img
-            src="/phh.jpg"
-            alt="Professional Background"
-            className="w-full h-auto object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
-          />
+      {/* Image Modal Popup */}
+      {showImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" 
+          onClick={() => setShowImage(false)}
+        >
+          <div className="relative max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setShowImage(false)}
+              className="absolute -top-14 right-0 md:-right-12 xl:right-0 p-2 text-white hover:text-red-400 transition-colors bg-gray-900/80 hover:bg-gray-800 rounded-full border border-gray-700"
+              aria-label="Close modal"
+            >
+              <X size={24} />
+            </button>
+            <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-gray-800 border-opacity-50">
+              <img
+                src="/phh.jpg"
+                alt="Professional Background"
+                className="w-full max-h-[85vh] object-contain bg-gray-950"
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </footer>
   );
 }
