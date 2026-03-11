@@ -82,6 +82,17 @@ export function Footer({ softSkills, githubUrl }: FooterProps) {
           </p>
         </div>
       </div>
+
+      {/* Footer Banner Image */}
+      <div className="mt-12 max-w-6xl mx-auto px-4 sm:px-0">
+        <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10 border border-gray-800/50">
+          <img
+            src="/phh.jpg"
+            alt="Professional Background"
+            className="w-full h-auto object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
+          />
+        </div>
+      </div>
     </footer>
   );
 }

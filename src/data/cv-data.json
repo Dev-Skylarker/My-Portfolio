@@ -5,16 +5,16 @@
     "email": "erickaris0521@gmail.com",
     "phone": "+254741909607",
     "location": "Kiriaini-Murang'a, Kenya",
-    "summary": "Motivated ICT professional with hands-on experience in web development, IT support, and digital design. Skilled in transforming technical ideas into practical solutions, managing digital platforms, and delivering meaningful results. Experienced in managing projects, coordinating technical workflows, and deploying live solutions. Adaptable, self-driven, and eager to contribute across diverse areas of computing and ICT, with strong problem-solving, communication, and teamwork skills."
+    "summary": "Versatile ICT Professional and Graphic Designer with a focus on delivering high-impact digital solutions. Expert in leveraging the Adobe Creative Suite for professional branding, combined with strong full-stack web development and systems administration skills. Proven track record in automating workflows using AI, managing complex database structures, and deploying robust IT infrastructures. A proactive problem-solver dedicated to technical excellence and visual innovation."
   },
   "competencies": [
     {
       "category": "Systems Administration & ICT Support",
       "skills": [
-        "Hardware/software maintenance, LAN/WAN networking, troubleshooting",
-        "High-volume printing, scanning, and document management",
-        "Providing user support and assisting clients with ICT tools and systems",
-        "Operating system troubleshooting for update, boot and driver failures"
+        "Hardware/software maintenance, LAN/WAN networking, and advanced troubleshooting",
+        "High-volume printing, scanning, and professional document management",
+        "Advanced OS deployment, including multi-boot configurations and cross-platform installation",
+        "Providing expert user support and system administration for diverse ICT environments"
       ]
     },
     {
@@ -30,19 +30,21 @@
     {
       "category": "Software Development & Data Management",
       "skills": [
-        "Python, JavaScript, HTML5, CSS3, responsive web design, hosting management",
-        "Developing secure and functional web solutions",
-        "Integration of mobile payment APIs (M-Pesa / Daraja APIs – STK Push, callbacks and transaction verification)",
-        "Backend automation, API integration and workflow automation using Python and web frameworks",
-        "Good understanding of Artificial Intelligence concepts and automation workflows for improving business processes and system efficiency",
-        "Version control using Git and collaborative code management"
+        "Full-stack development: Python, JavaScript, HTML5, CSS3, and modern framework integration",
+        "Database analysis, schema design, and data structure optimization",
+        "Advanced AI integration for workflow automation and process efficiency",
+        "Integration of complex payment APIs (M-Pesa STK Push, callbacks, and verification systems)",
+        "Expert version control using Git and professional collaboration via GitHub",
+        "Designing and deploying scalable, secure, and functional web architectures"
       ]
     },
     {
-      "category": "Design & Branding (Minor Focus)",
+      "category": "Graphic Design & Visual Branding",
       "skills": [
-        "Basic UI/UX wireframing and corporate identity",
-        "Adobe Photoshop/Illustrator and Canva for visual assets"
+        "Professional Graphic Design, Logo Design, and Brand Identity development",
+        "Advanced Photo Editing, Image Manipulation, and Visual Asset creation",
+        "Expertise in Adobe Creative Suite (Photoshop, Illustrator) and Canva",
+        "Crafting high-impact visual content for digital and print media"
       ]
     },
     {
@@ -153,19 +155,61 @@
       ]
     },
     {
-      "category": "Design Tools",
+      "category": "Design & Creative Suite",
       "skills": [
         {
           "name": "Adobe Photoshop",
-          "level": 70
+          "level": 85
         },
         {
           "name": "Adobe Illustrator",
-          "level": 65
+          "level": 80
+        },
+        {
+          "name": "Graphic & Logo Design",
+          "level": 90
         },
         {
           "name": "Canva",
+          "level": 85
+        }
+      ]
+    },
+    {
+      "category": "Tools & Productivity",
+      "skills": [
+        {
+          "name": "Microsoft Office Suite",
+          "level": 90
+        },
+        {
+          "name": "Git & GitHub",
+          "level": 85
+        },
+        {
+          "name": "Database Analysis",
+          "level": 75
+        },
+        {
+          "name": "AI Automations",
           "level": 80
+        }
+      ]
+    },
+    {
+      "category": "OS & Terminal Environments",
+      "skills": [
+        {
+          "name": "Windows & Linux Installation",
+          "level": 90
+        },
+        {
+          "name": "Kali Linux / Terminals",
+          "level": 75
+        },
+        {
+          "name": "System Security",
+          "level": 70
         }
       ]
     }
@@ -206,11 +250,11 @@
       "role": "Freelance Web Developer",
       "company": "Self-employed",
       "responsibilities": [
-        "Designed and developed multiple responsive websites from client requirements to deployment",
-        "Built a full-stack M-Pesa Lipana STK Push payment integration with Python/Flask backend and React frontend",
-        "Developed web applications including a gamified hydration tracker, portfolio site, and business landing pages",
-        "Created branding and design assets including logos, posters, and brand guidelines for clients",
-        "Conducted code reviews, debugging, and performance optimisation across all projects"
+        "Architected and deployed responsive, user-centric web applications using modern stacks",
+        "Engineered full-stack M-Pesa STK Push payment integrations with secure Python/Flask backends",
+        "Orchestrated brand identity projects, delivering professional logos, visual assets, and comprehensive brand guidelines using Adobe Photoshop and Illustrator",
+        "Lead high-level photo editing and image manipulation for corporate branding and marketing materials",
+        "Optimized system performance and security through rigorous code reviews and vulnerability assessments"
       ],
       "type": "work"
     },
@@ -319,7 +363,7 @@
       ],
       "role": "Brand Designer",
       "challenges": "Understanding diverse client needs and translating business values into cohesive visual identities",
-      "impact": "Improved online presence and professional perception for multiple small businesses in the local community",
+      "impact": "Engineered cohesive visual identities that significantly elevated the professional presence and market competitiveness of local businesses",
       "status": "Completed",
       "links": {
         "demo": null,
@@ -352,6 +396,20 @@
       "issuer": "IBM",
       "date": "2023",
       "description": "Completed training in modern web development concepts, tools and deployment practices, with focus on building and maintaining functional web and digital applications"
+    },
+    {
+      "name": "Networking, Cybersecurity & Python Essentials",
+      "issuer": "Cisco Networking Academy / OpenEDG Python Institute",
+      "date": "2024 - Present",
+      "description": "Advancing through Networking and Cybersecurity tracks; Python Essentials course completed.",
+      "link": "https://www.credly.com/badges/c80354da-e6be-4358-bc3e-3415bf11a5ab/public_url",
+      "badge": "/python-essentials-1.1.png"
+    },
+    {
+      "name": "Cybersecuity, and full-stack development series",
+      "issuer": "FreeCodeCamp",
+      "date": "Currently Enrolled",
+      "description": "Pursuing comprehensive certifications in modern web architecture, responsive design systems, and complex algorithmic problem-solving."
     }
   ],
   "softSkills": [

@@ -20,11 +20,16 @@ interface TimelineProps {
     issuer: string;
     date: string;
     description: string;
+    badge?: string;
+    details?: string;
+    link?: string;
   }>;
 }
 
 export function Timeline({ experience, education, certifications }: TimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set([0])); // First item expanded by default
+
+  const [revealedDetails, setRevealedDetails] = useState<Set<number>>(new Set());
 
   const toggleItem = (index: number) => {
     const newExpanded = new Set(expandedItems);
@@ -34,6 +39,16 @@ export function Timeline({ experience, education, certifications }: TimelineProp
       newExpanded.add(index);
     }
     setExpandedItems(newExpanded);
+  };
+
+  const toggleDetails = (index: number) => {
+    const newRevealed = new Set(revealedDetails);
+    if (newRevealed.has(index)) {
+      newRevealed.delete(index);
+    } else {
+      newRevealed.add(index);
+    }
+    setRevealedDetails(newRevealed);
   };
 
   const getIcon = (type: string) => {
@@ -232,7 +247,7 @@ export function Timeline({ experience, education, certifications }: TimelineProp
                   className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-md p-6 hover:shadow-lg transition-all duration-200"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 flex items-center justify-center flex-shrink-0 overflow-hidden border border-amber-200 dark:border-amber-900/50 shadow-sm">
                       <Award className="text-amber-600 dark:text-amber-400" size={22} />
                     </div>
                     <div>
@@ -243,6 +258,45 @@ export function Timeline({ experience, education, certifications }: TimelineProp
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                         {cert.description}
                       </p>
+                      {(cert.details || cert.link) && (
+                        <div className="mt-3">
+                          {cert.link ? (
+                            <a
+                              href={cert.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-medium transition-all shadow-md group"
+                            >
+                              {cert.badge ? (
+                                <img src={cert.badge} alt="" className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" />
+                              ) : (
+                                <Award size={14} />
+                              )}
+                              {cert.name.includes('Python') ? 'Python Essentials 1 Certification' : 'Verify Certification'}
+                              <span className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                            </a>
+                          ) : (
+                            <>
+                              <button
+                                onClick={() => toggleDetails(index)}
+                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-medium transition-all shadow-md"
+                              >
+                                {cert.badge ? (
+                                  <img src={cert.badge} alt="" className="w-4 h-4 object-contain" />
+                                ) : (
+                                  <Award size={14} />
+                                )}
+                                {revealedDetails.has(index) ? 'Hide Details' : 'View Badge Verification'}
+                              </button>
+                              {revealedDetails.has(index) && (
+                                <div className="mt-2 p-3 rounded-xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100/50 dark:border-blue-900/20 text-xs text-blue-800 dark:text-blue-300 animate-in fade-in slide-in-from-top-1 duration-300">
+                                  {cert.details}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
