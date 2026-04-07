@@ -66,15 +66,8 @@ export function Contact({ profile }: ContactProps) {
       setTimeout(() => setSubmitStatus('idle'), 6000);
     } catch (error) {
       console.error('Email sending failed:', error);
-      // Fallback: open email client with pre-filled content
-      const subject = encodeURIComponent(`Portfolio Contact: ${form.subject}`);
-      const body = encodeURIComponent(
-        `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
-      );
-      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
       setSubmitStatus('error');
-      // Reset from error state
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
 
@@ -196,34 +189,28 @@ export function Contact({ profile }: ContactProps) {
               </div>
             )}
 
-            {/* Availability note */}
-            <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl border border-blue-100 dark:border-blue-800">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <p className="text-sm font-bold text-gray-900 dark:text-white">Available for Opportunities</p>
+            {/* Stats */}
+            <div className="grid grid-cols-1 gap-3 mt-2">
+              <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Response Time</p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">Quick — within 24 hours</p>
+                </div>
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                Open to internships, part-time roles, freelance projects, and collaborations in web development and ICT.
-              </p>
-            </div>
-
-            {/* Effectiveness Stats */}
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              <div className="p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm text-center">
-                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1 truncate">Response Time</p>
-                <p className="text-sm font-bold text-gray-900 dark:text-white">&lt; 24 Hours</p>
+              <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Project Success Rate</p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">100% on every project</p>
+                </div>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm text-center">
-                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1 truncate">Project Success</p>
-                <p className="text-sm font-bold text-gray-900 dark:text-white">100% Rate</p>
-              </div>
-              <div className="p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm text-center">
-                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1 truncate">Messages</p>
-                <p className="text-sm font-bold text-gray-900 dark:text-white">20+ Received</p>
-              </div>
-              <div className="p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm text-center border-b-2 border-b-green-500 dark:border-b-green-500">
-                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1 truncate">Remote Collab</p>
-                <p className="text-sm font-bold text-green-600 dark:text-green-400">Available</p>
+              <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Availability</p>
+                  <p className="text-sm font-bold text-green-600 dark:text-green-400">Remote &amp; On-Site</p>
+                </div>
               </div>
             </div>
           </div>
@@ -334,12 +321,7 @@ export function Contact({ profile }: ContactProps) {
                     )}
                   </button>
 
-                  <p className="text-center text-xs text-gray-400 dark:text-gray-500">
-                    Or reach me directly at{' '}
-                    <a href={`mailto:${profile.email}`} className="text-blue-600 dark:text-blue-400 hover:underline">
-                      {profile.email}
-                    </a>
-                  </p>
+
                 </form>
               )}
             </div>
