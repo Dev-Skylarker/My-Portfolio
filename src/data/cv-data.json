@@ -233,14 +233,14 @@
       "period": "2018 – 2022",
       "degree": "Kenya Certificate of Secondary Education (KCSE)",
       "institution": "Kamune Secondary School",
-      "focus": "Grade: C+",
+      "focus": "Kenya Certificate of Secondary Education",
       "type": "secondary"
     },
     {
       "period": "2010 – 2017",
       "degree": "Kenya Certificate of Primary Education (KCPE)",
       "institution": "Gaithunu Primary School",
-      "focus": "326 Marks",
+      "focus": "Kenya Certificate of Primary Education",
       "type": "primary"
     }
   ],
@@ -419,6 +419,7 @@
     "Leadership & Initiative",
     "Critical Thinking",
     "Problem Solving",
-    "Teamwork & Collaboration"
+    "Teamwork & Collaboration",
+    "Licensed Driver"
   ]
 }
