@@ -272,6 +272,27 @@
   ],
   "projects": [
     {
+      "title": "Skitech Smart Rider",
+      "problem": "Boda-boda riders need a seamless, error-free way for customers to pay them via mobile money without manually sharing or typing phone numbers",
+      "solution": "Developed a platform that generates permanent, unique QR codes linking to public payment profiles for riders, enabling quick scanning and seamless M-Pesa payments",
+      "tools": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Supabase",
+        "Vercel"
+      ],
+      "role": "Lead Developer & Designer",
+      "challenges": "Designing an intuitive, mobile-first UI for riders on the go, integrating dynamic QR code generation, and establishing secure real-time database connections with Supabase",
+      "impact": "A live web application providing boda-boda riders with QR-based digital payment profiles, streamlining transactions and reducing payment errors",
+      "status": "Live",
+      "links": {
+        "demo": "https://skitech-smart-rider.vercel.app/",
+        "repo": null
+      }
+    },
+    {
       "title": "AquaFlow — Hydration Tracker",
       "problem": "People frequently forget to drink enough water throughout the day, with no engaging way to build a daily habit",
       "solution": "Built a gamified hydration tracking web app with level progression, streak tracking, achievements, personalised reminders, and a beautiful animated UI to make staying hydrated fun",

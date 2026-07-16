@@ -21,7 +21,7 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
   // Typewriter animation triggered on mount and custom event
   useEffect(() => {
     const name = profile.name;
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
 
     const tryAnimate = () => {
       let i = 0;
