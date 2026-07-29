@@ -24,7 +24,7 @@ interface ProjectsProps {
 // Employer-friendly categories — maps readable labels to matching tool keywords
 const CATEGORIES = [
   { label: 'All', match: () => true },
-  { label: 'Web Apps', match: (tools: string[]) => tools.some(t => ['React', 'TypeScript', 'Vite', 'Vercel'].includes(t)) },
+  { label: 'Web Apps', match: (tools: string[]) => tools.some(t => ['React', 'TypeScript', 'Vite', 'Vercel', 'PWA'].includes(t)) },
   { label: 'Backend & APIs', match: (tools: string[]) => tools.some(t => ['Python', 'Flask', 'M-Pesa API', 'Render'].includes(t)) },
   { label: 'Frontend', match: (tools: string[]) => tools.some(t => ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS'].includes(t)) },
   { label: 'Security', match: (tools: string[]) => tools.some(t => ['Burp Suite', 'Vulnerability Testing', 'Web Security Principles'].includes(t)) },

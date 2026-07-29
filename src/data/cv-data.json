@@ -272,6 +272,27 @@
   ],
   "projects": [
     {
+      "title": "Skitech Digi-Progs — Digital Event Programs & Eulogies",
+      "problem": "Traditional printed event programs and eulogy booklets are costly to produce, easy to lose, and lack interactive digital access for guests during memorial services, weddings, and events",
+      "solution": "Developed an offline-first Progressive Web Application (PWA) that transforms printed booklets, memorial eulogies, wedding programs, and church bulletins into mobile-friendly digital experiences accessible via QR codes",
+      "tools": [
+        "React",
+        "JavaScript",
+        "PWA",
+        "HTML5",
+        "CSS3",
+        "Web Hosting"
+      ],
+      "role": "Lead Developer & Designer",
+      "challenges": "Implementing offline-first functionality for unreliable venue networks, building an embedded digital program viewer, and ensuring mobile responsiveness for fast QR code access",
+      "impact": "Live PWA serving interactive digital eulogies and event programs across Kenya with instant QR code access, offline caching, and zero printing overhead",
+      "status": "Live",
+      "links": {
+        "demo": "https://progs.skitechsolutions.co.ke",
+        "repo": null
+      }
+    },
+    {
       "title": "Skitech Smart Rider",
       "problem": "Boda-boda riders need a seamless, error-free way for customers to pay them via mobile money without manually sharing or typing phone numbers",
       "solution": "Developed a platform that generates permanent, unique QR codes linking to public payment profiles for riders, enabling quick scanning and seamless M-Pesa payments",
