@@ -66,7 +66,7 @@
         },
         {
           "name": "JavaScript",
-          "level": 80
+          "level": 84
         },
         {
           "name": "TypeScript",
@@ -99,7 +99,7 @@
         },
         {
           "name": "Responsive Design",
-          "level": 85
+          "level": 95
         }
       ]
     },
@@ -112,15 +112,15 @@
         },
         {
           "name": "Hosting Management",
-          "level": 75
+          "level": 95
         },
         {
           "name": "REST APIs",
-          "level": 68
+          "level": 78
         },
         {
           "name": "M-Pesa STK Push",
-          "level": 65
+          "level": 70
         }
       ]
     },
@@ -133,7 +133,7 @@
         },
         {
           "name": "LAN/WAN Networking",
-          "level": 75
+          "level": 80
         },
         {
           "name": "Troubleshooting",
@@ -159,7 +159,7 @@
       "skills": [
         {
           "name": "Adobe Photoshop",
-          "level": 85
+          "level": 95
         },
         {
           "name": "Adobe Illustrator",
@@ -184,7 +184,7 @@
         },
         {
           "name": "Git & GitHub",
-          "level": 85
+          "level": 90
         },
         {
           "name": "Database Analysis",

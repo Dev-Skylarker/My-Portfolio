@@ -34,3 +34,4 @@ dist-ssr
 # Bolt.new metadata (not needed in production)
 .bolt
 .vercel
+.env*
