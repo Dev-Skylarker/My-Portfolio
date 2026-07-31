@@ -108,7 +108,7 @@
       "skills": [
         {
           "name": "Web Security",
-          "level": 70
+          "level": 80
         },
         {
           "name": "Hosting Management",
@@ -209,7 +209,7 @@
         },
         {
           "name": "System Security",
-          "level": 70
+          "level": 80
         }
       ]
     }
