@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Github, Linkedin, X } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 interface FooterProps {
   softSkills: string[];
@@ -11,98 +12,106 @@ export function Footer({ softSkills, githubUrl }: FooterProps) {
   const [showImage, setShowImage] = useState(false);
 
   return (
-    <footer className="bg-gray-950 dark:bg-gray-950 text-white py-14 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-transparent text-gray-900 dark:text-[#EDEDE8] py-12 sm:py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
-        {/* Top row */}
-        <div className="grid sm:grid-cols-2 gap-10 mb-10">
-          {/* Brand + hire me */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-lg">
-                ME
+        <ScrollReveal direction="up">
+          {/* Top row */}
+          <div className="grid sm:grid-cols-2 gap-8 sm:gap-10 mb-8 sm:mb-10">
+            {/* Brand + hire me */}
+            <div>
+              <div className="flex items-center gap-2.5 sm:gap-3 mb-4">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-[4px] bg-[#658B12] dark:bg-[#B7E33B] flex items-center justify-center text-white dark:text-[#0D0F0C] font-bold text-xs font-['IBM_Plex_Mono'] shadow-sm">
+                  ME
+                </div>
+                <div 
+                  className="cursor-pointer group"
+                  onClick={() => setShowImage(true)}
+                >
+                  <p className="font-['Space_Grotesk'] font-bold text-sm sm:text-base text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] transition-colors">
+                    Maina Eric Kariuki
+                  </p>
+                  <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489] group-hover:text-gray-950 dark:group-hover:text-[#EDEDE8] transition-colors">
+                    ICT Professional &amp; Web Developer
+                  </p>
+                </div>
               </div>
-              <div 
-                className="cursor-pointer group"
-                onClick={() => setShowImage(true)}
-              >
-                <p className="font-bold text-white group-hover:text-blue-400 transition-colors">Maina Eric Kariuki</p>
-                <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">ICT Professional & Web Developer</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xs mb-5">
-              Open to internships, full-time roles, and freelance projects in web development and ICT.
-            </p>
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm font-semibold rounded-full transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 hover:scale-105 active:scale-95"
-              >
-                <Mail size={15} />
-                Hire Me
-              </a>
-              {githubUrl && (
+              <p className="text-xs sm:text-sm text-gray-700 dark:text-[#8F9489] leading-relaxed max-w-xs mb-5 sm:mb-6">
+                Open to internships, full-time roles, and freelance projects in web development and ICT.
+              </p>
+              {/* Buttons */}
+              <div className="flex flex-wrap gap-2 sm:gap-2.5">
                 <a
-                  href={githubUrl}
+                  href="#contact"
+                  className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] text-[11px] sm:text-xs font-semibold font-['Space_Grotesk'] uppercase tracking-wider rounded-[4px] transition-all shadow-sm active:scale-95"
+                >
+                  <Mail size={14} />
+                  <span>Hire Me</span>
+                </a>
+                {githubUrl && (
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] text-[11px] sm:text-xs font-semibold font-['Space_Grotesk'] uppercase tracking-wider rounded-[4px] transition-all shadow-sm active:scale-95"
+                  >
+                    <Github size={14} />
+                    <span>GitHub</span>
+                  </a>
+                )}
+                <a
+                  href="https://www.linkedin.com/in/mainaericdev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 hover:text-white text-sm font-semibold rounded-full transition-all hover:scale-105 active:scale-95"
+                  className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] text-[11px] sm:text-xs font-semibold font-['Space_Grotesk'] uppercase tracking-wider rounded-[4px] transition-all shadow-sm active:scale-95"
                 >
-                  <Github size={15} />
-                  GitHub
+                  <Linkedin size={14} />
+                  <span>LinkedIn</span>
                 </a>
-              )}
-              <a
-                href="https://www.linkedin.com/in/mainaericdev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-700 hover:bg-blue-600 text-white text-sm font-semibold rounded-full transition-all hover:scale-105 active:scale-95"
-              >
-                <Linkedin size={15} />
-                LinkedIn
-              </a>
+              </div>
+            </div>
+
+            {/* Soft skills */}
+            <div>
+              <h3 className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-[#8F9489] mb-3 sm:mb-4">
+                Soft Skills
+              </h3>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {softSkills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-white dark:bg-[#151713] border border-gray-300 dark:border-[#22261E] text-gray-800 dark:text-[#EDEDE8] rounded-[4px] text-[11px] sm:text-xs font-medium font-['IBM_Plex_Mono'] hover:border-[#658B12] dark:hover:border-[#B7E33B] transition-colors cursor-default shadow-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Soft skills */}
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Soft Skills</h3>
-            <div className="flex flex-wrap gap-2">
-              {softSkills.map((skill, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-xs font-medium transition-colors cursor-default"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+          {/* Bottom bar */}
+          <div className="border-t border-gray-300 dark:border-[#22261E] pt-6 sm:pt-8">
+            <p className="text-center text-gray-600 dark:text-[#8F9489] font-['IBM_Plex_Mono'] text-[11px] sm:text-xs">
+              &copy; {currentYear} Maina Eric Kariuki. All rights reserved.
+            </p>
           </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-gray-800 pt-8">
-          <p className="text-center text-gray-500 text-sm">
-            &copy; {currentYear} Maina Eric Kariuki. All rights reserved.
-          </p>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Image Modal Popup */}
       {showImage && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm" 
           onClick={() => setShowImage(false)}
         >
-          <div className="relative max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
             <button 
               onClick={() => setShowImage(false)}
-              className="absolute -top-14 right-0 md:-right-12 xl:right-0 p-2 text-white hover:text-red-400 transition-colors bg-gray-900/80 hover:bg-gray-800 rounded-full border border-gray-700"
+              className="absolute -top-12 right-0 p-2 text-white hover:text-[#B7E33B] transition-colors bg-gray-900 rounded-[4px] border border-gray-700"
               aria-label="Close modal"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
-            <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-gray-800 border-opacity-50">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
               <img
                 src="/phh.jpg"
                 alt="Professional Background"

@@ -1,0 +1,194 @@
+Here is your updated, fully integrated CV with the new credentials, associated skill breakdowns, ongoing learning tracks, and technical skills seamlessly woven in:
+
+---
+
+# MAINA ERIC KARIUKI
+
+
+
+**ICT Professional | Software Developer | Graphic Designer**
+
++254 741 909 607 | erickaris0521@gmail.com | Embu / Murang'a, Kenya
+
+**GitHub:** [github.com/Dev-Skylarker](https://www.google.com/search?q=https%3A%2F%2Fgithub.com%2FDev-Skylarker) | **LinkedIn:** [linkedin.com/in/mainaericdev](https://www.google.com/search?q=https%3A%2F%2Flinkedin.com%2Fin%2Fmainaericdev) | **Portfolio:** Available online
+
+---
+
+### PROFESSIONAL SUMMARY
+
+Versatile ICT Professional, Software Developer, and Graphic Designer with a proven track record of architecting practical digital solutions, managing robust IT infrastructure, and delivering cohesive brand identities. Experienced across the full development lifecycle—from responsive frontends (React, TypeScript, Tailwind CSS) and backend payment integrations (Python, Flask, M-Pesa Daraja APIs) to database management (Supabase, SQL) and secure deployments. Combines rigorous systems troubleshooting, cyber threat intelligence, and vulnerability auditing (Burp Suite) with applied Generative AI workflows (prompt engineering, automation) and creative excellence in Adobe Creative Suite and Canva. A proactive problem solver dedicated to technical efficiency, workflow automation, and client satisfaction.
+
+---
+
+### TECHNICAL SKILLS & COMPETENCIES
+
+* **Programming & Scripting:** Python, JavaScript (ES6+), TypeScript, HTML5, CSS3, C, Algorithmic & Procedural Programming
+
+
+* **Frontend Development:** React, Vite, Tailwind CSS, Responsive Design Systems, Progressive Web Apps (PWA), Accessibility & Usability
+
+
+* **Backend & APIs:** Python (Flask), RESTful API Design, Webhook Handling, M-Pesa Daraja / Lipana STK Push Integration
+
+
+* **Databases & Cloud Hosting:** Supabase, PostgreSQL/SQL, Vercel, Render, Web Hosting & Deployment
+
+
+* **Artificial Intelligence & Automation:** Generative AI Tool Use, Prompt Engineering, Foundation Models, Transformers & Tokenization, AI Workflow Automation
+
+
+* **Cybersecurity & Threat Management:** Cyber Threat Analysis, Incident Response, Cryptography, Web Security Audits, Vulnerability Assessment (Burp Suite: XSS, SQLi), Secure Software Development Lifecycle (SDLC)
+
+
+* **Systems Administration & IT Support:** Hardware & Software Maintenance, LAN/WAN Networking, Multi-boot Deployments (Windows, Linux, Kali Linux), High-volume Document Management
+
+
+* **Graphic Design & Digital Media:** Adobe Photoshop, Adobe Illustrator, Canva, UI/UX Wireframing, Brand Identity (Logos, Flyers, Brochures, Certificates)
+
+
+* **Tools & Collaboration:** Git & GitHub, Visual Studio Code, Microsoft Office Suite
+
+
+
+---
+
+### PROFESSIONAL EXPERIENCE
+
+**Skitech Solutions** | *Founder & Lead Developer / Designer*
+
+*01/2024 – Present | Freelance / Self-Employed*
+
+* Architected and deployed responsive, user-centric web applications and Progressive Web Apps (PWAs) using React, TypeScript, Vite, and Tailwind CSS.
+* Engineered secure full-stack M-Pesa STK Push payment integrations featuring Python/Flask backends, real-time transaction callbacks, and status polling.
+
+
+* Delivered end-to-end brand identity packages (emblem logos, flyers, corporate stationery, and marketing materials) utilizing Adobe Photoshop and Illustrator.
+
+
+* Performed code reviews, debugging, and security assessments to optimize performance, SEO, and application integrity.
+
+
+* Managed end-to-end project workflows—from requirements gathering and wireframing to client handover and post-launch support.
+
+
+
+**Digital Cyber Kamune** | *Technical Support & Cyber Attendant (Intern)*
+
+*01/2023 – 08/2023 | Kamune, Kenya*
+
+* Provided comprehensive first-line technical support for hardware, software, and LAN connectivity issues serving 50+ clients daily.
+
+
+* Operated, configured, and maintained high-volume office systems (printers, multi-function scanners, photocopiers).
+
+
+* Guided clients through government digital portals (eCitizen, KRA iTax), ensuring data accuracy and compliance.
+
+
+* Upheld strict confidentiality standards while processing sensitive client documents and financial transactions.
+
+
+
+---
+
+### FEATURED PROJECTS
+
+* **Skitech Digi-Progs (Digital Event Programs):** Built an offline-first Progressive Web App (React, JavaScript, CSS3) transforming printed booklets, programs, and bulletins into QR-accessible digital experiences.
+* **Skitech Smart Rider / SkitechID:** Developed a web application using React, TypeScript, Vite, and Supabase that generates unique QR profiles for operators to streamline direct M-Pesa payments.
+* **Lipana STK Push Payment System:** Built an end-to-end payment gateway integrating Safaricom Daraja/Lipana APIs with a Python/Flask backend and an interactive React frontend.
+
+
+* **AquaFlow (Gamified Hydration Tracker):** Designed and developed a client-side health-tracking web app featuring animated UI, level progression, custom reminders, and streak tracking using React, TypeScript, and Tailwind CSS.
+* **Skitech Solutions Official Website:** Designed, structured, and deployed a fully responsive corporate site utilizing modern UI/UX principles, HTML5, CSS3, and JavaScript.
+
+
+* **Burp Suite Vulnerability Assessment:** Conducted practical security audits in controlled testing environments, diagnosing and documenting attack vectors including Cross-Site Scripting (XSS) and SQL Injection (SQLi).
+
+
+
+---
+
+### EDUCATION
+
+**Bachelor of Science in Computer Science (Third Year)**
+
+*University of Embu* | 2023 – Present
+
+*Relevant Areas:* Web Security, Data Communications, Systems Analysis & Design
+
+**Computer Packages & Cyber Café Operations**
+
+*Digital Cyber Kamune* | 12/2022 – 01/2023
+
+*Pass Certificate & Practical IT Attachment*
+
+**Kenya Certificate of Secondary Education (KCSE)**
+
+*Kamune Secondary School* | 2018 – 2022
+
+**Kenya Certificate of Primary Education (KCPE)**
+
+*Gaithunu Primary School* | 2010 – 2017
+
+---
+
+### CERTIFICATIONS & CREDENTIALS
+
+#### Earned Credentials
+
+* **Generative AI in Action** | *IBM SkillsBuild*
+Applied practical knowledge of generative AI principles, prompt engineering techniques, Python libraries, foundation models, and ethical considerations surrounding GenAI implementation in workplace scenarios.
+* **Key Skills:** Prompt Engineering, Foundation Models, Transformers, Tokenization, Encoders/Decoders, Scripting, AI Ethics, Sentiment Analysis.
+* *Verification:* [Credly Badge URL](https://www.credly.com/badges/44264ec7-a106-4211-843a-9d480d2916b7/public_url?utm_source=gemini)
+
+
+* **Cybersecurity Fundamentals** | *IBM SkillsBuild*
+Mastered core principles of cybersecurity, threat intelligence, attack vectors, incident response protocols, cryptographic standards, and enterprise risk management strategies.
+* **Key Skills:** Threat Intelligence, Incident Response, Cryptography, Cyber Attacks & Social Engineering, Security Strategies, Vulnerability Management.
+* *Verification:* [Credly Badge URL](https://www.credly.com/badges/cc9f5f2f-2b86-4b14-82d4-62f35d95e2b2/public_url?utm_source=gemini)
+
+
+* **Python Essentials 1** | *Cisco & OpenEDG Python Institute*
+Validated competency in foundational computer programming, procedural programming concepts, Python syntax, and debugging techniques.
+* **Key Skills:** Python, Procedural Programming, Algorithmic Thinking, Script Design & Debugging, Best Coding Practices.
+* *Verification:* [Credly Badge URL](https://www.credly.com/badges/c80354da-e6be-4358-bc3e-3415bf11a5ab/public_url?utm_source=gemini)
+
+
+* **Web Development Fundamentals** | *IBM SkillsBuild*
+Demonstrated practical understanding of full software development life cycles, modern frontend and backend architectures, accessibility guidelines, testing, and deployment workflows.
+* **Key Skills:** HTML5, CSS3, JavaScript, Responsive Design, Accessibility & Usability, SDLC, Testing & Web Publishing.
+* *Verification:* [Credly Badge URL](https://www.credly.com/badges/b1cb6d49-7e74-4366-b0d7-00aa086ab40c/public_url?utm_source=gemini)
+
+
+* **Career Management Essentials** | *IBM SkillsBuild*
+Acquired formal competencies in professional communications, technical interview preparation, workplace dynamics, online brand identity, and application strategy.
+* **Key Skills:** Workplace Communication, Interviewing, Online Brand Development, Generative AI Tool Utilization, Presentation Skills.
+* *Verification:* [Credly Badge URL](https://www.credly.com/badges/8a06795f-aad7-4492-acfc-21fea747d1b5/public_url?utm_source=gemini)
+
+
+
+#### Ongoing Learning 
+
+* **Networking & Cybersecurity Tracks** | *Cisco Networking Academy* (In Progress)
+Advancing through enterprise routing, switching, network defense, and infrastructure security protocols.
+* **Full-Stack Development & Responsive Design Systems** | *FreeCodeCamp* (Enrolled)
+Completing advanced coursework in algorithms, data structures, and responsive full-stack architectures.
+
+---
+
+### SOFT SKILLS & LICENSES
+
+* **Professional Competencies:** Critical Thinking, Analytical Problem Solving, Clear Technical Communication, Adaptability, Time Management, Leadership & Initiative
+
+
+* **Licenses:** Valid Driving License (Class B / Light Vehicle)
+
+---
+
+### REFEREES
+
+**Mr. Pius Mbugua**
+
+Customer Support Manager, Digital Cyber Kamune
+
+Phone: +254 711 109 967

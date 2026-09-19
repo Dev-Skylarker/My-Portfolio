@@ -14,7 +14,7 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,33 +31,33 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col gap-2 sm:gap-2.5">
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-white dark:bg-[#151713] text-gray-900 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
           aria-label="Scroll to top"
         >
-          <ChevronUp size={20} />
+          <ChevronUp size={18} />
         </button>
       )}
 
       <button
         onClick={handleWhatsApp}
-        className="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
+        className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-white dark:bg-[#151713] text-[#25D366] border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
         aria-label="Contact via WhatsApp"
         title="WhatsApp"
       >
-        <MessageCircle size={22} />
+        <MessageCircle size={18} />
       </button>
 
       <button
         onClick={onViewCV}
-        className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
+        className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] dark:hover:bg-[#a6d132] shadow-md shadow-[#658B12]/25 dark:shadow-[#B7E33B]/20 transition-all hover:scale-105 active:scale-95 flex items-center justify-center font-bold"
         aria-label="View CV"
         title="View CV"
       >
-        <FileText size={20} />
+        <FileText size={18} />
       </button>
     </div>
   );

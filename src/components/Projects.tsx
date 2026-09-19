@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ExternalLink, Github, ChevronDown, ChevronUp, Globe } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 interface Project {
   title: string;
@@ -21,7 +22,6 @@ interface ProjectsProps {
   projects: Project[];
 }
 
-// Employer-friendly categories — maps readable labels to matching tool keywords
 const CATEGORIES = [
   { label: 'All', match: () => true },
   { label: 'Web Apps', match: (tools: string[]) => tools.some(t => ['React', 'TypeScript', 'Vite', 'Vercel', 'PWA'].includes(t)) },
@@ -31,17 +31,6 @@ const CATEGORIES = [
   { label: 'Design', match: (tools: string[]) => tools.some(t => ['Adobe Photoshop', 'Adobe Illustrator', 'Canva'].includes(t)) },
 ];
 
-const statusConfig: Record<string, { color: string; dot: string }> = {
-  Live: {
-    color: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800',
-    dot: 'bg-green-500',
-  },
-  Completed: {
-    color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800',
-    dot: 'bg-blue-500',
-  },
-};
-
 export function Projects({ projects }: ProjectsProps) {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState(0);
@@ -49,173 +38,211 @@ export function Projects({ projects }: ProjectsProps) {
   const filteredProjects = projects.filter(p => CATEGORIES[activeCategory].match(p.tools));
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50/80 to-white dark:from-gray-800/50 dark:to-gray-900">
+    <section id="projects" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-transparent transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3 block">
-            Portfolio
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Projects
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-            Real-world solutions — from gamified web apps and payment integrations to security audits and branding.
-          </p>
-        </div>
+        <ScrollReveal direction="up">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="font-['Space_Grotesk'] text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] mb-3 sm:mb-4">
+              Featured Projects
+            </h2>
+            <p className="text-gray-700 dark:text-[#8F9489] max-w-xl mx-auto text-xs xs:text-sm sm:text-base leading-relaxed">
+              Real-world solutions — from gamified web apps and payment integrations to security audits and branding.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Category tabs — employer-friendly, no tech jargon overload */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {CATEGORIES.map((cat, i) => (
-            <button
-              key={cat.label}
-              onClick={() => setActiveCategory(i)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all hover:scale-105 active:scale-95 ${activeCategory === i
-                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/20'
-                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400'
-                }`}
-            >
-              {cat.label}
-              {/* badge count */}
-              {i !== 0 && (
-                <span className={`ml-2 text-xs rounded-full px-1.5 py-0.5 ${activeCategory === i ? 'bg-white/20 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
-                  }`}>
-                  {projects.filter(p => cat.match(p.tools)).length}
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
+        {/* Category tabs */}
+        <ScrollReveal direction="up" delay={100}>
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10">
+            {CATEGORIES.map((cat, i) => {
+              const count = projects.filter(p => cat.match(p.tools)).length;
+              const isActive = activeCategory === i;
 
-        {/* Project cards */}
-        <div className="grid gap-6">
+              return (
+                <button
+                  key={cat.label}
+                  onClick={() => setActiveCategory(i)}
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-[4px] text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-['Space_Grotesk'] transition-all duration-200 flex items-center gap-1.5 sm:gap-2 shadow-sm hover:scale-105 active:scale-95 ${
+                    isActive
+                      ? 'bg-[#658B12] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] font-bold shadow-md'
+                      : 'bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-800 dark:text-[#8F9489] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-gray-950 dark:hover:text-[#EDEDE8]'
+                  }`}
+                >
+                  <span>{cat.label}</span>
+                  {i !== 0 && (
+                    <span
+                      className={`text-[10px] sm:text-[11px] font-['IBM_Plex_Mono'] rounded-[4px] px-1.5 py-0.2 ${
+                        isActive
+                          ? 'bg-white/20 dark:bg-[#0D0F0C]/20 text-white dark:text-[#0D0F0C]'
+                          : 'bg-gray-100 dark:bg-[#0D0F0C] text-gray-700 dark:text-[#8F9489]'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </ScrollReveal>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
           {filteredProjects.map((project, index) => {
-            const cfg = statusConfig[project.status] || statusConfig['Completed'];
             const isExpanded = expandedProject === index;
+            const isLive = project.status.toLowerCase().includes('live') || project.status.toLowerCase().includes('active');
 
             return (
-              <div
-                key={index}
-                className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4 gap-4">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2.5 mb-2 flex-wrap">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {project.title}
-                        </h3>
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${cfg.color}`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot} ${project.status === 'Live' ? 'animate-pulse' : ''}`} />
-                          {project.status}
-                        </span>
-                        {project.status === 'Live' && project.links.demo && (
-                          <a
-                            href={project.links.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 transition-all shadow-sm hover:scale-105"
+              <ScrollReveal key={index} direction="up" delay={Math.min(index * 100, 400)}>
+                <div className="group bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12]/60 dark:hover:border-[#B7E33B]/60 shadow-sm hover:shadow-xl hover:shadow-[#658B12]/5 dark:hover:shadow-[#B7E33B]/5 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
+                  {/* Accent hover line at top */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-[#658B12] dark:group-hover:bg-[#B7E33B] transition-colors duration-300" />
+
+                  <div className="p-4 xs:p-5 sm:p-7">
+                    <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2.5 sm:gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1.5 sm:mb-2 flex-wrap">
+                          <h3 className="font-['Space_Grotesk'] text-lg xs:text-xl sm:text-2xl font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] break-words">
+                            {project.title}
+                          </h3>
+
+                          {/* Status badge */}
+                          <span
+                            className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] text-[11px] sm:text-xs font-['IBM_Plex_Mono'] font-medium ${
+                              isLive
+                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 dark:bg-[#B7E33B]/10 dark:text-[#B7E33B] dark:border-[#B7E33B]/30'
+                                : 'bg-gray-100 text-gray-700 border border-gray-300 dark:bg-[#0D0F0C] dark:text-[#8F9489] dark:border-[#22261E]'
+                            }`}
                           >
-                            <Globe size={11} />
-                            View Live
-                          </a>
-                        )}
-                      </div>
-                      <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-                        {project.role}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setExpandedProject(isExpanded ? null : index)}
-                      className="flex-shrink-0 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-500 dark:text-gray-400"
-                      aria-label={isExpanded ? 'Collapse' : 'Expand'}
-                    >
-                      {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                    </button>
-                  </div>
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                isLive ? 'bg-emerald-600 dark:bg-[#B7E33B] animate-pulse' : 'bg-gray-500'
+                              }`}
+                            />
+                            {project.status}
+                          </span>
 
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
-                    {project.solution}
-                  </p>
-
-                  {/* Tool badges — compact */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tools.map((tool, i) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800"
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Expanded details */}
-                  {isExpanded && (
-                    <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800 space-y-4 animate-fade-in">
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-                          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">Problem</h4>
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.problem}</p>
-                        </div>
-                        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-                          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">Challenges</h4>
-                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.challenges}</p>
-                        </div>
-                      </div>
-                      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800">
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">Impact</h4>
-                        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{project.impact}</p>
-                      </div>
-                      {(project.links.demo || project.links.repo || project.links.catalog) && (
-                        <div className="flex gap-3 pt-2">
-                          {project.links.demo && (
+                          {isLive && project.links.demo && (
                             <a
                               href={project.links.demo}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-medium transition-all shadow-md shadow-blue-600/20 hover:scale-105"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[4px] text-[11px] sm:text-xs font-semibold font-['Space_Grotesk'] bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] transition-colors shadow-sm"
                             >
-                              <ExternalLink size={15} />
-                              Visit Live Site
-                            </a>
-                          )}
-                          {project.links.catalog && (
-                            <a
-                              href={project.links.catalog}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-medium transition-all shadow-md shadow-blue-600/20 hover:scale-105"
-                            >
-                              <ExternalLink size={15} />
-                              View Brand Catalogue
-                            </a>
-                          )}
-                          {project.links.repo && (
-                            <a
-                              href={project.links.repo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-gray-700 hover:bg-gray-800 text-white rounded-xl text-sm font-medium transition-all hover:scale-105"
-                            >
-                              <Github size={15} />
-                              Repository
+                              <Globe size={12} />
+                              <span>View Live</span>
                             </a>
                           )}
                         </div>
-                      )}
+
+                        <p className="font-['IBM_Plex_Mono'] text-xs font-medium text-[#658B12] dark:text-[#B7E33B]">
+                          {project.role}
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={() => setExpandedProject(isExpanded ? null : index)}
+                        className="flex-shrink-0 p-1.5 sm:p-2 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] text-gray-700 dark:text-[#8F9489] hover:text-gray-950 dark:hover:text-[#EDEDE8] transition-colors"
+                        aria-label={isExpanded ? 'Collapse' : 'Expand'}
+                      >
+                        {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                      </button>
                     </div>
-                  )}
+
+                    <p className="text-gray-700 dark:text-[#8F9489] mb-4 sm:mb-5 text-xs xs:text-sm leading-relaxed">
+                      {project.solution}
+                    </p>
+
+                    {/* Tool badges */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tools.map((tool, i) => (
+                        <span
+                          key={i}
+                          className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-[4px] text-[11px] sm:text-xs font-medium font-['IBM_Plex_Mono'] bg-gray-100/90 dark:bg-[#0D0F0C] text-gray-800 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:scale-105 transition-all duration-200"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Expanded details */}
+                    {isExpanded && (
+                      <div className="mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-gray-200 dark:border-[#22261E] space-y-3.5 sm:space-y-4 animate-fade-in">
+                        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                          <div className="bg-gray-50 dark:bg-[#0D0F0C] border border-gray-200 dark:border-[#22261E] rounded-xl p-3.5 sm:p-4">
+                            <h4 className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-[#8F9489] mb-1.5 sm:mb-2">
+                              Problem
+                            </h4>
+                            <p className="text-xs sm:text-sm text-gray-900 dark:text-[#EDEDE8] leading-relaxed">{project.problem}</p>
+                          </div>
+                          <div className="bg-gray-50 dark:bg-[#0D0F0C] border border-gray-200 dark:border-[#22261E] rounded-xl p-3.5 sm:p-4">
+                            <h4 className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-[#8F9489] mb-1.5 sm:mb-2">
+                              Challenges
+                            </h4>
+                            <p className="text-xs sm:text-sm text-gray-900 dark:text-[#EDEDE8] leading-relaxed">{project.challenges}</p>
+                          </div>
+                        </div>
+
+                        <div className="bg-emerald-50/60 dark:bg-[#0D0F0C] border border-emerald-300 dark:border-[#B7E33B]/30 rounded-xl p-3.5 sm:p-4">
+                          <h4 className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#658B12] dark:text-[#B7E33B] mb-1.5 sm:mb-2">
+                            Impact
+                          </h4>
+                          <p className="text-xs sm:text-sm text-gray-900 dark:text-[#EDEDE8] leading-relaxed">{project.impact}</p>
+                        </div>
+
+                        {(project.links.demo || project.links.repo || project.links.catalog) && (
+                          <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
+                            {project.links.demo && (
+                              <a
+                                href={project.links.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full xs:w-auto justify-center flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-[4px] text-xs sm:text-sm font-semibold font-['Space_Grotesk'] transition-all shadow-sm"
+                              >
+                                <ExternalLink size={15} />
+                                <span>Visit Live Site</span>
+                              </a>
+                            )}
+                            {project.links.catalog && (
+                              <a
+                                href={project.links.catalog}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full xs:w-auto justify-center flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-[4px] text-xs sm:text-sm font-semibold font-['Space_Grotesk'] transition-all shadow-sm"
+                              >
+                                <ExternalLink size={15} />
+                                <span>View Brand Catalogue</span>
+                              </a>
+                            )}
+                            {project.links.repo && (
+                              <a
+                                href={project.links.repo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full xs:w-auto justify-center flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#0D0F0C] dark:hover:bg-[#1c2019] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] rounded-[4px] text-xs sm:text-sm font-semibold font-['Space_Grotesk'] transition-all shadow-sm"
+                              >
+                                <Github size={15} />
+                                <span>Repository</span>
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-gray-500 dark:text-gray-400 font-medium">No projects in this category yet.</p>
+            <p className="text-gray-600 dark:text-[#8F9489] font-medium font-['IBM_Plex_Mono'] text-sm">
+              // No projects in this category yet.
+            </p>
           </div>
         )}
       </div>

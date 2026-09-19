@@ -4,8 +4,13 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        xs: '380px',
+      },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        space: ['"Space Grotesk"', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'monospace'],
       },
       animation: {
         marquee: 'marquee 35s linear infinite',

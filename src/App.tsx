@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { Navigation } from './components/Navigation';
@@ -21,6 +22,20 @@ const sections = [
 function App() {
   const { theme, toggleTheme } = useTheme();
   const activeSection = useScrollSpy(sections.map(s => s.id));
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const currentProgress = (window.scrollY / totalScroll) * 100;
+        setScrollProgress(Math.min(100, Math.max(0, currentProgress)));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleViewCV = () => {
     window.open('/Maina Eric  CV.pdf', '_blank');
@@ -36,8 +51,29 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950 animate-gradient" />
+    <div className="relative min-h-screen overflow-x-hidden bg-[#F8F9F5] dark:bg-[#0D0F0C] text-gray-950 dark:text-[#EDEDE8] font-sans selection:bg-[#B7E33B] selection:text-[#0D0F0C] transition-colors duration-300">
+      {/* Scroll Progress Bar */}
+      <div
+        className="fixed top-0 left-0 h-[3px] bg-[#658B12] dark:bg-[#B7E33B] z-[60] transition-all duration-75"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      {/* Ambient Canvas Background System */}
+      <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden transition-colors duration-500">
+        {/* Base Canvas Gradient */}
+        <div className="absolute inset-0 bg-[#F8F9F5] dark:bg-[#0D0F0C]" />
+
+        {/* Architectural Dot Matrix Grid */}
+        <div className="absolute inset-0 bg-dot-matrix opacity-70 dark:opacity-40" />
+
+        {/* Atmospheric Floating Glow Orbs */}
+        <div className="absolute -top-32 -left-32 w-[550px] h-[550px] rounded-full bg-[#658B12]/8 dark:bg-[#B7E33B]/10 blur-[130px] animate-pulse-slow pointer-events-none" />
+        <div className="absolute top-1/3 -right-28 w-[600px] h-[600px] rounded-full bg-blue-500/5 dark:bg-blue-600/8 blur-[150px] animate-float-slow pointer-events-none" />
+        <div className="absolute -bottom-40 left-1/4 w-[500px] h-[500px] rounded-full bg-emerald-500/6 dark:bg-emerald-500/8 blur-[140px] pointer-events-none" />
+
+        {/* Subtle Edge Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(248,249,245,0.6)_100%)] dark:bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(13,15,12,0.7)_100%)]" />
+      </div>
 
       <Navigation
         theme={theme}

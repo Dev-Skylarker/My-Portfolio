@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Maina Eric Kariuki",
-    "title": "ICT Professional, Graphoc Designer & Software Developer",
+    "title": "ICT Professional, Graphic Designer & Software Developer",
     "email": "erickaris0521@gmail.com",
     "phone": "+254741909607",
     "location": "Embu, Kenya",
@@ -9,33 +9,38 @@
   },
   "competencies": [
     {
+      "category": "Artificial Intelligence & Automation",
+      "skills": [
+        "Applied Generative AI: prompt engineering techniques, foundation models, transformers, and tokenization",
+        "AI workflow automation, script development, and ethical AI deployment considerations",
+        "Utilizing GenAI tools for developer productivity, sentiment analysis, and career development"
+      ]
+    },
+    {
+      "category": "Cybersecurity & Threat Defense",
+      "skills": [
+        "Cyber threat intelligence, attack vector analysis, and social engineering risk mitigation",
+        "Incident response protocols, cryptographic standards, and vulnerability assessments (Burp Suite: XSS, SQLi)",
+        "Secure API design, authentication, secret keys protection, and secure webhook verification",
+        "Implementation of secure software development lifecycles (SDLC) and public-facing security"
+      ]
+    },
+    {
+      "category": "Web Development & Software Engineering",
+      "skills": [
+        "Full-stack development: React, TypeScript, Python (Flask), HTML5, CSS3, and modern framework integration",
+        "Progressive Web Apps (PWAs), responsive design architectures, accessibility & usability standards",
+        "Payment integration: Safaricom M-Pesa Daraja STK Push, asynchronous callbacks, and transaction verification",
+        "Database design, schema optimization, Supabase integration, and Git/GitHub collaboration"
+      ]
+    },
+    {
       "category": "Systems Administration & ICT Support",
       "skills": [
-        "Hardware/software maintenance, LAN/WAN networking, and advanced troubleshooting",
+        "Hardware/software maintenance, LAN/WAN networking, and advanced system troubleshooting",
         "High-volume printing, scanning, and professional document management",
-        "Advanced OS deployment, including multi-boot configurations and cross-platform installation",
-        "Providing expert user support and system administration for diverse ICT environments"
-      ]
-    },
-    {
-      "category": "Cybersecurity & Data Protection",
-      "skills": [
-        "Web security and vulnerability testing (example tool: Burp Suite)",
-        "Data privacy, encryption protocols, and secure digital handling",
-        "Secure API design practices (authentication, request validation and protection of secret keys)",
-        "Secure webhook handling and verification for third-party integrations",
-        "Basic secure deployment practices for public-facing web systems"
-      ]
-    },
-    {
-      "category": "Software Development & Data Management",
-      "skills": [
-        "Full-stack development: Python, JavaScript, HTML5, CSS3, and modern framework integration",
-        "Database analysis, schema design, and data structure optimization",
-        "Advanced AI integration for workflow automation and process efficiency",
-        "Integration of complex payment APIs (M-Pesa STK Push, callbacks, and verification systems)",
-        "Expert version control using Git and professional collaboration via GitHub",
-        "Designing and deploying scalable, secure, and functional web architectures"
+        "Advanced OS deployment: multi-boot configurations (Windows, Linux, Kali Linux)",
+        "User support, enterprise systems administration, and data handling compliance"
       ]
     },
     {
@@ -48,109 +53,125 @@
       ]
     },
     {
-      "category": "Project Management & Corporate Skills",
+      "category": "Career Management & Professional Skills",
       "skills": [
-        "Managing multiple ICT projects from planning to delivery",
-        "Project coordination, time management, and workflow optimization",
-        "Exposure to customer interaction, conflict management, and business communication"
+        "Technical communication, presentation skills, and professional online brand development",
+        "ATS-optimized resume engineering and technical interviewing strategies",
+        "Project coordination, time management, and agile problem solving"
       ]
     }
   ],
   "technicalSkills": [
     {
+      "category": "Artificial Intelligence & Automation",
+      "skills": [
+        {
+          "name": "Generative AI & Prompt Engineering",
+          "level": 85
+        },
+        {
+          "name": "Foundation Models & Transformers",
+          "level": 80
+        },
+        {
+          "name": "AI Workflow Automation",
+          "level": 85
+        },
+        {
+          "name": "Tokenization & Sentiment Analysis",
+          "level": 75
+        }
+      ]
+    },
+    {
+      "category": "Cybersecurity & Security Tools",
+      "skills": [
+        {
+          "name": "Cyber Threat Intelligence",
+          "level": 80
+        },
+        {
+          "name": "Incident Response & Cryptography",
+          "level": 78
+        },
+        {
+          "name": "Vulnerability Assessment (Burp Suite)",
+          "level": 82
+        },
+        {
+          "name": "Web & Systems Security",
+          "level": 85
+        }
+      ]
+    },
+    {
       "category": "Programming Languages",
       "skills": [
         {
           "name": "Python",
-          "level": 75
+          "level": 82
         },
         {
           "name": "JavaScript",
-          "level": 84
+          "level": 86
         },
         {
           "name": "TypeScript",
-          "level": 70
+          "level": 75
         },
         {
           "name": "HTML5",
-          "level": 90
+          "level": 92
         },
         {
           "name": "CSS3",
-          "level": 85
+          "level": 88
+        },
+        {
+          "name": "Algorithmic & Procedural Programming",
+          "level": 78
         }
       ]
     },
     {
-      "category": "Frameworks & Libraries",
+      "category": "Frameworks & Frontend",
       "skills": [
         {
           "name": "React",
-          "level": 62
+          "level": 80
         },
         {
           "name": "Tailwind CSS",
-          "level": 80
+          "level": 88
         },
         {
-          "name": "Vite",
-          "level": 70
-        },
-        {
-          "name": "Responsive Design",
-          "level": 95
-        }
-      ]
-    },
-    {
-      "category": "Web & Backend",
-      "skills": [
-        {
-          "name": "Web Security",
-          "level": 80
-        },
-        {
-          "name": "Hosting Management",
-          "level": 95
-        },
-        {
-          "name": "REST APIs",
+          "name": "Vite & PWA",
           "level": 78
         },
         {
-          "name": "M-Pesa STK Push",
-          "level": 70
+          "name": "Responsive Design & Accessibility",
+          "level": 94
         }
       ]
     },
     {
-      "category": "IT Support & Networking",
+      "category": "Web & Backend Services",
       "skills": [
         {
-          "name": "Hardware Maintenance",
+          "name": "REST APIs",
+          "level": 82
+        },
+        {
+          "name": "Python (Flask)",
+          "level": 78
+        },
+        {
+          "name": "M-Pesa STK Push / Daraja",
           "level": 80
         },
         {
-          "name": "LAN/WAN Networking",
-          "level": 80
-        },
-        {
-          "name": "Troubleshooting",
+          "name": "Cloud Hosting & Deployment",
           "level": 85
-        }
-      ]
-    },
-    {
-      "category": "Security Tools",
-      "skills": [
-        {
-          "name": "Burp Suite",
-          "level": 70
-        },
-        {
-          "name": "Vulnerability Testing",
-          "level": 65
         }
       ]
     },
@@ -166,50 +187,54 @@
           "level": 80
         },
         {
-          "name": "Graphic & Logo Design",
-          "level": 90
-        },
-        {
           "name": "Canva",
           "level": 85
+        },
+        {
+          "name": "Graphic & Logo Design",
+          "level": 90
         }
       ]
     },
     {
-      "category": "Tools & Productivity",
+      "category": "IT Support & Systems Administration",
       "skills": [
         {
-          "name": "Microsoft Office Suite",
-          "level": 90
+          "name": "LAN/WAN Networking",
+          "level": 82
         },
+        {
+          "name": "Hardware Diagnostics & Maintenance",
+          "level": 85
+        },
+        {
+          "name": "Windows & Linux / Kali Linux",
+          "level": 88
+        },
+        {
+          "name": "System Troubleshooting",
+          "level": 88
+        }
+      ]
+    },
+    {
+      "category": "Tools, Version Control & SDLC",
+      "skills": [
         {
           "name": "Git & GitHub",
           "level": 90
         },
         {
-          "name": "Database Analysis",
-          "level": 75
+          "name": "Visual Studio Code",
+          "level": 92
         },
         {
-          "name": "AI Automations",
-          "level": 80
-        }
-      ]
-    },
-    {
-      "category": "OS & Terminal Environments",
-      "skills": [
-        {
-          "name": "Windows & Linux Installation",
-          "level": 90
+          "name": "SDLC, Testing & Debugging",
+          "level": 82
         },
         {
-          "name": "Kali Linux / Terminals",
-          "level": 75
-        },
-        {
-          "name": "System Security",
-          "level": 80
+          "name": "Database Schema & Supabase",
+          "level": 78
         }
       ]
     }
@@ -246,16 +271,46 @@
   "experience": [
     {
       "period": "01/2024 – Present",
-      "role": "Freelance Web Developer",
-      "company": "Self-employed",
+      "role": "Software Developer",
+      "company": "Skitech Solutions (Freelance)",
       "responsibilities": [
-        "Architected and deployed responsive, user-centric web applications using modern stacks",
+        "Architected and deployed responsive, user-centric web applications and PWAs using modern stacks",
         "Engineered full-stack M-Pesa STK Push payment integrations with secure Python/Flask backends",
         "Orchestrated brand identity projects, delivering professional logos, visual assets, and comprehensive brand guidelines using Adobe Photoshop and Illustrator",
         "Lead high-level photo editing and image manipulation for corporate branding and marketing materials",
         "Optimized system performance and security through rigorous code reviews and vulnerability assessments"
       ],
       "type": "work"
+    },
+    {
+      "period": "Industrial Attachment",
+      "role": "ICT Support & Systems Experience",
+      "company": "KALRO Embu — ICT Department",
+      "responsibilities": [
+        "Supported day-to-day ICT operations, assisting staff with hardware, software, connectivity, and general technical issues",
+        "Performed computer maintenance and troubleshooting, including routine equipment cleaning, system checks, software installation, and antivirus/security checks",
+        "Gained practical experience in networking and ICT infrastructure, working with Ethernet cabling, routers, switches, ports, connectivity, and server-room environments",
+        "Worked with digital records and information management, including data entry, document digitization, filing, registry processes, and file tracking requirements",
+        "Gained exposure to organizational enterprise and information systems, including ERP, CRM, KAOP, KEEP, and KEMIS",
+        "Applied cybersecurity concepts through practical research and awareness activities involving antivirus, firewalls, intrusion detection, encryption, and secure digital practices",
+        "Contributed to the early development of a File Tracking System, working with HTML, CSS, JavaScript, VS Code, Git, UI/UX testing, and planning for backend, database, and authentication components",
+        "Assisted with ICT documentation and reporting, recording technical issues, maintenance activities, repairs, and system-related observations",
+        "Supported digital communication and content activities, including photography, video-related work, and digital marketing initiatives",
+        "Developed professional experience in technical communication, teamwork, documentation, problem-solving, user support, and working within established organizational procedures"
+      ],
+      "coreAreas": [
+        "ICT Support",
+        "Hardware & Software Maintenance",
+        "Networking",
+        "Cybersecurity",
+        "Digital Records",
+        "Enterprise Systems",
+        "Web Technologies",
+        "UI/UX",
+        "Technical Documentation",
+        "User Support"
+      ],
+      "type": "attachment"
     },
     {
       "period": "01/2023 – 08/2023",
@@ -433,24 +488,138 @@
   ],
   "certifications": [
     {
-      "name": "IBM Web Development Series",
-      "issuer": "IBM",
-      "date": "2023",
-      "description": "Completed training in modern web development concepts, tools and deployment practices, with focus on building and maintaining functional web and digital applications"
+      "name": "Generative AI in Action",
+      "issuer": "IBM SkillsBuild",
+      "level": "Advanced",
+      "date": "Earned Credential",
+      "category": "earned",
+      "status": "earned",
+      "badge": "/badges/generative-ai-in-action.png",
+      "link": "https://www.credly.com/badges/44264ec7-a106-4211-843a-9d480d2916b7/public_url",
+      "description": "Applied technical knowledge of principles of generative AI, prompt engineering techniques, and Python libraries. Demonstrates comprehensive mastery of foundation models, transformers, tokenization, encoders/decoders, sentiment analysis, and ethical considerations in GenAI deployment.",
+      "skills": [
+        "Generative AI",
+        "Prompt Engineering",
+        "Foundation Models",
+        "Transformers",
+        "Tokenization",
+        "Encoders & Decoders",
+        "AI Ethics",
+        "Sentiment Analysis",
+        "Python Scripting"
+      ]
     },
     {
-      "name": "Networking, Cybersecurity & Python Essentials",
-      "issuer": "Cisco Networking Academy / OpenEDG Python Institute",
-      "date": "2024 - Present",
-      "description": "Advancing through Networking and Cybersecurity tracks; Python Essentials course completed.",
+      "name": "Cybersecurity Fundamentals",
+      "issuer": "IBM SkillsBuild",
+      "level": "Intermediate",
+      "date": "Earned Credential",
+      "category": "earned",
+      "status": "earned",
+      "badge": "/badges/cybersecurity-fundamentals.png",
+      "link": "https://www.credly.com/badges/cc9f5f2f-2b86-4b14-82d4-62f35d95e2b2/public_url",
+      "description": "Demonstrated foundational understanding of cybersecurity concepts, cyber threat intelligence, threat groups, attack vectors, social engineering risk mitigation, incident response protocols, cryptographic standards, and enterprise risk management.",
+      "skills": [
+        "Cyber Threat Intelligence",
+        "Incident Response",
+        "Cryptography",
+        "Threat Detection",
+        "Vulnerability Management",
+        "Cyber Attack Analysis",
+        "Social Engineering",
+        "Security Strategies"
+      ]
+    },
+    {
+      "name": "Python Essentials 1",
+      "issuer": "Cisco & OpenEDG Python Institute",
+      "level": "Intermediate",
+      "date": "Earned Credential",
+      "category": "earned",
+      "status": "earned",
+      "badge": "/badges/python-essentials-1.png",
       "link": "https://www.credly.com/badges/c80354da-e6be-4358-bc3e-3415bf11a5ab/public_url",
-      "badge": "/python-essentials-1.1.png"
+      "description": "Cisco and OpenEDG Python Institute verified credential in foundational computer programming, the syntax and semantics of the Python language, procedural programming, algorithmic thinking, and script design and debugging.",
+      "skills": [
+        "Python Programming",
+        "Procedural Programming",
+        "Algorithmic Thinking",
+        "Analytical Thinking",
+        "Script Design & Debugging",
+        "Best Practices in Programming"
+      ]
     },
     {
-      "name": "Cybersecuity, and full-stack development series",
+      "name": "Web Development Fundamentals",
+      "issuer": "IBM SkillsBuild",
+      "level": "Intermediate",
+      "date": "Earned Credential",
+      "category": "earned",
+      "status": "earned",
+      "badge": "/badges/web-development-fundamentals.png",
+      "link": "https://www.credly.com/badges/b1cb6d49-7e74-4366-b0d7-00aa086ab40c/public_url",
+      "description": "Validated knowledge of modern web development concepts, full software development lifecycle (SDLC), responsive design principles, front-end and back-end architectures, accessibility and usability standards, testing, and cloud deployment workflows.",
+      "skills": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Front End Development",
+        "Back End Development",
+        "Responsive Design",
+        "Accessibility & Usability",
+        "SDLC",
+        "Testing & Deployment"
+      ]
+    },
+    {
+      "name": "Career Management Essentials",
+      "issuer": "IBM SkillsBuild",
+      "level": "Foundational",
+      "date": "Earned Credential",
+      "category": "earned",
+      "status": "earned",
+      "badge": "/badges/career-management-essentials.png",
+      "link": "https://www.credly.com/badges/8a06795f-aad7-4492-acfc-21fea747d1b5/public_url",
+      "description": "Acquired formal competencies in professional communications, technical interview preparation, ATS-optimized resume creation, workplace research, presentation skills, and strategic personal online brand development.",
+      "skills": [
+        "Workplace Communication",
+        "Professional Interviewing",
+        "Online Brand Development",
+        "Resume Writing & ATS",
+        "Generative AI Tool Use",
+        "Presentation Skills",
+        "Career Management"
+      ]
+    },
+    {
+      "name": "Enterprise Networking & Cybersecurity Tracks",
+      "issuer": "Cisco Networking Academy",
+      "level": "Advanced Track",
+      "date": "In Progress",
+      "category": "ongoing",
+      "status": "ongoing",
+      "description": "Advancing through Cisco enterprise networking and infrastructure security tracks, focusing on routing and switching protocols, network defense mechanisms, and secure infrastructure operations.",
+      "skills": [
+        "Enterprise Routing & Switching",
+        "Network Defense Protocols",
+        "Infrastructure Security",
+        "Packet Tracer Simulation"
+      ]
+    },
+    {
+      "name": "Full-Stack Development & Responsive Design Systems",
       "issuer": "FreeCodeCamp",
+      "level": "Comprehensive Curriculum",
       "date": "Currently Enrolled",
-      "description": "Pursuing comprehensive certifications in modern web architecture, responsive design systems, and complex algorithmic problem-solving."
+      "category": "ongoing",
+      "status": "ongoing",
+      "description": "Completing comprehensive certifications in modern full-stack web architecture, responsive design algorithms, data structures, and production-grade applications.",
+      "skills": [
+        "Full-Stack Web Architecture",
+        "Responsive Design Systems",
+        "Algorithms & Data Structures",
+        "Modern Web Standards"
+      ]
     }
   ],
   "softSkills": [
