@@ -357,12 +357,48 @@ function SpringConnector({
 
 // ─── 2D Spring Physics Scene with Hover Pop & Any-Part Drag ───────────────────
 function BadgePhysicsScene() {
-  const { viewport, gl, camera } = useThree();
-  const isDesktop = viewport.width > 7.2;
+  const { viewport, gl, camera, size } = useThree();
 
-  // Responsive anchor position: centered on mobile, right column on desktop
-  const anchorX = isDesktop ? viewport.width * 0.285 : 0;
-  const anchorY = viewport.height * 0.47;
+  // Use pixel-based breakpoints aligned with Tailwind's responsive tiers
+  // lg:1024px is where the CSS grid switches from stacked to side-by-side
+  const w = size.width;
+
+  // Responsive anchor position with smooth transitions across all screen sizes
+  let anchorX: number;
+  let anchorY: number;
+
+  if (w >= 1024) {
+    // Desktop: badge in right column.
+    // The canvas now spans the full section (wider than the max-w-7xl content area).
+    // Compute how far right the badge should sit relative to the full canvas:
+    // max-w-7xl = 1280px, so on wider screens the content is centered with side margins.
+    // The right column center (9.5/12 through the container) should map correctly.
+    const containerPx = Math.min(w, 1280); // effective content width (max-w-7xl)
+    const sideMarginPx = (w - containerPx) / 2; // margin on each side
+    // Right column center in px from viewport left: sideMargin + container * (7 + 2.5) / 12
+    const rightColCenterPx = sideMarginPx + containerPx * (9.5 / 12);
+    // Convert to viewport-centered world coords: 0 = center, +X = right
+    anchorX = ((rightColCenterPx / w) - 0.5) * viewport.width;
+    // Clamp so badge + rotation swing never clips at canvas edge
+    anchorX = Math.min(anchorX, viewport.width / 2 - BW / 2 - 1.0);
+    anchorY = viewport.height * 0.47;
+  } else if (w >= 768) {
+    // Tablet landscape / small laptop (stacked layout, badge centered)
+    anchorX = 0;
+    anchorY = viewport.height * 0.50;
+  } else if (w >= 640) {
+    // Large phone / small tablet
+    anchorX = 0;
+    anchorY = viewport.height * 0.55;
+  } else if (w >= 480) {
+    // Mid-size phone
+    anchorX = 0;
+    anchorY = viewport.height * 0.60;
+  } else {
+    // Small phone
+    anchorX = 0;
+    anchorY = viewport.height * 0.65;
+  }
 
   const anchorRef = useRef<RapierRigidBody>(null);
   const badgeRef = useRef<RapierRigidBody>(null);
@@ -404,11 +440,11 @@ function BadgePhysicsScene() {
   }, []);
 
   const getWorld = useCallback(
-    (e: PointerEvent): THREE.Vector3 | null => {
+    (clientX: number, clientY: number): THREE.Vector3 | null => {
       const rect = gl.domElement.getBoundingClientRect();
       const ndc = new THREE.Vector2(
-        ((e.clientX - rect.left) / rect.width) * 2 - 1,
-        -((e.clientY - rect.top) / rect.height) * 2 + 1
+        ((clientX - rect.left) / rect.width) * 2 - 1,
+        -((clientY - rect.top) / rect.height) * 2 + 1
       );
       raycaster.current.setFromCamera(ndc, camera);
       const out = new THREE.Vector3();
@@ -437,12 +473,54 @@ function BadgePhysicsScene() {
     gl.domElement.style.cursor = isHovered.current ? "grab" : "default";
   }, [gl]);
 
+  // Handle move (shared between mouse and touch)
+  const handleDragMove = useCallback(
+    (clientX: number, clientY: number) => {
+      if (!isDragging.current || !badgeRef.current) return;
+      const dragPoint = getWorld(clientX, clientY);
+      if (!dragPoint) return;
+
+      // Allow dragging to ANY point across the entire hero canvas
+      const halfW = viewport.width * 0.48;
+      const halfH = viewport.height * 0.47;
+      const targetX = THREE.MathUtils.clamp(
+        dragPoint.x + dragOffset.current.x,
+        -halfW,
+        halfW
+      );
+      const targetY = THREE.MathUtils.clamp(
+        dragPoint.y + dragOffset.current.y,
+        -halfH,
+        anchorY - 0.4
+      );
+
+      const now = performance.now();
+      const dt = Math.max(0.001, (now - lastTime.current) / 1000);
+      vel.current.set(
+        (targetX - lastPt.current.x) / dt,
+        (targetY - lastPt.current.y) / dt,
+        0
+      );
+      lastPt.current.set(targetX, targetY, 0);
+      lastTime.current = now;
+
+      badgeRef.current.setNextKinematicTranslation({
+        x: targetX,
+        y: targetY,
+        z: 0,
+      });
+    },
+    [getWorld, viewport.width, viewport.height, anchorY]
+  );
+
   useEffect(() => {
     const dom = gl.domElement;
+    // Start with pointer events disabled – they will be toggled by raycast hover detection
     dom.style.pointerEvents = "none";
 
-    // Exact raycast hit testing on ANY part of the card geometry
+    // Raycast hover detection on window-level pointermove to toggle canvas pointer events
     const onWindowPointerMove = (e: PointerEvent) => {
+      // If actively dragging, keep canvas interactive
       if (isDragging.current) {
         dom.style.pointerEvents = "auto";
         return;
@@ -476,51 +554,36 @@ function BadgePhysicsScene() {
     };
 
     const onMove = (e: PointerEvent) => {
-      if (!isDragging.current || !badgeRef.current) return;
-      const dragPoint = getWorld(e);
-      if (!dragPoint) return;
+      if (!isDragging.current) return;
+      handleDragMove(e.clientX, e.clientY);
+    };
 
-      // Allow dragging to ANY point across the entire hero canvas
-      const halfW = viewport.width * 0.48;
-      const halfH = viewport.height * 0.47;
-      const targetX = THREE.MathUtils.clamp(
-        dragPoint.x + dragOffset.current.x,
-        -halfW,
-        halfW
-      );
-      const targetY = THREE.MathUtils.clamp(
-        dragPoint.y + dragOffset.current.y,
-        -halfH,
-        anchorY - 0.4
-      );
+    // Touch event handlers for mobile drag
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDragging.current || !e.touches.length) return;
+      e.preventDefault(); // prevent scroll while dragging
+      const touch = e.touches[0];
+      handleDragMove(touch.clientX, touch.clientY);
+    };
 
-      const now = performance.now();
-      const dt = Math.max(0.001, (now - lastTime.current) / 1000);
-      vel.current.set(
-        (targetX - lastPt.current.x) / dt,
-        (targetY - lastPt.current.y) / dt,
-        0
-      );
-      lastPt.current.set(targetX, targetY, 0);
-      lastTime.current = now;
-
-      badgeRef.current.setNextKinematicTranslation({
-        x: targetX,
-        y: targetY,
-        z: 0,
-      });
+    const onTouchEnd = () => {
+      release();
     };
 
     window.addEventListener("pointermove", onWindowPointerMove, { passive: true });
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", release);
+    dom.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd);
 
     return () => {
       window.removeEventListener("pointermove", onWindowPointerMove);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", release);
+      dom.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [gl, camera, viewport.width, viewport.height, anchorY, getWorld, release]);
+  }, [gl, camera, viewport.width, viewport.height, anchorY, getWorld, handleDragMove, release]);
 
   // Subtle hover pop effect (scales up to 1.05 smoothly on hover, no movement triggered)
   useFrame(() => {
@@ -530,6 +593,28 @@ function BadgePhysicsScene() {
       badgeVisualRef.current.scale.setScalar(scaleVal.current);
     }
   });
+
+  // Start drag helper
+  const startDrag = useCallback(
+    (e: { point: THREE.Vector3; stopPropagation: () => void }) => {
+      e.stopPropagation();
+      isDragging.current = true;
+      const t = badgeRef.current!.translation();
+      const wp = new THREE.Vector3(t.x, t.y, 0);
+      dragPlane.current.set(new THREE.Vector3(0, 0, 1), 0);
+
+      const hit = e.point;
+      dragOffset.current.set(wp.x - hit.x, wp.y - hit.y, 0);
+      lastPt.current.copy(wp);
+      lastTime.current = performance.now();
+      vel.current.set(0, 0, 0);
+
+      badgeRef.current?.setBodyType(1, true); // kinematicPositionBased
+      gl.domElement.style.cursor = "grabbing";
+      gl.domElement.style.pointerEvents = "auto";
+    },
+    [gl]
+  );
 
   return (
     <>
@@ -558,23 +643,7 @@ function BadgePhysicsScene() {
         >
           <group
             ref={badgeVisualRef}
-            onPointerDown={(e) => {
-              e.stopPropagation();
-              isDragging.current = true;
-              const t = badgeRef.current!.translation();
-              const wp = new THREE.Vector3(t.x, t.y, 0);
-              dragPlane.current.set(new THREE.Vector3(0, 0, 1), 0);
-
-              const hit = e.point;
-              dragOffset.current.set(wp.x - hit.x, wp.y - hit.y, 0);
-              lastPt.current.copy(wp);
-              lastTime.current = performance.now();
-              vel.current.set(0, 0, 0);
-
-              badgeRef.current?.setBodyType(1, true); // kinematicPositionBased
-              gl.domElement.style.cursor = "grabbing";
-              gl.domElement.style.pointerEvents = "auto";
-            }}
+            onPointerDown={startDrag}
             onPointerEnter={() => {
               isHovered.current = true;
               if (!isDragging.current) gl.domElement.style.cursor = "grab";
@@ -600,16 +669,55 @@ function BadgePhysicsScene() {
   );
 }
 
+// ─── Responsive Camera Controller ─────────────────────────────────────────────
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+
+  useEffect(() => {
+    if (camera instanceof THREE.PerspectiveCamera) {
+      // Smooth FOV scaling: wider on narrow screens so badge fits without overflow
+      // Linearly interpolate between breakpoints for seamless transitions
+      const w = size.width;
+      let fov: number;
+      if (w >= 1024) {
+        fov = 40;
+      } else if (w >= 768) {
+        // 768→1024: lerp 46→40
+        const t = (w - 768) / (1024 - 768);
+        fov = THREE.MathUtils.lerp(46, 40, t);
+      } else if (w >= 640) {
+        // 640→768: lerp 50→46
+        const t = (w - 640) / (768 - 640);
+        fov = THREE.MathUtils.lerp(50, 46, t);
+      } else if (w >= 480) {
+        // 480→640: lerp 56→50
+        const t = (w - 480) / (640 - 480);
+        fov = THREE.MathUtils.lerp(56, 50, t);
+      } else {
+        // <480: lerp 60→56 (360→480)
+        const t = THREE.MathUtils.clamp((w - 360) / (480 - 360), 0, 1);
+        fov = THREE.MathUtils.lerp(60, 56, t);
+      }
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+    }
+  }, [camera, size.width]);
+
+  return null;
+}
+
 // ─── Exported Interactive Badge Component (Full Hero Canvas) ──────────────────
 export function InteractiveBadge() {
   return (
-    <div className="absolute inset-0 z-30 pointer-events-none select-none">
+    <div className="absolute inset-0 z-[40] pointer-events-none select-none">
       <Canvas
         camera={{ position: [0, 0, 9], fov: 40 }}
         className="w-full h-full pointer-events-none"
         gl={{ antialias: true, alpha: true }}
+        style={{ touchAction: "none" }}
       >
         <Suspense fallback={null}>
+          <ResponsiveCamera />
           <BadgePhysicsScene />
         </Suspense>
       </Canvas>

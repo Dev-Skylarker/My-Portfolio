@@ -178,22 +178,25 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
   };
 
   return (
-    <section id="profile" className="relative pt-20 xs:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 md:px-12 overflow-hidden">
+    <section id="profile" className="relative pt-20 xs:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 md:px-12">
       {/* Background ambient lighting */}
-      <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#658B12]/5 dark:bg-[#B7E33B]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-blue-500/5 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#658B12]/5 dark:bg-[#B7E33B]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-blue-500/5 dark:bg-blue-600/10 rounded-full blur-3xl" />
+      </div>
+
+      {/* Full-section 3D Canvas layer: Spans the ENTIRE section width (not constrained by max-w-7xl)
+          so the badge has full room to swing without clipping at container edges */}
+      <InteractiveBadge />
 
       <div className="max-w-7xl mx-auto w-full relative">
-        {/* Full-width 3D Canvas layer: Spans the full hero container at z-30 without clipping boundaries */}
-        <InteractiveBadge />
-
         {/* Main Hero Split: Left text & CTAs, Right hanging badge */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-stretch relative z-0">
-          {/* Left Column (Text & CTAs) - order-2 on mobile, order-1 on desktop */}
-          <div className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between pt-1 sm:pt-2 lg:pt-3 pb-4 sm:pb-6 lg:pb-12 min-h-fit lg:min-h-[660px] relative z-10 order-2 lg:order-1">
+        <div className="grid lg:grid-cols-12 gap-0 lg:gap-8 items-stretch relative z-0">
+          {/* Left Column (Text & CTAs) - order-2 on mobile (centered), order-1 on desktop (left-aligned) */}
+          <div className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between pt-1 sm:pt-2 lg:pt-3 pb-4 sm:pb-6 lg:pb-12 min-h-fit lg:min-h-[660px] relative z-20 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start">
             {/* 1. Main Display Headline & Role Sub-Item (Top Block) */}
             <ScrollReveal direction="up" duration={700}>
-              <h1 className="font-['Space_Grotesk'] text-[2.35rem] xs:text-[2.85rem] sm:text-[3.5rem] md:text-[4.2rem] lg:text-[4.75rem] xl:text-[5.25rem] 2xl:text-[5.75rem] font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] leading-[1.03] min-h-[3.2em] flex flex-col justify-start uppercase">
+              <h1 className="font-['Space_Grotesk'] text-[2.35rem] xs:text-[2.85rem] sm:text-[3.5rem] md:text-[4.2rem] lg:text-[4.75rem] xl:text-[5.25rem] 2xl:text-[5.75rem] font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] leading-[1.03] min-h-[3.2em] flex flex-col justify-start uppercase items-center lg:items-start">
                 {targetLines.map((_, idx) => {
                   const lineText = idx < displayedLines.length ? displayedLines[idx] : '';
                   const isActiveLine = idx === activeLineIdx;
@@ -201,9 +204,9 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
                 })}
               </h1>
 
-              {/* Sub-Item Area (as plain text with no bg) */}
-              <div className="min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mt-3 sm:mt-4 flex items-center">
-                <p className="font-['IBM_Plex_Mono'] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-[1.5rem] text-[#4E6D0B] dark:text-[#B7E33B] font-semibold tracking-wide break-words leading-snug">
+              {/* Sub-Item Area */}
+              <div className="min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mt-2 sm:mt-3 lg:mt-4 flex items-center justify-center lg:justify-start">
+                <p className="font-['IBM_Plex_Mono'] text-sm xs:text-base sm:text-lg md:text-xl lg:text-[1.5rem] text-[#4E6D0B] dark:text-[#B7E33B] font-semibold tracking-wide break-words leading-snug">
                   {displayedSub}
                   {(isTypingSub || isDeletingSub) && (
                     <span className="inline-block w-2 h-4 sm:w-2.5 sm:h-5 md:w-3 md:h-6 lg:h-7 bg-[#4E6D0B] dark:bg-[#B7E33B] ml-1.5 animate-pulse align-middle" />
@@ -212,10 +215,10 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
               </div>
             </ScrollReveal>
 
-            {/* 2. About Me (Plain text with no bg) - Centered in middle space to cover the gap */}
-            <ScrollReveal direction="up" duration={700} delay={100} className="my-auto py-4 sm:py-6 lg:py-8">
-              <div className="max-w-2xl">
-                <h2 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#658B12] dark:text-[#B7E33B] mb-2.5 font-['IBM_Plex_Mono'] flex items-center gap-2">
+            {/* 2. About Me */}
+            <ScrollReveal direction="up" duration={700} delay={100} className="my-auto py-3 sm:py-4 lg:py-8 w-full">
+              <div className="max-w-2xl mx-auto lg:mx-0">
+                <h2 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#658B12] dark:text-[#B7E33B] mb-2 font-['IBM_Plex_Mono'] flex items-center gap-2 justify-center lg:justify-start">
                   <span>ABOUT ME</span>
                 </h2>
                 <p className="text-gray-700 dark:text-[#9EA398] text-sm sm:text-base md:text-[1.05rem] leading-relaxed sm:leading-[1.75] font-sans">
@@ -224,26 +227,26 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
               </div>
             </ScrollReveal>
 
-            {/* 3. Action CTAs aligned with bottom of the 2D card */}
+            {/* 3. Action CTAs */}
             <ScrollReveal direction="up" duration={700} delay={200}>
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-2 sm:pt-4">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 pt-2 sm:pt-3 lg:pt-4">
                 <a
                   href="#experience"
-                  className="w-full xs:w-auto justify-center px-4 sm:px-6 py-3 sm:py-3.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+                  className="justify-center px-5 sm:px-6 py-2.5 sm:py-3.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
                 >
                   <span>See Experience</span>
                   <span className="text-xs">↓</span>
                 </a>
                 <a
                   href="#projects"
-                  className="w-full xs:w-auto justify-center px-4 sm:px-6 py-3 sm:py-3.5 border border-gray-300 dark:border-[#22261E] bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-900 dark:text-[#EDEDE8] font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+                  className="justify-center px-5 sm:px-6 py-2.5 sm:py-3.5 border border-gray-300 dark:border-[#22261E] bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-900 dark:text-[#EDEDE8] font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
                 >
                   <span>View Projects</span>
                   <span className="text-xs">↗</span>
                 </a>
                 <button
                   onClick={onDownloadCV}
-                  className="w-full xs:w-auto justify-center px-4 sm:px-5 py-3 sm:py-3.5 border border-gray-300 dark:border-[#22261E] bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-800 dark:text-gray-300 font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] hover:border-[#658B12] hover:text-[#658B12] dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+                  className="justify-center px-4 sm:px-5 py-2.5 sm:py-3.5 border border-gray-300 dark:border-[#22261E] bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-800 dark:text-gray-300 font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] hover:border-[#658B12] hover:text-[#658B12] dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
                 >
                   <FileText size={16} />
                   <span>Download CV</span>
@@ -253,7 +256,7 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
           </div>
 
           {/* Right Column: Responsive layout spacer for the hanging badge - order-1 on mobile, order-2 on desktop */}
-          <div className="lg:col-span-5 xl:col-span-5 relative pointer-events-none w-full min-h-[380px] xs:min-h-[440px] sm:min-h-[500px] lg:min-h-[660px] order-1 lg:order-2" />
+          <div className="lg:col-span-5 xl:col-span-5 relative pointer-events-none w-full min-h-[380px] xs:min-h-[420px] sm:min-h-[460px] md:min-h-[520px] lg:min-h-[660px] order-1 lg:order-2" />
         </div>
       </div>
     </section>
