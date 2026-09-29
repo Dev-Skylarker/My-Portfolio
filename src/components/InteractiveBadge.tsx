@@ -186,7 +186,7 @@ function Ribbon({
   anchorRef: React.RefObject<RapierRigidBody>;
   badgeRef: React.RefObject<RapierRigidBody>;
 }) {
-  const { viewport, size } = useThree();
+  const { viewport } = useThree();
   const N = 64; // High-resolution cross sections for silk-smooth curvature across full length
   const HALF_W = 0.036;
 
