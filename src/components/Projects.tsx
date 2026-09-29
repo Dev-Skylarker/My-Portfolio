@@ -1,22 +1,7 @@
 import { useState } from 'react';
-import { ExternalLink, Github, ChevronDown, ChevronUp, Globe } from 'lucide-react';
+import { Maximize2, Layers } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-
-interface Project {
-  title: string;
-  problem: string;
-  solution: string;
-  tools: string[];
-  role: string;
-  challenges: string;
-  impact: string;
-  status: string;
-  links: {
-    demo: string | null;
-    repo: string | null;
-    catalog?: string | null;
-  };
-}
+import { ProjectModal, type Project } from './ProjectModal';
 
 interface ProjectsProps {
   projects: Project[];
@@ -32,14 +17,15 @@ const CATEGORIES = [
 ];
 
 export function Projects({ projects }: ProjectsProps) {
-  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   const filteredProjects = projects.filter(p => CATEGORIES[activeCategory].match(p.tools));
 
   return (
     <section id="projects" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-transparent transition-colors duration-300">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <ScrollReveal direction="up">
           <div className="text-center mb-8 sm:mb-12">
@@ -63,10 +49,10 @@ export function Projects({ projects }: ProjectsProps) {
                 <button
                   key={cat.label}
                   onClick={() => setActiveCategory(i)}
-                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider font-sans transition-all duration-200 flex items-center gap-1.5 sm:gap-2 shadow-sm hover:scale-105 active:scale-95 cursor-pointer ${
+                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider font-sans transition-all duration-200 flex items-center gap-1.5 sm:gap-2 shadow-sm hover:scale-105 active:scale-95 cursor-pointer whitespace-nowrap shrink-0 ${
                     isActive
-                      ? 'bg-[#658B12] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] shadow-md'
-                      : 'bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-800 dark:text-[#8F9489] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-gray-950 dark:hover:text-[#EDEDE8]'
+                      ? 'bg-[#0085FF] text-white dark:bg-[#168FFF] dark:text-white shadow-md shadow-[#0085FF]/25'
+                      : 'bg-white dark:bg-[#111827] text-slate-800 dark:text-[#A3CDFF] border border-slate-200 dark:border-slate-800 hover:border-[#0085FF] dark:hover:border-[#389BFF] hover:text-[#0085FF] dark:hover:text-[#389BFF] shadow-sm shadow-slate-200/90 dark:shadow-none'
                   }`}
                 >
                   <span>{cat.label}</span>
@@ -74,8 +60,8 @@ export function Projects({ projects }: ProjectsProps) {
                     <span
                       className={`text-[10px] sm:text-[11px] font-mono rounded-full px-2 py-0.5 ${
                         isActive
-                          ? 'bg-white/20 dark:bg-[#0D0F0C]/20 text-white dark:text-[#0D0F0C]'
-                          : 'bg-gray-100 dark:bg-[#0D0F0C] text-gray-700 dark:text-[#8F9489]'
+                          ? 'bg-white/20 text-white'
+                          : 'bg-slate-100 dark:bg-[#0B0F17] text-slate-700 dark:text-[#94A3B8]'
                       }`}
                     >
                       {count}
@@ -87,150 +73,97 @@ export function Projects({ projects }: ProjectsProps) {
           </div>
         </ScrollReveal>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+        {/* Projects Grid: 3 columns on large screens */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {filteredProjects.map((project, index) => {
-            const isExpanded = expandedProject === index;
             const isLive = project.status.toLowerCase().includes('live') || project.status.toLowerCase().includes('active');
+            const hasImageError = failedImages.has(project.title);
 
             return (
-              <ScrollReveal key={index} direction="up" delay={Math.min(index * 100, 400)}>
-                <div className="group bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12]/60 dark:hover:border-[#B7E33B]/60 shadow-sm hover:shadow-xl hover:shadow-[#658B12]/5 dark:hover:shadow-[#B7E33B]/5 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden">
-                  {/* Accent hover line at top */}
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-[#658B12] dark:group-hover:bg-[#B7E33B] transition-colors duration-300" />
+              <ScrollReveal key={index} direction="up" delay={Math.min(index * 60, 360)}>
+                <div
+                  onClick={() => setSelectedProject(project)}
+                  className="group bg-white dark:bg-[#111827]/95 rounded-xl sm:rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-[#0085FF]/70 dark:hover:border-[#389BFF]/70 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_-4px_rgba(0,133,255,0.18)] dark:shadow-none dark:hover:shadow-[0_0_25px_rgba(22,143,255,0.15)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col h-full cursor-pointer select-none"
+                >
+                  {/* Top Accent Line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-[#0085FF] dark:group-hover:bg-[#389BFF] transition-colors duration-300 z-20" />
 
-                  <div className="p-4 xs:p-5 sm:p-7">
-                    <div className="flex items-start justify-between mb-3 sm:mb-4 gap-2.5 sm:gap-4">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1.5 sm:mb-2 flex-wrap">
-                          <h3 className="font-sans text-lg xs:text-xl sm:text-2xl font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] break-words">
-                            {project.title}
-                          </h3>
-
-                          {/* Status badge */}
-                          <span
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-medium ${
-                              isLive
-                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 dark:bg-[#B7E33B]/10 dark:text-[#B7E33B] dark:border-[#B7E33B]/30'
-                                : 'bg-gray-100 text-gray-700 border border-gray-300 dark:bg-[#0D0F0C] dark:text-[#8F9489] dark:border-[#22261E]'
-                            }`}
-                          >
-                            <span
-                              className={`w-1.5 h-1.5 rounded-full ${
-                                isLive ? 'bg-emerald-600 dark:bg-[#B7E33B] animate-pulse' : 'bg-gray-500'
-                              }`}
-                            />
-                            {project.status}
-                          </span>
-
-                          {isLive && project.links.demo && (
-                            <a
-                              href={project.links.demo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide font-sans bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                            >
-                              <Globe size={11} />
-                              <span>View Live</span>
-                            </a>
-                          )}
+                  {/* 1. Preview Image or Tech Banner */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-[#0B0F17] border-b border-slate-200/80 dark:border-slate-800">
+                    {project.image && !hasImageError ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        onError={() => setFailedImages(prev => new Set(prev).add(project.title))}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0085FF]/10 via-transparent to-sky-500/10 dark:from-[#168FFF]/15 dark:to-blue-500/5 p-6">
+                        <div className="w-10 h-10 rounded-xl bg-[#0085FF]/10 dark:bg-[#168FFF]/15 border border-[#0085FF]/20 dark:border-[#168FFF]/25 flex items-center justify-center text-[#0085FF] dark:text-[#389BFF] shadow-sm group-hover:scale-110 transition-transform duration-300">
+                          <Layers size={20} />
                         </div>
-
-                        <p className="font-mono text-xs font-medium text-[#658B12] dark:text-[#B7E33B]">
-                          {project.role}
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={() => setExpandedProject(isExpanded ? null : index)}
-                        className="flex-shrink-0 p-2 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] text-gray-700 dark:text-[#8F9489] hover:text-gray-950 dark:hover:text-[#EDEDE8] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                        aria-label={isExpanded ? 'Collapse' : 'Expand'}
-                      >
-                        {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                      </button>
-                    </div>
-
-                    <p className="text-gray-700 dark:text-[#8F9489] mb-4 sm:mb-5 text-xs xs:text-sm leading-relaxed">
-                      {project.solution}
-                    </p>
-
-                    {/* Tool badges */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tools.map((tool, i) => (
-                        <span
-                          key={i}
-                          className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-medium font-mono bg-gray-100/90 dark:bg-[#0D0F0C] text-gray-800 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:scale-105 transition-all duration-200"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Expanded details */}
-                    {isExpanded && (
-                      <div className="mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-gray-200 dark:border-[#22261E] space-y-3.5 sm:space-y-4 animate-fade-in">
-                        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                          <div className="bg-gray-50 dark:bg-[#0D0F0C] border border-gray-200 dark:border-[#22261E] rounded-xl p-3.5 sm:p-4">
-                            <h4 className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-[#8F9489] mb-1.5 sm:mb-2">
-                              Problem
-                            </h4>
-                            <p className="text-xs sm:text-sm text-gray-900 dark:text-[#EDEDE8] leading-relaxed">{project.problem}</p>
-                          </div>
-                          <div className="bg-gray-50 dark:bg-[#0D0F0C] border border-gray-200 dark:border-[#22261E] rounded-xl p-3.5 sm:p-4">
-                            <h4 className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-[#8F9489] mb-1.5 sm:mb-2">
-                              Challenges
-                            </h4>
-                            <p className="text-xs sm:text-sm text-gray-900 dark:text-[#EDEDE8] leading-relaxed">{project.challenges}</p>
-                          </div>
-                        </div>
-
-                        <div className="bg-emerald-50/60 dark:bg-[#0D0F0C] border border-emerald-300 dark:border-[#B7E33B]/30 rounded-xl p-3.5 sm:p-4">
-                          <h4 className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#658B12] dark:text-[#B7E33B] mb-1.5 sm:mb-2">
-                            Impact
-                          </h4>
-                          <p className="text-xs sm:text-sm text-gray-900 dark:text-[#EDEDE8] leading-relaxed">{project.impact}</p>
-                        </div>
-
-                        {(project.links.demo || project.links.repo || project.links.catalog) && (
-                          <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-2">
-                            {project.links.demo && (
-                              <a
-                                href={project.links.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full xs:w-auto justify-center flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
-                              >
-                                <ExternalLink size={13} />
-                                <span>Visit Live Site</span>
-                              </a>
-                            )}
-                            {project.links.catalog && (
-                              <a
-                                href={project.links.catalog}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full xs:w-auto justify-center flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
-                              >
-                                <ExternalLink size={13} />
-                                <span>View Brand Catalogue</span>
-                              </a>
-                            )}
-                            {project.links.repo && (
-                              <a
-                                href={project.links.repo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full xs:w-auto justify-center flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
-                              >
-                                <Github size={13} />
-                                <span>Repository</span>
-                              </a>
-                            )}
-                          </div>
-                        )}
                       </div>
                     )}
+
+                    {/* Gradient Overlay for visual polish */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity pointer-events-none" />
+
+                    {/* Floating Status Pill */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10.5px] sm:text-[11px] font-mono font-semibold shadow-md backdrop-blur-md ${
+                          isLive
+                            ? 'bg-[#0085FF] text-white dark:bg-[#389BFF] dark:text-[#0B0F17]'
+                            : 'bg-slate-900/85 text-slate-200 border border-slate-700/60'
+                        }`}
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full ${
+                            isLive ? 'bg-white dark:bg-[#0B0F17] animate-pulse' : 'bg-slate-400'
+                          }`}
+                        />
+                        {project.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 2. Card Content */}
+                  <div className="p-4 sm:p-4.5 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-sans text-sm sm:text-base font-bold tracking-tight text-slate-950 dark:text-[#EDEDE8] group-hover:text-[#0085FF] dark:group-hover:text-[#389BFF] transition-colors line-clamp-1 mb-1.5">
+                        {project.title}
+                      </h3>
+                      <p className="text-slate-700 dark:text-[#94A3B8] text-xs leading-relaxed line-clamp-2">
+                        {project.solution}
+                      </p>
+                    </div>
+
+                    {/* Bottom Footer: Skills on the left, Expand icon opposite on the right */}
+                    <div className="pt-3 mt-3 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+                        {project.tools.slice(0, 3).map((tool, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 rounded-full text-[10px] font-medium font-mono bg-slate-100 dark:bg-[#0B0F17] text-slate-800 dark:text-[#E2E8F0] border border-slate-200 dark:border-slate-800 truncate max-w-[120px]"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                        {project.tools.length > 3 && (
+                          <span className="px-1.5 py-0.5 rounded-full text-[9.5px] font-mono text-slate-500 dark:text-[#94A3B8] shrink-0">
+                            +{project.tools.length - 3}
+                          </span>
+                        )}
+                      </div>
+
+                      <span
+                        className="w-7 h-7 rounded-full bg-slate-100 dark:bg-[#1A2234] group-hover:bg-[#0085FF] dark:group-hover:bg-[#168FFF] text-slate-600 dark:text-[#A3CDFF] group-hover:text-white dark:group-hover:text-white flex items-center justify-center transition-all duration-200 group-hover:scale-110 shadow-sm shadow-slate-200/90 group-hover:shadow-md group-hover:shadow-[#0085FF]/30 shrink-0"
+                        title="View details"
+                        aria-label="View details"
+                      >
+                        <Maximize2 size={12} />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -246,6 +179,13 @@ export function Projects({ projects }: ProjectsProps) {
           </div>
         )}
       </div>
+
+      {/* Scrollable Popup Modal for Project Details */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 }
+

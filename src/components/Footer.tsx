@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Mail, Github, Linkedin, X, Download, FileText, ChevronDown, ExternalLink } from 'lucide-react';
+import { Mail, Github, Linkedin, X, Download, FileText, ChevronDown } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 interface FooterProps {
@@ -9,20 +9,18 @@ interface FooterProps {
 interface DownloadDoc {
   id: string;
   title: string;
-  subtitle: string;
   format: string;
-  size: string;
   url: string;
-  downloadName: string;
+  downloadName?: string;
+  subtitle?: string;
+  size?: string;
 }
 
 const DOWNLOAD_FILES: DownloadDoc[] = [
   {
     id: 'cv',
-    title: 'Maina Eric — CV',
-    subtitle: 'Official Resume (ATS-Optimized)',
+    title: 'My CV',
     format: 'PDF',
-    size: '~104 KB',
     url: '/Maina Eric  CV.pdf',
     downloadName: 'Maina_Eric_CV.pdf',
   },
@@ -55,7 +53,7 @@ export function Footer({ githubUrl }: FooterProps) {
 
 
   return (
-    <footer className="bg-transparent text-gray-900 dark:text-[#EDEDE8] py-12 sm:py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+    <footer className="bg-transparent text-slate-900 dark:text-slate-100 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal direction="up">
           {/* Top row */}
@@ -63,22 +61,22 @@ export function Footer({ githubUrl }: FooterProps) {
             {/* Brand */}
             <div className="max-w-md">
               <div className="flex items-center gap-2.5 sm:gap-3 mb-3">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#658B12] dark:bg-[#B7E33B] flex items-center justify-center text-white dark:text-[#0D0F0C] font-bold text-xs font-mono shadow-sm">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0085FF] dark:bg-[#168FFF] flex items-center justify-center text-white font-bold text-xs font-mono shadow-sm">
                   ME
                 </div>
                 <div 
                   className="cursor-pointer group"
                   onClick={() => setShowImage(true)}
                 >
-                  <p className="font-sans font-bold text-sm sm:text-base text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] transition-colors">
+                  <p className="font-sans font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-[#0085FF] dark:group-hover:text-[#389BFF] transition-colors">
                     Maina Eric Kariuki
                   </p>
-                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489] group-hover:text-gray-950 dark:group-hover:text-[#EDEDE8] transition-colors">
+                  <p className="font-mono text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                     ICT Professional &amp; Web Developer
                   </p>
                 </div>
               </div>
-              <p className="text-xs sm:text-sm text-gray-700 dark:text-[#8F9489] leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Open to internships, full-time roles, and freelance projects in web development and ICT.
               </p>
             </div>
@@ -87,7 +85,7 @@ export function Footer({ githubUrl }: FooterProps) {
             <div className="flex flex-wrap gap-2 sm:gap-2.5 items-center">
               <a
                 href="#contact"
-                className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider rounded-full transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
+                className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0085FF] hover:bg-[#006ACC] text-white dark:bg-[#168FFF] dark:hover:bg-[#389BFF] dark:text-white text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider rounded-full transition-all duration-200 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105 active:scale-95 whitespace-nowrap shrink-0"
               >
                 <Mail size={14} />
                 <span>Hire Me</span>
@@ -97,7 +95,7 @@ export function Footer({ githubUrl }: FooterProps) {
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider rounded-full transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
+                  className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#0085FF] text-slate-800 dark:bg-[#111827] dark:hover:bg-[#1F2937] dark:border-slate-800 dark:hover:border-[#389BFF] dark:text-slate-100 text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider rounded-full transition-all duration-200 shadow-sm hover:shadow-md hover:scale-105 active:scale-95 whitespace-nowrap shrink-0"
                 >
                   <Github size={14} />
                   <span>GitHub</span>
@@ -107,7 +105,7 @@ export function Footer({ githubUrl }: FooterProps) {
                 href="https://www.linkedin.com/in/mainaericdev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider rounded-full transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
+                className="w-full xs:w-auto justify-center inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#0085FF] text-slate-800 dark:bg-[#111827] dark:hover:bg-[#1F2937] dark:border-slate-800 dark:hover:border-[#389BFF] dark:text-slate-100 text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider rounded-full transition-all duration-200 shadow-sm hover:shadow-md hover:scale-105 active:scale-95 whitespace-nowrap shrink-0"
               >
                 <Linkedin size={14} />
                 <span>LinkedIn</span>
@@ -117,10 +115,10 @@ export function Footer({ githubUrl }: FooterProps) {
               <div className="relative w-full xs:w-auto" ref={downloadsDropdownRef}>
                 <button
                   onClick={() => setDownloadsOpen(!downloadsOpen)}
-                  className={`w-full xs:w-auto justify-center inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 cursor-pointer ${
+                  className={`w-full xs:w-auto justify-center inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold font-sans uppercase tracking-wider transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 cursor-pointer whitespace-nowrap shrink-0 ${
                     downloadsOpen
-                      ? 'bg-[#658B12] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] border border-transparent shadow-[0_0_12px_rgba(101,139,18,0.3)] dark:shadow-[0_0_12px_rgba(183,227,59,0.3)]'
-                      : 'bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8]'
+                      ? 'bg-[#0085FF] text-white dark:bg-[#168FFF] dark:text-white border border-transparent shadow-[0_0_15px_rgba(0,133,255,0.35)]'
+                      : 'bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#0085FF] text-slate-800 dark:bg-[#111827] dark:hover:bg-[#1F2937] dark:border-slate-800 dark:hover:border-[#389BFF] dark:text-slate-100 shadow-sm hover:shadow-md'
                   }`}
                   aria-expanded={downloadsOpen}
                   aria-label="Available Downloads"
@@ -135,40 +133,37 @@ export function Footer({ githubUrl }: FooterProps) {
 
                 {/* Dropdown Menu */}
                 {downloadsOpen && (
-                  <div className="absolute bottom-full mb-2 left-0 sm:left-auto sm:right-0 w-72 max-w-[calc(100vw-2rem)] rounded-xl bg-white dark:bg-[#151713] border border-gray-300 dark:border-[#22261E] shadow-2xl p-1.5 z-50 animate-fade-in text-left">
-                    {DOWNLOAD_FILES.map((file) => (
-                      <a
-                        key={file.id}
-                        href={file.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setDownloadsOpen(false)}
-                        className="flex items-center justify-between gap-3 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1A1D16] border border-transparent hover:border-[#658B12]/30 dark:hover:border-[#B7E33B]/30 transition-all group cursor-pointer"
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-8 h-8 rounded-full bg-[#658B12]/10 dark:bg-[#B7E33B]/10 text-[#658B12] dark:text-[#B7E33B] flex items-center justify-center shrink-0">
+                  <div
+                    className={`absolute bottom-full mb-2 left-0 sm:left-auto sm:right-0 w-48 rounded-xl bg-white dark:bg-[#111827] border border-slate-200/90 dark:border-slate-800 shadow-2xl p-1.5 z-50 animate-fade-in text-left ${
+                      DOWNLOAD_FILES.length >= 2
+                        ? 'max-h-[100px] overflow-y-auto pr-1'
+                        : ''
+                    }`}
+                  >
+                    <div className="flex flex-col gap-1">
+                      {DOWNLOAD_FILES.map((file) => (
+                        <a
+                          key={file.id}
+                          href={file.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setDownloadsOpen(false)}
+                          className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/60 border border-transparent hover:border-[#0085FF]/30 dark:hover:border-[#389BFF]/30 transition-all group cursor-pointer"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-950/50 text-[#0085FF] dark:text-[#389BFF] flex items-center justify-center shrink-0">
                             <FileText size={16} />
                           </div>
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-1.5">
-                              <p className="font-sans text-xs font-bold text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] transition-colors truncate">
-                                {file.title}
-                              </p>
-                              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-[#252820] text-gray-700 dark:text-gray-300 uppercase font-semibold">
-                                {file.format}
-                              </span>
-                            </div>
-                            <p className="font-mono text-[10px] text-gray-500 dark:text-[#8F9489] truncate">
-                              {file.subtitle} · {file.size}
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <p className="font-sans text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#0085FF] dark:group-hover:text-[#389BFF] transition-colors truncate">
+                              {file.title}
                             </p>
+                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 uppercase font-semibold">
+                              {file.format}
+                            </span>
                           </div>
-                        </div>
-                        <ExternalLink
-                          size={14}
-                          className="text-gray-400 group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0"
-                        />
-                      </a>
-                    ))}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -176,8 +171,8 @@ export function Footer({ githubUrl }: FooterProps) {
           </div>
 
           {/* Bottom bar */}
-          <div className="border-t border-gray-300 dark:border-[#22261E] pt-6 sm:pt-8">
-            <p className="text-center text-gray-600 dark:text-[#8F9489] font-mono text-[11px] sm:text-xs">
+          <div className="border-t border-slate-200 dark:border-slate-800 pt-6 sm:pt-8">
+            <p className="text-center text-slate-500 dark:text-slate-400 font-mono text-[11px] sm:text-xs">
               &copy; {currentYear} Maina Eric Kariuki. All rights reserved.
             </p>
           </div>
@@ -193,7 +188,7 @@ export function Footer({ githubUrl }: FooterProps) {
           <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
             <button 
               onClick={() => setShowImage(false)}
-              className="absolute -top-12 right-0 p-2 text-white hover:text-[#B7E33B] transition-all bg-gray-900 rounded-full border border-gray-700 hover:scale-105 active:scale-95 cursor-pointer"
+              className="absolute -top-12 right-0 p-2 text-white hover:text-[#389BFF] transition-all bg-slate-900 rounded-full border border-slate-700 hover:scale-105 active:scale-95 cursor-pointer"
               aria-label="Close modal"
             >
               <X size={20} />

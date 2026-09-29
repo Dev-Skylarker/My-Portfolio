@@ -46,7 +46,7 @@ export function FloatingActions({ phone, name }: FloatingActionsProps) {
       {!showScrollTop ? (
         <button
           onClick={scrollToNext}
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#151713] text-gray-900 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center animate-bounce cursor-pointer group"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#111827] text-slate-800 dark:text-slate-100 border border-slate-200/90 dark:border-slate-800 hover:border-[#0085FF] dark:hover:border-[#389BFF] hover:text-[#0085FF] dark:hover:text-[#389BFF] shadow-[0_4px_16px_-2px_rgba(0,0,0,0.12),0_2px_6px_-1px_rgba(0,0,0,0.06)] dark:shadow-black/60 transition-all hover:scale-105 active:scale-95 flex items-center justify-center animate-bounce cursor-pointer group"
           aria-label="Scroll down to reveal next page"
           title="Scroll to next page"
         >
@@ -55,7 +55,7 @@ export function FloatingActions({ phone, name }: FloatingActionsProps) {
       ) : (
         <button
           onClick={scrollToTop}
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#151713] text-gray-900 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center animate-fade-in cursor-pointer group"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#111827] text-slate-800 dark:text-slate-100 border border-slate-200/90 dark:border-slate-800 hover:border-[#0085FF] dark:hover:border-[#389BFF] hover:text-[#0085FF] dark:hover:text-[#389BFF] shadow-[0_4px_16px_-2px_rgba(0,0,0,0.12),0_2px_6px_-1px_rgba(0,0,0,0.06)] dark:shadow-black/60 transition-all hover:scale-105 active:scale-95 flex items-center justify-center animate-fade-in cursor-pointer group"
           aria-label="Scroll to top"
           title="Scroll to top"
         >
@@ -65,7 +65,7 @@ export function FloatingActions({ phone, name }: FloatingActionsProps) {
 
       <button
         onClick={handleWhatsApp}
-        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#151713] border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] dark:hover:border-[#25D366] hover:bg-[#25D366]/10 dark:hover:bg-[#25D366]/15 shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center group cursor-pointer"
+        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#111827] border border-slate-200/90 dark:border-slate-800 hover:border-[#25D366] dark:hover:border-[#25D366] hover:bg-[#25D366]/10 dark:hover:bg-[#25D366]/15 shadow-[0_4px_16px_-2px_rgba(0,0,0,0.12),0_2px_6px_-1px_rgba(0,0,0,0.06)] dark:shadow-black/60 transition-all hover:scale-105 active:scale-95 flex items-center justify-center group cursor-pointer"
         aria-label="Contact via WhatsApp"
         title="WhatsApp"
       >

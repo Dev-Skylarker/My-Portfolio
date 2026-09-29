@@ -41,11 +41,11 @@ function makeBackCanvas(): HTMLCanvasElement {
   const c = cv.getContext("2d")!;
 
   // Background
-  c.fillStyle = "#0c150c";
+  c.fillStyle = "#09101f";
   c.fillRect(0, 0, 900, 1260);
 
   // Micro grid
-  c.strokeStyle = "#162516";
+  c.strokeStyle = "#13203d";
   c.lineWidth = 1;
   for (let x = 0; x < 900; x += 40) {
     c.beginPath();
@@ -61,9 +61,9 @@ function makeBackCanvas(): HTMLCanvasElement {
   }
 
   // Header band
-  c.fillStyle = "#162516";
+  c.fillStyle = "#101e3a";
   c.fillRect(0, 0, 900, 150);
-  c.fillStyle = "#B7E33B";
+  c.fillStyle = "#389BFF";
   c.font = "bold 44px monospace";
   c.fillText("SYSTEM ACCESS IDENTIFIER", 55, 92);
 
@@ -84,7 +84,7 @@ function makeBackCanvas(): HTMLCanvasElement {
   c.fillStyle = "#EDEDE8";
   c.font = "bold 38px monospace";
   c.fillText("ERIC MAINA", 55, 375);
-  c.fillStyle = "#658B12";
+  c.fillStyle = "#0085FF";
   c.font = "26px monospace";
   c.fillText("SPECIALIST - SYSTEMS & ICT", 55, 420);
 
@@ -93,18 +93,18 @@ function makeBackCanvas(): HTMLCanvasElement {
     c.fillStyle = i % 2 === 0 || i % 7 < 2 ? "#ffffff" : "#000000";
     c.fillRect(55 + i * 11.5, 590, i % 5 < 2 ? 8 : 5, 125);
   }
-  c.fillStyle = "#778877";
+  c.fillStyle = "#6d82a6";
   c.font = "22px monospace";
   c.fillText("*ME-2024-0521*", 55, 745);
 
   // Verified Badge Stamp
   c.beginPath();
   c.arc(730, 270, 105, 0, Math.PI * 2);
-  c.strokeStyle = "#B7E33B";
+  c.strokeStyle = "#389BFF";
   c.lineWidth = 4.5;
   c.stroke();
 
-  c.fillStyle = "#B7E33B";
+  c.fillStyle = "#389BFF";
   c.font = "bold 28px monospace";
   c.textAlign = "center";
   c.fillText("VERIFIED", 730, 260);
@@ -112,9 +112,9 @@ function makeBackCanvas(): HTMLCanvasElement {
   c.textAlign = "left";
 
   // Footer bar
-  c.fillStyle = "#091009";
+  c.fillStyle = "#060b17";
   c.fillRect(0, 1195, 900, 65);
-  c.fillStyle = "#B7E33B";
+  c.fillStyle = "#389BFF";
   c.font = "22px monospace";
   c.fillText("devskylarker.com  ·  ALL RIGHTS RESERVED", 55, 1236);
 
@@ -139,6 +139,12 @@ function BadgeMesh() {
 
   return (
     <group>
+      {/* 0. Full hit boundary ensuring reliable drag initiation at any point */}
+      <mesh position={[0, 0.04, 0]}>
+        <boxGeometry args={[BW + 0.15, BH + 0.25, BD + 0.2]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} side={THREE.DoubleSide} />
+      </mesh>
+
       {/* 1. Thin substrate core */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[BW, BH, BD]} />
@@ -148,13 +154,13 @@ function BadgeMesh() {
       {/* 2. Full-bleed front face (unlit, exact native image RGB values) */}
       <mesh position={[0, 0, BD / 2 + 0.001]}>
         <planeGeometry args={[BW, BH]} />
-        <meshBasicMaterial map={frontTexture} toneMapped={false} />
+        <meshBasicMaterial map={frontTexture} toneMapped={false} side={THREE.DoubleSide} />
       </mesh>
 
       {/* 3. Reverse security card face */}
       <mesh position={[0, 0, -(BD / 2 + 0.001)]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[BW, BH]} />
-        <meshBasicMaterial map={backTexture} toneMapped={false} />
+        <meshBasicMaterial map={backTexture} toneMapped={false} side={THREE.DoubleSide} />
       </mesh>
 
       {/* 4. Top attachment clip housing */}
@@ -180,7 +186,8 @@ function Ribbon({
   anchorRef: React.RefObject<RapierRigidBody>;
   badgeRef: React.RefObject<RapierRigidBody>;
 }) {
-  const N = 48; // High-resolution cross sections for silk-smooth curvature
+  const { viewport, size } = useThree();
+  const N = 64; // High-resolution cross sections for silk-smooth curvature across full length
   const HALF_W = 0.036;
 
   const geo = useMemo(() => {
@@ -202,8 +209,15 @@ function Ribbon({
     return g;
   }, []);
 
-  // 6 dynamic control points for flexible spline curve with inertia
+  // 8 dynamic control points:
+  // cp[0]: Starting point below/under the navbar layer
+  // cp[1]: Midpoint of upper anchor section
+  // cp[2]: Maintained anchor point (the current starting point kept as physics anchor)
+  // cp[3..6]: Dynamic catenary/spring curve points with inertia lag
+  // cp[7]: Card top clip connection
   const cp = useRef<THREE.Vector3[]>([
+    new THREE.Vector3(0, 2.7, -0.02),
+    new THREE.Vector3(0, 2.45, -0.02),
     new THREE.Vector3(0, ANCHOR_POS[1], -0.02),
     new THREE.Vector3(0, 1.95, -0.02),
     new THREE.Vector3(0, 1.75, -0.02),
@@ -216,7 +230,7 @@ function Ribbon({
   const clipVelocity = useRef(new THREE.Vector3(0, 0, 0));
 
   const curve = useMemo(
-    () => new THREE.CatmullRomCurve3([], false, "catmullrom", 0.4),
+    () => new THREE.CatmullRomCurve3([], false, "catmullrom", 0.35),
     []
   );
 
@@ -247,7 +261,18 @@ function Ribbon({
       0
     );
 
-    const anchorPos = new THREE.Vector3(at.x, at.y, -0.02);
+    // Compute Y coordinate tucked safely behind the fixed navbar layer (z-50)
+    // Using viewport.height * 0.54 ensures the top of the lanyard extends all the way into/behind the navbar
+    const lanyardStartY = viewport.height * 0.54;
+
+    // 1. Starting point of the lanyard tucked safely behind the navbar layer
+    const topPos = new THREE.Vector3(at.x, lanyardStartY, -0.02);
+
+    // 2. Maintained anchor point (the current starting point kept as the anchor)
+    // Add subtle elastic tension flex on anchor when badge is dragged sideways
+    const dx = clipPos.x - at.x;
+    const flexX = THREE.MathUtils.clamp(dx * 0.05, -0.08, 0.08);
+    const anchorPos = new THREE.Vector3(at.x + flexX, at.y, -0.02);
 
     // Compute clip velocity for inertia / circular drag curvature
     const dt = Math.max(0.001, Math.min(0.05, delta));
@@ -258,18 +283,19 @@ function Ribbon({
     );
     prevClipPos.current.copy(clipPos);
 
-    // Total distance between anchor and clip
+    // Upper strap: from below navbar to the maintained anchor point
+    cp.current[0].copy(topPos);
+    cp.current[1].set(at.x + flexX * 0.4, (lanyardStartY + at.y) * 0.5, -0.02);
+    cp.current[2].copy(anchorPos);
+
+    // Lower strap: from maintained anchor point down to card clip with spring & inertia dynamics
     const dist = anchorPos.distanceTo(clipPos);
-
-    // Calculate curvable control points with centrifugal/inertia lag
-    const numCP = cp.current.length;
-    cp.current[0].copy(anchorPos);
-    cp.current[numCP - 1].copy(clipPos);
-
-    for (let i = 1; i < numCP - 1; i++) {
-      const t = i / (numCP - 1);
+    const lowerPointsCount = 5; // index 3, 4, 5, 6, 7
+    for (let j = 1; j < lowerPointsCount; j++) {
+      const idx = 2 + j;
+      const t = j / (lowerPointsCount - 1);
       // Hermite / Bezier baseline between downward anchor tangent and outward clip tangent
-      const h0 = anchorPos.clone().add(new THREE.Vector3(0, -dist * 0.36, 0));
+      const h0 = anchorPos.clone().add(new THREE.Vector3(flexX * 0.5, -dist * 0.36, 0));
       const h1 = clipPos.clone().add(clipTangent.clone().multiplyScalar(dist * 0.36));
 
       // Cubic interpolation
@@ -289,13 +315,15 @@ function Ribbon({
       );
 
       const target = baseTarget.add(inertiaOffset);
-      cp.current[i].lerp(target, 0.24);
+      cp.current[idx].lerp(target, 0.24);
     }
+    cp.current[7].copy(clipPos);
 
     curve.points = cp.current;
     const sampled = curve.getPoints(N - 1);
 
-    // Ensure last sampled point is STRICTLY the clip position
+    // Ensure first sampled point is STRICTLY topPos and last is STRICTLY clipPos
+    sampled[0].copy(topPos);
     sampled[sampled.length - 1].copy(clipPos);
 
     const posAttr = geo.attributes.position as THREE.BufferAttribute;
@@ -328,7 +356,7 @@ function Ribbon({
   return (
     <mesh geometry={geo}>
       <meshStandardMaterial
-        color="#5A7A2E"
+        color="#0085FF"
         roughness={0.4}
         metalness={0.1}
         side={THREE.DoubleSide}
@@ -442,20 +470,31 @@ function BadgePhysicsScene() {
   const release = useCallback(() => {
     if (!isDragging.current) return;
     isDragging.current = false;
-    // Switch back to dynamic body
-    badgeRef.current?.setBodyType(0, true);
-    // Linear velocity on Z axis is hardcoded to 0 (strict 2D)
-    badgeRef.current?.setLinvel(
-      {
-        x: THREE.MathUtils.clamp(vel.current.x, -11, 11),
-        y: THREE.MathUtils.clamp(vel.current.y, -9, 9),
-        z: 0,
-      },
-      true
-    );
+    document.body.style.cursor = isHovered.current ? "grab" : "";
+
+    if (badgeRef.current) {
+      badgeRef.current.setBodyType(0, true);
+      badgeRef.current.wakeUp();
+      // Apply the release velocity with natural spring inertia
+      badgeRef.current.setLinvel(
+        {
+          x: THREE.MathUtils.clamp(vel.current.x * 0.75, -12, 12),
+          y: THREE.MathUtils.clamp(vel.current.y * 0.75, -10, 10),
+          z: 0,
+        },
+        true
+      );
+      badgeRef.current.setAngvel(
+        {
+          x: 0,
+          y: 0,
+          z: THREE.MathUtils.clamp(-vel.current.x * 0.35, -8, 8),
+        },
+        true
+      );
+    }
     vel.current.set(0, 0, 0);
-    gl.domElement.style.cursor = isHovered.current ? "grab" : "default";
-  }, [gl]);
+  }, []);
 
   // Handle move (shared between mouse and touch)
   const handleDragMove = useCallback(
@@ -464,9 +503,9 @@ function BadgePhysicsScene() {
       const dragPoint = getWorld(clientX, clientY);
       if (!dragPoint) return;
 
-      // Allow dragging to ANY point across the entire hero canvas
-      const halfW = viewport.width * 0.48;
-      const halfH = viewport.height * 0.47;
+      // Allow dragging towards ANY point across the entire screen
+      const halfW = viewport.width * 0.49;
+      const halfH = viewport.height * 0.49;
       const targetX = THREE.MathUtils.clamp(
         dragPoint.x + dragOffset.current.x,
         -halfW,
@@ -475,7 +514,7 @@ function BadgePhysicsScene() {
       const targetY = THREE.MathUtils.clamp(
         dragPoint.y + dragOffset.current.y,
         -halfH,
-        anchorY - 0.4
+        halfH
       );
 
       const now = performance.now();
@@ -488,140 +527,160 @@ function BadgePhysicsScene() {
       lastPt.current.set(targetX, targetY, 0);
       lastTime.current = now;
 
+      badgeRef.current.setTranslation({ x: targetX, y: targetY, z: 0 }, true);
       badgeRef.current.setNextKinematicTranslation({
         x: targetX,
         y: targetY,
         z: 0,
       });
+
+      // Natural tilt while dragging based on displacement from anchor
+      const dx = targetX - anchorX;
+      const dy = (targetY + BH / 2 + 0.06) - anchorY;
+      const angle = Math.atan2(dx, -dy) * 0.48;
+      const q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), -angle);
+      badgeRef.current.setRotation({ x: q.x, y: q.y, z: q.z, w: q.w }, true);
+      badgeRef.current.setNextKinematicRotation({
+        x: q.x,
+        y: q.y,
+        z: q.z,
+        w: q.w,
+      });
     },
-    [getWorld, viewport.width, viewport.height, anchorY]
+    [getWorld, viewport.width, viewport.height, anchorX, anchorY]
   );
 
   // Start drag helper
   const startDrag = useCallback(
-    (e: { point: THREE.Vector3; stopPropagation: () => void }) => {
-      e.stopPropagation();
-      isDragging.current = true;
+    (hitPoint: THREE.Vector3) => {
       if (!badgeRef.current) return;
+      isDragging.current = true;
       const t = badgeRef.current.translation();
       const wp = new THREE.Vector3(t.x, t.y, 0);
       dragPlane.current.set(new THREE.Vector3(0, 0, 1), 0);
 
-      const hit = e.point;
-      dragOffset.current.set(wp.x - hit.x, wp.y - hit.y, 0);
+      dragOffset.current.set(wp.x - hitPoint.x, wp.y - hitPoint.y, 0);
       lastPt.current.copy(wp);
       lastTime.current = performance.now();
       vel.current.set(0, 0, 0);
 
-      badgeRef.current.setBodyType(1, true); // kinematicPositionBased
-      gl.domElement.style.cursor = "grabbing";
-      gl.domElement.style.pointerEvents = "auto";
+      // In Rapier: Dynamic=0, Fixed=1, KinematicPositionBased=2
+      badgeRef.current.setBodyType(2, true);
+      badgeRef.current.wakeUp();
+      document.body.style.cursor = "grabbing";
     },
-    [gl]
+    []
   );
 
   useEffect(() => {
     const dom = gl.domElement;
-    // Start with pointer events disabled – they will be toggled by raycast hover detection
+    // Keep canvas pointerEvents none so page scroll is 100% unaffected
     dom.style.pointerEvents = "none";
 
-    // Raycast hover detection on window-level pointermove to toggle canvas pointer events
-    const onWindowPointerMove = (e: PointerEvent) => {
-      // If actively dragging, keep canvas interactive
-      if (isDragging.current) {
-        dom.style.pointerEvents = "auto";
-        return;
-      }
-      if (!badgeVisualRef.current) return;
-
+    const checkHit = (clientX: number, clientY: number): THREE.Intersection | null => {
+      if (!badgeVisualRef.current) return null;
       const rect = dom.getBoundingClientRect();
-      const ndcX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const ndcY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      if (
+        clientX < rect.left ||
+        clientX > rect.right ||
+        clientY < rect.top ||
+        clientY > rect.bottom
+      ) {
+        return null;
+      }
+      const ndcX = ((clientX - rect.left) / rect.width) * 2 - 1;
+      const ndcY = -((clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.current.setFromCamera(new THREE.Vector2(ndcX, ndcY), camera);
-
-      // Raycast against all meshes in the badge hierarchy (face, clip, ring, edges)
+      badgeVisualRef.current.updateWorldMatrix(true, true);
       const hits = raycaster.current.intersectObjects(
         badgeVisualRef.current.children,
         true
       );
+      return hits.length > 0 ? hits[0] : null;
+    };
 
-      if (hits.length > 0) {
-        dom.style.pointerEvents = "auto";
+    const onPointerMove = (e: PointerEvent) => {
+      if (isDragging.current) {
+        handleDragMove(e.clientX, e.clientY);
+        return;
+      }
+      const hit = checkHit(e.clientX, e.clientY);
+      if (hit) {
         if (!isHovered.current) {
           isHovered.current = true;
-          dom.style.cursor = "grab";
+          document.body.style.cursor = "grab";
         }
       } else {
         if (isHovered.current) {
           isHovered.current = false;
-          dom.style.cursor = "default";
-        }
-        dom.style.pointerEvents = "none";
-      }
-    };
-
-    // Immediate touch/pointer down raycast hit detection (critical for touch devices)
-    const onWindowPointerDown = (e: PointerEvent) => {
-      if (!badgeVisualRef.current) return;
-      const rect = dom.getBoundingClientRect();
-      if (
-        e.clientX >= rect.left &&
-        e.clientX <= rect.right &&
-        e.clientY >= rect.top &&
-        e.clientY <= rect.bottom
-      ) {
-        const ndcX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        const ndcY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-        raycaster.current.setFromCamera(new THREE.Vector2(ndcX, ndcY), camera);
-        const hits = raycaster.current.intersectObjects(
-          badgeVisualRef.current.children,
-          true
-        );
-        if (hits.length > 0) {
-          dom.style.pointerEvents = "auto";
-          isHovered.current = true;
-          startDrag({ point: hits[0].point, stopPropagation: () => {} });
+          document.body.style.cursor = "";
         }
       }
     };
 
-    const onMove = (e: PointerEvent) => {
-      if (!isDragging.current) return;
-      handleDragMove(e.clientX, e.clientY);
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.button !== 0) return; // Only primary mouse button
+      const hit = checkHit(e.clientX, e.clientY);
+      if (hit) {
+        e.preventDefault();
+        startDrag(hit.point);
+      }
     };
 
-    // Touch event handlers for mobile drag
+    const onPointerUp = () => {
+      if (isDragging.current) {
+        release();
+      }
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      const touch = e.touches[0];
+      const hit = checkHit(touch.clientX, touch.clientY);
+      if (hit) {
+        e.preventDefault();
+        startDrag(hit.point);
+      }
+    };
+
     const onTouchMove = (e: TouchEvent) => {
       if (!isDragging.current || !e.touches.length) return;
-      e.preventDefault(); // prevent scroll while dragging
+      e.preventDefault();
       const touch = e.touches[0];
       handleDragMove(touch.clientX, touch.clientY);
     };
 
     const onTouchEnd = () => {
-      release();
+      if (isDragging.current) {
+        release();
+      }
     };
 
-    window.addEventListener("pointermove", onWindowPointerMove, { passive: true });
-    window.addEventListener("pointerdown", onWindowPointerDown);
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", release);
-    dom.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerdown", onPointerDown, { passive: false });
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("pointercancel", onPointerUp);
+    window.addEventListener("touchstart", onTouchStart, { passive: false });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd);
+    window.addEventListener("touchcancel", onTouchEnd);
 
     return () => {
-      window.removeEventListener("pointermove", onWindowPointerMove);
-      window.removeEventListener("pointerdown", onWindowPointerDown);
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", release);
-      dom.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerUp);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("touchcancel", onTouchEnd);
+      document.body.style.cursor = "";
     };
-  }, [gl, camera, viewport.width, viewport.height, anchorY, getWorld, handleDragMove, release, startDrag]);
+  }, [gl, camera, handleDragMove, release, startDrag]);
 
-  // Subtle hover pop effect (scales up to 1.05 smoothly on hover, no movement triggered)
+  // Subtle hover pop effect (scales up to 1.04 smoothly on hover, no movement triggered)
   useFrame(() => {
-    const targetScale = isHovered.current || isDragging.current ? 1.05 : 1.0;
+    const targetScale = isHovered.current || isDragging.current ? 1.04 : 1.0;
     scaleVal.current = THREE.MathUtils.lerp(scaleVal.current, targetScale, 0.2);
     if (badgeVisualRef.current) {
       badgeVisualRef.current.scale.setScalar(scaleVal.current);
@@ -653,20 +712,7 @@ function BadgePhysicsScene() {
           angularDamping={1.8}
           position={[anchorX, anchorY - 1.95, 0]}
         >
-          <group
-            ref={badgeVisualRef}
-            onPointerDown={startDrag}
-            onPointerEnter={() => {
-              isHovered.current = true;
-              if (!isDragging.current) gl.domElement.style.cursor = "grab";
-            }}
-            onPointerLeave={() => {
-              if (!isDragging.current) {
-                isHovered.current = false;
-                gl.domElement.style.cursor = "default";
-              }
-            }}
-          >
+          <group ref={badgeVisualRef}>
             <BadgeMesh />
           </group>
         </RigidBody>
@@ -727,7 +773,6 @@ export function InteractiveBadge() {
         camera={{ position: [0, 0, 8.8], fov: 38 }}
         className="w-full h-full pointer-events-none"
         gl={{ antialias: true, alpha: true }}
-        style={{ touchAction: "none" }}
       >
         <Suspense fallback={null}>
           <ResponsiveCamera />

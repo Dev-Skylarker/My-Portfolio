@@ -5,7 +5,7 @@
     "email": "erickaris0521@gmail.com",
     "phone": "+254741909607",
     "location": "Embu, Kenya",
-    "summary": "Versatile ICT Professional and Graphic Designer with a focus on delivering high-impact digital solutions. Expert in leveraging the Adobe Creative Suite for professional branding, combined with strong full-stack web development and systems administration skills. Proven track record in automating workflows using AI, managing complex database structures, and deploying robust IT infrastructures. A proactive problem-solver dedicated to technical excellence and visual innovation."
+    "summary": "Versatile ICT Specialist & Digital Designer crafting high-impact web architectures, automated workflows, and modern brand systems with technical excellence."
   },
   "competencies": [
     {
@@ -328,6 +328,7 @@
   "projects": [
     {
       "title": "Skitech Digi-Progs — Digital Event Programs & Eulogies",
+      "image": "/project images/Skitech Digiprogs.jpeg",
       "problem": "Traditional printed event programs and eulogy booklets are costly to produce, easy to lose, and lack interactive digital access for guests during memorial services, weddings, and events",
       "solution": "Developed an offline-first Progressive Web Application (PWA) that transforms printed booklets, memorial eulogies, wedding programs, and church bulletins into mobile-friendly digital experiences accessible via QR codes",
       "tools": [
@@ -349,6 +350,7 @@
     },
     {
       "title": "Skitech Smart Rider",
+      "image": "/project images/Smartrider.jpeg",
       "problem": "Boda-boda riders need a seamless, error-free way for customers to pay them via mobile money without manually sharing or typing phone numbers",
       "solution": "Developed a platform that generates permanent, unique QR codes linking to public payment profiles for riders, enabling quick scanning and seamless M-Pesa payments",
       "tools": [
@@ -370,6 +372,7 @@
     },
     {
       "title": "AquaFlow — Hydration Tracker",
+      "image": "/project images/Aquaflow.jpeg",
       "problem": "People frequently forget to drink enough water throughout the day, with no engaging way to build a daily habit",
       "solution": "Built a gamified hydration tracking web app with level progression, streak tracking, achievements, personalised reminders, and a beautiful animated UI to make staying hydrated fun",
       "tools": [
@@ -390,6 +393,7 @@
     },
     {
       "title": "Business Website/Portfolio",
+      "image": "/project images/Skitech Business website.jpeg",
       "problem": "A local business needed a professional online presence to showcase its services and make it easy for customers to get in touch",
       "solution": "Designed and developed a fully responsive business website with modern UI/UX principles using HTML5, CSS3, and JavaScript",
       "tools": [
@@ -409,6 +413,7 @@
     },
     {
       "title": "Lipana STK Push Payment System",
+      "image": "/project images/Stk Push.jpeg",
       "problem": "Clients needed a seamless, automated mobile money payment integration for web applications",
       "solution": "Built a full-stack M-Pesa Lipana STK Push integration with a Python/Flask backend, real-time payment status tracking, and a responsive React frontend with success/failure feedback",
       "tools": [
@@ -430,6 +435,7 @@
     },
     {
       "title": "Personal Portfolio Website",
+      "image": "/project images/Portfolio.jpeg",
       "problem": "Need for a modern, interactive portfolio to showcase skills, projects, and professional background to employers and clients",
       "solution": "Built a fully responsive single-page portfolio using React, TypeScript, and Tailwind CSS with dark mode, animated sections, CV download, and an integrated contact form",
       "tools": [
@@ -450,6 +456,7 @@
     },
     {
       "title": "Graphic Design Projects",
+      "image": "/project images/graphic-design.jpg",
       "problem": "Small local businesses lacked professional digital branding to compete online",
       "solution": "Created comprehensive digital branding materials including logos, fliers, certificates, e.t.c. for multiple clients",
       "tools": [
@@ -469,6 +476,7 @@
     },
     {
       "title": "Burp Suite Vulnerability Assessment",
+      "image": "/project images/vulnerability-assessment.jpg",
       "problem": "Web applications vulnerable to common security threats like XSS and SQL injection",
       "solution": "Conducted comprehensive security audits using Burp Suite to identify and document vulnerabilities in test environments",
       "tools": [

@@ -29,7 +29,7 @@
   }
 
   * {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0085FF] focus-visible:ring-offset-2;
   }
 
   /* Transitions for dark mode */
@@ -44,9 +44,15 @@
   /* Override for transforms to avoid conflicts */
   button,
   a {
+    box-sizing: border-box;
     transition-property: background-color, border-color, color, opacity, box-shadow, transform;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
+  }
+
+  /* Prevent text from clipping or spilling out of rounded-full pill buttons across all screen sizes */
+  .rounded-full {
+    box-sizing: border-box;
   }
 }
 
