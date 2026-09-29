@@ -31,11 +31,9 @@ function SkillBar({ name, level }: { name: string; level: number }) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setAnimated(true);
-        } else {
-          setAnimated(false);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '0px 0px 30px 0px' }
     );
     observer.observe(el);
     return () => observer.unobserve(el);

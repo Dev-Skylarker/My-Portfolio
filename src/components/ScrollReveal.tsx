@@ -8,6 +8,28 @@ interface ScrollRevealProps {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none';
   threshold?: number;
   duration?: number; // In milliseconds
+  once?: boolean;
+}
+
+// Global scroll direction tracker: shared across all instances to prevent 40+ scroll event listeners
+let globalScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+let globalScrollDir: 'down' | 'up' = 'down';
+let isListening = false;
+
+function ensureScrollListener() {
+  if (isListening || typeof window === 'undefined') return;
+  isListening = true;
+  window.addEventListener(
+    'scroll',
+    () => {
+      const currentY = window.scrollY;
+      if (Math.abs(currentY - globalScrollY) > 4) {
+        globalScrollDir = currentY > globalScrollY ? 'down' : 'up';
+        globalScrollY = currentY;
+      }
+    },
+    { passive: true }
+  );
 }
 
 export function ScrollReveal({
@@ -16,33 +38,20 @@ export function ScrollReveal({
   childClassName = '',
   delay = 0,
   direction = 'up',
-  threshold = 0.08,
-  duration = 650,
+  threshold = 0.05,
+  duration = 520,
+  once = true,
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollDir, setScrollDir] = useState<'down' | 'up'>('down');
   const ref = useRef<HTMLDivElement>(null);
-  const lastScrollY = useRef(0);
-
-  // Track global scroll direction for smart directional entrance
-  useEffect(() => {
-    lastScrollY.current = window.scrollY;
-
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (Math.abs(currentY - lastScrollY.current) > 4) {
-        setScrollDir(currentY > lastScrollY.current ? 'down' : 'up');
-        lastScrollY.current = currentY;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
+    ensureScrollListener();
+
     // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setIsVisible(true);
       return;
@@ -55,26 +64,33 @@ export function ScrollReveal({
     const rect = currentEl.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       setIsVisible(true);
+      if (once) return;
     }
+
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // On mobile, trigger slightly before element enters (rootMargin +30px) for smooth glide-in
+    const rootMargin = isMobile ? '0px 0px 35px 0px' : '0px 0px -20px 0px';
+    const effectiveThreshold = isMobile ? Math.min(threshold, 0.04) : threshold;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-        } else {
-          // Hysteresis deadband: only un-reveal when element has scrolled well away from the viewport
-          // This prevents rapid oscillation/shaking at the viewport boundary
-          const rect = entry.boundingClientRect;
-          const isFarAbove = rect.bottom < -80;
-          const isFarBelow = rect.top > window.innerHeight + 80;
+          if (once) {
+            observer.unobserve(currentEl);
+          }
+        } else if (!once) {
+          const entryRect = entry.boundingClientRect;
+          const isFarAbove = entryRect.bottom < -200;
+          const isFarBelow = entryRect.top > window.innerHeight + 200;
           if (isFarAbove || isFarBelow) {
             setIsVisible(false);
           }
         }
       },
       {
-        threshold: threshold,
-        rootMargin: '0px 0px -30px 0px',
+        threshold: effectiveThreshold,
+        rootMargin,
       }
     );
 
@@ -83,18 +99,21 @@ export function ScrollReveal({
     return () => {
       observer.unobserve(currentEl);
     };
-  }, [threshold]);
+  }, [threshold, once]);
 
   const getInitialTransform = () => {
-    if (direction === 'none') return 'scale(0.97)';
-    if (direction === 'left') return 'translate3d(28px, 0, 0)';
-    if (direction === 'right') return 'translate3d(-28px, 0, 0)';
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const dist = isMobile ? 20 : 28;
+
+    if (direction === 'none') return 'scale(0.96)';
+    if (direction === 'left') return `translate3d(${dist}px, 0, 0)`;
+    if (direction === 'right') return `translate3d(-${dist}px, 0, 0)`;
 
     // For vertical reveals, adapt smartly to whether user is scrolling down or up
-    if (scrollDir === 'down') {
-      return direction === 'down' ? 'translate3d(0, -28px, 0)' : 'translate3d(0, 28px, 0)';
+    if (globalScrollDir === 'down') {
+      return direction === 'down' ? `translate3d(0, -${dist}px, 0)` : `translate3d(0, ${dist}px, 0)`;
     } else {
-      return direction === 'down' ? 'translate3d(0, 28px, 0)' : 'translate3d(0, -28px, 0)';
+      return direction === 'down' ? `translate3d(0, ${dist}px, 0)` : `translate3d(0, -${dist}px, 0)`;
     }
   };
 
@@ -117,4 +136,3 @@ export function ScrollReveal({
     </div>
   );
 }
-

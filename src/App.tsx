@@ -52,9 +52,9 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#F8F9F5] dark:bg-[#0D0F0C] text-gray-950 dark:text-[#EDEDE8] font-sans selection:bg-[#B7E33B] selection:text-[#0D0F0C] transition-colors duration-300">
-      {/* Scroll Progress Bar */}
+      {/* Scroll Progress Bar with Glowing Accent */}
       <div
-        className="fixed top-0 left-0 h-[3px] bg-[#658B12] dark:bg-[#B7E33B] z-[60] transition-all duration-75"
+        className="fixed top-0 left-0 h-[3px] bg-[#658B12] dark:bg-[#B7E33B] z-[60] transition-all duration-75 shadow-[0_0_8px_rgba(101,139,18,0.7)] dark:shadow-[0_0_10px_rgba(183,227,59,0.8)]"
         style={{ width: `${scrollProgress}%` }}
       />
 

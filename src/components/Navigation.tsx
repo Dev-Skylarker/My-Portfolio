@@ -1,5 +1,5 @@
 import { Sun, Moon, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Theme } from '../hooks/useTheme';
 
 interface NavigationProps {
@@ -11,6 +11,16 @@ interface NavigationProps {
 
 export function Navigation({ theme, toggleTheme, activeSection, sections }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -20,22 +30,44 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
     }
   };
 
+  const currentSectionLabel = sections.find(s => s.id === activeSection)?.label || '';
+
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F8F9F5]/90 dark:bg-[#0D0F0C]/90 backdrop-blur-md border-b border-gray-300 dark:border-[#22261E] shadow-sm transition-colors duration-300">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#F8F9F5]/95 dark:bg-[#0D0F0C]/95 backdrop-blur-md border-b border-gray-300 dark:border-[#22261E] shadow-sm'
+            : 'bg-[#F8F9F5]/80 dark:bg-[#0D0F0C]/80 backdrop-blur-sm border-b border-gray-200/50 dark:border-[#22261E]/50 shadow-none'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Brand */}
+            {/* Brand / Home Link */}
             <button
-              onClick={() => scrollToSection('profile')}
-              className="flex items-center gap-2.5 group"
+              onClick={() => {
+                scrollToSection('profile');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="relative flex items-center gap-2 group py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#658B12] dark:focus-visible:ring-[#B7E33B] rounded cursor-pointer transition-transform active:scale-95"
+              aria-label="Maina Eric - Home"
+              title="Maina Eric - Home"
             >
-              <div className="w-8 h-8 rounded-[4px] bg-[#658B12] dark:bg-[#B7E33B] flex items-center justify-center text-white dark:text-[#0D0F0C] text-xs font-bold font-['IBM_Plex_Mono'] shadow-sm group-hover:scale-105 transition-transform">
-                ME
-              </div>
-              <span className="text-base font-bold font-['Space_Grotesk'] tracking-tight text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] transition-colors">
-                Eric Kariuki
+              {/* Luminous aura behind text */}
+              <span
+                className="absolute -inset-x-2.5 -inset-y-1 rounded-lg bg-gradient-to-r from-transparent via-[#658B12]/15 dark:via-[#B7E33B]/25 to-transparent blur-md opacity-40 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                aria-hidden="true"
+              />
+
+              <span className="relative text-lg sm:text-xl font-bold font-['Space_Grotesk'] tracking-tight text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] brand-glowing-text transition-colors duration-200">
+                Maina Eric
               </span>
+
+              {currentSectionLabel && activeSection !== 'profile' && (
+                <span className="md:hidden text-xs font-['IBM_Plex_Mono'] font-semibold text-[#658B12] dark:text-[#B7E33B] animate-fade-in pl-1">
+                  · {currentSectionLabel}
+                </span>
+              )}
             </button>
 
             {/* Desktop nav */}

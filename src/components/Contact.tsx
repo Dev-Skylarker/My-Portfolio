@@ -1,7 +1,8 @@
-import { Mail, Phone, MessageCircle, Send, CheckCircle, AlertCircle, Loader2, MapPin, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle, AlertCircle, Loader2, MapPin, Github, Linkedin } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { ScrollReveal } from './ScrollReveal';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ContactProps {
   profile: {
@@ -127,10 +128,10 @@ export function Contact({ profile }: ContactProps) {
             <ScrollReveal direction="left" delay={150}>
               <button
                 onClick={handleWhatsApp}
-                className="group w-full flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left"
+                className="group w-full flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] dark:hover:border-[#25D366] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left"
               >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
-                  <MessageCircle size={18} />
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] group-hover:border-[#25D366] group-hover:bg-[#25D366]/10 dark:group-hover:bg-[#25D366]/20 flex items-center justify-center transition-colors flex-shrink-0">
+                  <WhatsAppIcon size={20} className="group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="min-w-0">
                   <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">WhatsApp</p>

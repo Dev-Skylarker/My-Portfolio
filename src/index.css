@@ -187,6 +187,43 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400 dark:bg-gray-600;
   }
+
+  /* Glowing Brand Logo Effect */
+  @keyframes brand-glow-light {
+    0%, 100% {
+      text-shadow: 0 0 8px rgba(101, 139, 18, 0.3), 0 0 16px rgba(101, 139, 18, 0.15);
+    }
+    50% {
+      text-shadow: 0 0 14px rgba(101, 139, 18, 0.55), 0 0 26px rgba(101, 139, 18, 0.3);
+    }
+  }
+
+  @keyframes brand-glow-dark {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(183, 227, 59, 0.4), 0 0 20px rgba(183, 227, 59, 0.2);
+    }
+    50% {
+      text-shadow: 0 0 18px rgba(183, 227, 59, 0.8), 0 0 32px rgba(183, 227, 59, 0.45);
+    }
+  }
+
+  .brand-glowing-text {
+    animation: brand-glow-light 3.5s ease-in-out infinite;
+  }
+
+  .dark .brand-glowing-text {
+    animation: brand-glow-dark 3.5s ease-in-out infinite;
+  }
+
+  .brand-glowing-text:hover,
+  .group:hover .brand-glowing-text {
+    text-shadow: 0 0 18px rgba(101, 139, 18, 0.8), 0 0 32px rgba(101, 139, 18, 0.5) !important;
+  }
+
+  .dark .brand-glowing-text:hover,
+  .dark .group:hover .brand-glowing-text {
+    text-shadow: 0 0 22px rgba(183, 227, 59, 0.95), 0 0 38px rgba(183, 227, 59, 0.6) !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -198,7 +235,8 @@
   .animate-fade-in,
   .animate-fade-in-up,
   .animate-blink,
-  .animate-slide-down {
+  .animate-slide-down,
+  .brand-glowing-text {
     animation: none;
   }
 }

@@ -1,5 +1,6 @@
-import { FileText, MessageCircle, ChevronUp } from 'lucide-react';
+import { FileText, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FloatingActionsProps {
   onViewCV: () => void;
@@ -12,8 +13,9 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      setShowScrollTop(window.scrollY > 260);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -35,7 +37,7 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-white dark:bg-[#151713] text-gray-900 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-white dark:bg-[#151713] text-gray-900 dark:text-[#EDEDE8] border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center animate-fade-in"
           aria-label="Scroll to top"
         >
           <ChevronUp size={18} />
@@ -44,11 +46,11 @@ export function FloatingActions({ onViewCV, phone, name }: FloatingActionsProps)
 
       <button
         onClick={handleWhatsApp}
-        className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-white dark:bg-[#151713] text-[#25D366] border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
+        className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-white dark:bg-[#151713] border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] dark:hover:border-[#25D366] hover:bg-[#25D366]/10 dark:hover:bg-[#25D366]/15 shadow-md transition-all hover:scale-105 active:scale-95 flex items-center justify-center group"
         aria-label="Contact via WhatsApp"
         title="WhatsApp"
       >
-        <MessageCircle size={18} />
+        <WhatsAppIcon size={20} className="group-hover:scale-110 transition-transform" />
       </button>
 
       <button

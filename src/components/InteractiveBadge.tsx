@@ -10,7 +10,7 @@
  */
 
 import * as THREE from "three";
-import { Suspense, useRef, useMemo, useCallback, useEffect } from "react";
+import { Suspense, useRef, useMemo, useCallback, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import {
@@ -708,10 +708,23 @@ function ResponsiveCamera() {
   return null;
 }
 
-// ─── Exported Interactive Badge Component ─────────────────────────────────────
+// ─── Exported Interactive Badge Component (Desktop Only) ──────────────────────
 export function InteractiveBadge() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(typeof window !== "undefined" && window.innerWidth >= 1024);
+    };
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
+
+  if (!isDesktop) return null;
+
   return (
-    <div className="absolute inset-x-0 top-16 xs:top-18 sm:top-20 lg:top-0 lg:bottom-0 h-[260px] xs:h-[280px] sm:h-[320px] lg:h-full z-[30] pointer-events-none select-none">
+    <div className="hidden lg:block absolute inset-0 z-[30] pointer-events-none select-none">
       <Canvas
         camera={{ position: [0, 0, 9], fov: 40 }}
         className="w-full h-full pointer-events-none"
