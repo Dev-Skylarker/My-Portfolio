@@ -7,6 +7,9 @@ export default {
       screens: {
         xs: '380px',
       },
+      spacing: {
+        '4.5': '1.125rem',
+      },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: [
@@ -28,8 +31,8 @@ export default {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' }, // Translate by -50% because we'll double the content width
-        }
-      }
+        },
+      },
     },
   },
   plugins: [],
