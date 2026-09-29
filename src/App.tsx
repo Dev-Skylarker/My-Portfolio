@@ -37,10 +37,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleViewCV = () => {
-    window.open('/Maina Eric  CV.pdf', '_blank');
-  };
-
   const handleDownloadCV = () => {
     const link = document.createElement('a');
     link.href = '/Maina Eric  CV.pdf';
@@ -97,10 +93,9 @@ function App() {
         <Contact profile={cvData.profile} />
       </main>
 
-      <Footer softSkills={cvData.softSkills} githubUrl="https://github.com/Dev-Skylarker" />
+      <Footer githubUrl="https://github.com/Dev-Skylarker" />
 
       <FloatingActions
-        onViewCV={handleViewCV}
         phone={cvData.profile.phone}
         name={cvData.profile.name}
       />

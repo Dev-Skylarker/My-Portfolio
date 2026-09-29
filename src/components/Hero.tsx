@@ -4,7 +4,7 @@ import { ScrollReveal } from './ScrollReveal';
 import { InteractiveBadge } from './InteractiveBadge';
 
 export interface PhaseConfig {
-  primaryTitle: string; // The big headline (Space Grotesk)
+  primaryTitle: string; // The big headline (Inter font-sans)
   accentWord?: string;  // Word in the headline styled in #B7E33B / #658B12
   subPrefix: string;    // "A " or "↳ "
   subItems: string[];   // Items that cycle completely before primary changes
@@ -178,7 +178,10 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
   };
 
   return (
-    <section id="profile" className="relative pt-20 xs:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 md:px-12">
+    <section
+      id="profile"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12 transition-all duration-300"
+    >
       {/* Background ambient lighting */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#658B12]/5 dark:bg-[#B7E33B]/10 rounded-full blur-3xl" />
@@ -189,14 +192,14 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
           so the badge has full room to swing without clipping at container edges */}
       <InteractiveBadge />
 
-      <div className="max-w-7xl mx-auto w-full relative">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Main Hero Split: Left text & CTAs, Right hanging badge */}
-        <div className="grid lg:grid-cols-12 gap-0 lg:gap-8 items-stretch relative z-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full">
           {/* Left Column (Text & CTAs) - centered on mobile, left-aligned on desktop */}
-          <div className="lg:col-span-7 xl:col-span-7 flex flex-col justify-start lg:justify-between pt-1 sm:pt-2 lg:pt-3 pb-2 sm:pb-4 lg:pb-12 min-h-fit lg:min-h-[660px] relative z-20 text-center lg:text-left items-center lg:items-start gap-4 sm:gap-6 lg:gap-0">
+          <div className="w-full lg:w-7/12 flex flex-col justify-center text-center lg:text-left items-center lg:items-start relative z-20">
             {/* 1. Main Display Headline & Role Sub-Item (Top Block) */}
-            <ScrollReveal direction="up" duration={700}>
-              <h1 className="font-['Space_Grotesk'] text-[2.35rem] xs:text-[2.85rem] sm:text-[3.5rem] md:text-[4.2rem] lg:text-[4.75rem] xl:text-[5.25rem] 2xl:text-[5.75rem] font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] leading-[1.03] min-h-[3.2em] flex flex-col justify-start uppercase items-center lg:items-start">
+            <ScrollReveal direction="up" duration={600} className="w-full">
+              <h1 className="font-sans text-[2.1rem] xs:text-[2.5rem] sm:text-[3.1rem] md:text-[3.6rem] lg:text-[3.75rem] xl:text-[4.35rem] 2xl:text-[4.9rem] font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] leading-[1.04] min-h-[3.15em] flex flex-col justify-start uppercase items-center lg:items-start">
                 {targetLines.map((_, idx) => {
                   const lineText = idx < displayedLines.length ? displayedLines[idx] : '';
                   const isActiveLine = idx === activeLineIdx;
@@ -205,50 +208,50 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
               </h1>
 
               {/* Sub-Item Area */}
-              <div className="min-h-[2.25rem] sm:min-h-[2.75rem] lg:min-h-[3.5rem] mt-1.5 sm:mt-2.5 lg:mt-4 flex items-center justify-center lg:justify-start">
-                <p className="font-['IBM_Plex_Mono'] text-sm xs:text-base sm:text-lg md:text-xl lg:text-[1.5rem] text-[#4E6D0B] dark:text-[#B7E33B] font-semibold tracking-wide break-words leading-snug">
+              <div className="min-h-[1.9rem] sm:min-h-[2.3rem] lg:min-h-[2.7rem] mt-1 sm:mt-1.5 flex items-center justify-center lg:justify-start">
+                <p className="font-mono text-xs xs:text-sm sm:text-base md:text-lg lg:text-[1.28rem] text-[#4E6D0B] dark:text-[#B7E33B] font-semibold tracking-wide break-words leading-snug">
                   {displayedSub}
                   {(isTypingSub || isDeletingSub) && (
-                    <span className="inline-block w-2 h-4 sm:w-2.5 sm:h-5 md:w-3 md:h-6 lg:h-7 bg-[#4E6D0B] dark:bg-[#B7E33B] ml-1.5 animate-pulse align-middle" />
+                    <span className="inline-block w-2 h-3.5 sm:w-2.5 sm:h-4 md:w-3 md:h-5 lg:h-6 bg-[#4E6D0B] dark:bg-[#B7E33B] ml-1.5 animate-pulse align-middle" />
                   )}
                 </p>
               </div>
             </ScrollReveal>
 
             {/* 2. About Me */}
-            <ScrollReveal direction="up" duration={700} delay={100} className="my-0 lg:my-auto py-1 sm:py-2 lg:py-8 w-full">
-              <div className="max-w-2xl mx-auto lg:mx-0">
-                <h2 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#658B12] dark:text-[#B7E33B] mb-2 font-['IBM_Plex_Mono'] flex items-center gap-2 justify-center lg:justify-start">
+            <ScrollReveal direction="up" duration={600} delay={100} className="w-full mt-4">
+              <div className="max-w-xl mx-auto lg:mx-0">
+                <h2 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#658B12] dark:text-[#B7E33B] mb-2 font-mono flex items-center gap-2 justify-center lg:justify-start">
                   <span>ABOUT ME</span>
                 </h2>
-                <p className="text-gray-700 dark:text-[#9EA398] text-sm sm:text-base md:text-[1.05rem] leading-relaxed sm:leading-[1.75] font-sans">
+                <p className="text-gray-700 dark:text-[#9EA398] text-sm sm:text-base md:text-[0.96rem] lg:text-[1rem] leading-relaxed font-sans">
                   {profile.summary}
                 </p>
               </div>
             </ScrollReveal>
 
             {/* 3. Action CTAs */}
-            <ScrollReveal direction="up" duration={700} delay={200}>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 pt-2 sm:pt-3 lg:pt-4">
+            <ScrollReveal direction="up" duration={600} delay={200} className="w-full mt-8">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
                 <a
                   href="#experience"
-                  className="justify-center px-5 sm:px-6 py-2.5 sm:py-3.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+                  className="justify-center px-4 sm:px-5 py-2 sm:py-2.5 lg:py-3 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] font-bold font-sans text-xs uppercase tracking-wider rounded-full transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 inline-flex items-center gap-2"
                 >
                   <span>See Experience</span>
                   <span className="text-xs">↓</span>
                 </a>
                 <a
                   href="#projects"
-                  className="justify-center px-5 sm:px-6 py-2.5 sm:py-3.5 border border-gray-300 dark:border-[#22261E] bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-900 dark:text-[#EDEDE8] font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+                  className="justify-center px-4 sm:px-5 py-2 sm:py-2.5 lg:py-3 border border-gray-300 dark:border-[#22261E] bg-white hover:bg-gray-100 text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:text-[#EDEDE8] font-bold font-sans text-xs uppercase tracking-wider rounded-full hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 inline-flex items-center gap-2"
                 >
                   <span>View Projects</span>
                   <span className="text-xs">↗</span>
                 </a>
                 <button
                   onClick={onDownloadCV}
-                  className="justify-center px-4 sm:px-5 py-2.5 sm:py-3.5 border border-gray-300 dark:border-[#22261E] bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm text-gray-800 dark:text-gray-300 font-semibold font-['Space_Grotesk'] text-xs sm:text-sm tracking-wide rounded-[4px] hover:border-[#658B12] hover:text-[#658B12] dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2"
+                  className="justify-center px-4 sm:px-5 py-2 sm:py-2.5 lg:py-3 border border-gray-300 dark:border-[#22261E] bg-white hover:bg-gray-100 text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:text-[#EDEDE8] font-bold font-sans text-xs uppercase tracking-wider rounded-full hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <FileText size={16} />
+                  <FileText size={14} />
                   <span>Download CV</span>
                 </button>
               </div>
@@ -256,26 +259,8 @@ export function Hero({ profile, onDownloadCV }: HeroProps) {
           </div>
 
           {/* Right Column: Responsive layout spacer for the hanging badge - hidden on mobile, visible on desktop */}
-          <div className="hidden lg:block lg:col-span-5 xl:col-span-5 relative pointer-events-none w-full lg:min-h-[660px]" />
+          <div className="hidden lg:flex lg:w-5/12 items-center justify-center relative pointer-events-none min-h-[460px] lg:min-h-[500px]" />
         </div>
-
-        {/* Scroll To Explore Cue */}
-        <ScrollReveal direction="up" delay={300}>
-          <div className="flex flex-col items-center justify-center pt-8 sm:pt-12 text-center">
-            <a
-              href="#projects"
-              className="group inline-flex flex-col items-center gap-2 text-gray-500 hover:text-[#658B12] dark:text-[#8F9489] dark:hover:text-[#B7E33B] transition-colors"
-              aria-label="Scroll to featured projects"
-            >
-              <span className="text-[10px] sm:text-xs font-['IBM_Plex_Mono'] uppercase tracking-widest font-semibold">
-                Scroll to explore
-              </span>
-              <div className="w-5 h-8 rounded-full border border-gray-400 dark:border-[#33382c] group-hover:border-[#658B12] dark:group-hover:border-[#B7E33B] flex items-start justify-center p-1 transition-colors">
-                <div className="w-1.5 h-2 rounded-full bg-[#658B12] dark:bg-[#B7E33B] animate-bounce" />
-              </div>
-            </a>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );

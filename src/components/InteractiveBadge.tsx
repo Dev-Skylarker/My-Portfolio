@@ -27,11 +27,11 @@ void MeshLineGeometry;
 void MeshLineMaterial;
 
 // ─── Dimensions & Coordinates (Aspect Ratio 400x560 = 0.7142857) ───────────────
-const BW = 2.5;
-const BH = 3.5;
-const BD = 0.05;
-const ANCHOR_POS: [number, number, number] = [0, 3.25, 0];
-const BADGE_Y0 = -0.5;
+const BW = 1.9;
+const BH = 2.66;
+const BD = 0.04;
+const ANCHOR_POS: [number, number, number] = [0, 2.2, 0];
+const BADGE_Y0 = -0.05;
 
 // ─── Security Credential Reverse Face ──────────────────────────────────────────
 function makeBackCanvas(): HTMLCanvasElement {
@@ -159,13 +159,13 @@ function BadgeMesh() {
 
       {/* 4. Top attachment clip housing */}
       <mesh position={[0, BH / 2, 0]}>
-        <boxGeometry args={[0.36, 0.12, 0.08]} />
+        <boxGeometry args={[0.28, 0.09, 0.06]} />
         <meshStandardMaterial color="#b8b8c2" metalness={0.9} roughness={0.2} />
       </mesh>
 
       {/* 5. Lanyard metal connector ring */}
-      <mesh position={[0, BH / 2 + 0.08, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.075, 0.02, 10, 24]} />
+      <mesh position={[0, BH / 2 + 0.06, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.058, 0.016, 10, 24]} />
         <meshStandardMaterial color="#c4c4cc" metalness={0.9} roughness={0.2} />
       </mesh>
     </group>
@@ -181,7 +181,7 @@ function Ribbon({
   badgeRef: React.RefObject<RapierRigidBody>;
 }) {
   const N = 48; // High-resolution cross sections for silk-smooth curvature
-  const HALF_W = 0.048;
+  const HALF_W = 0.036;
 
   const geo = useMemo(() => {
     const g = new THREE.BufferGeometry();
@@ -205,14 +205,14 @@ function Ribbon({
   // 6 dynamic control points for flexible spline curve with inertia
   const cp = useRef<THREE.Vector3[]>([
     new THREE.Vector3(0, ANCHOR_POS[1], -0.02),
-    new THREE.Vector3(0, 2.7, -0.02),
-    new THREE.Vector3(0, 2.2, -0.02),
-    new THREE.Vector3(0, 1.8, -0.02),
-    new THREE.Vector3(0, 1.5, -0.02),
-    new THREE.Vector3(0, BADGE_Y0 + BH / 2 + 0.08, -0.02),
+    new THREE.Vector3(0, 1.95, -0.02),
+    new THREE.Vector3(0, 1.75, -0.02),
+    new THREE.Vector3(0, 1.55, -0.02),
+    new THREE.Vector3(0, 1.4, -0.02),
+    new THREE.Vector3(0, BADGE_Y0 + BH / 2 + 0.06, -0.02),
   ]);
 
-  const prevClipPos = useRef(new THREE.Vector3(0, BADGE_Y0 + BH / 2 + 0.08, -0.02));
+  const prevClipPos = useRef(new THREE.Vector3(0, BADGE_Y0 + BH / 2 + 0.06, -0.02));
   const clipVelocity = useRef(new THREE.Vector3(0, 0, 0));
 
   const curve = useMemo(
@@ -230,7 +230,7 @@ function Ribbon({
     const angle = 2 * Math.atan2(br.z, br.w);
 
     // Exact top connector center in world coordinates (attached to torus ring)
-    const ringDist = BH / 2 + 0.08;
+    const ringDist = BH / 2 + 0.06;
     const clipOffsetX = -ringDist * Math.sin(angle);
     const clipOffsetY = ringDist * Math.cos(angle);
 
@@ -347,10 +347,10 @@ function SpringConnector({
 }) {
   useSpringJoint(anchorRef, badgeRef, [
     [0, 0, 0], // Anchor connection point
-    [0, BH / 2 + 0.08, 0], // Badge connection point (top torus ring)
-    1.92, // Rest length
-    38, // Stiffness
-    5.5, // Damping factor (rapid intact settle)
+    [0, BH / 2 + 0.06, 0], // Badge connection point (top torus ring)
+    0.72, // Rest length
+    48, // Stiffness
+    6.0, // Damping factor (rapid intact settle)
   ]);
   return null;
 }
@@ -378,12 +378,12 @@ function BadgePhysicsScene() {
     // Convert to viewport-centered world coords: 0 = center, +X = right
     anchorX = ((rightColCenterPx / w) - 0.5) * viewport.width;
     // Clamp so badge + rotation swing never clips at canvas edge
-    anchorX = Math.min(anchorX, viewport.width / 2 - BW / 2 - 1.0);
-    anchorY = viewport.height * 0.47;
+    anchorX = Math.min(anchorX, viewport.width / 2 - BW / 2 - 0.8);
+    anchorY = viewport.height * 0.36;
   } else {
     // Stacked layout (mobile & tablet): badge centered horizontally in its dedicated hero slot
     anchorX = 0;
-    anchorY = viewport.height * 0.44;
+    anchorY = viewport.height * 0.36;
   }
 
   const anchorRef = useRef<RapierRigidBody>(null);
@@ -653,7 +653,7 @@ function BadgePhysicsScene() {
           enabledRotations={[false, false, true]}
           linearDamping={1.25}
           angularDamping={1.8}
-          position={[anchorX, anchorY - 2.5, 0]}
+          position={[anchorX, anchorY - 1.55, 0]}
         >
           <group
             ref={badgeVisualRef}
@@ -692,13 +692,13 @@ function ResponsiveCamera() {
       const w = size.width;
       let fov: number;
       if (w >= 1024) {
-        fov = 40;
+        fov = 38;
       } else if (w >= 768) {
-        fov = 42;
+        fov = 40;
       } else if (w >= 480) {
-        fov = 44;
+        fov = 42;
       } else {
-        fov = 46;
+        fov = 44;
       }
       camera.fov = fov;
       camera.updateProjectionMatrix();
@@ -726,7 +726,7 @@ export function InteractiveBadge() {
   return (
     <div className="hidden lg:block absolute inset-0 z-[30] pointer-events-none select-none">
       <Canvas
-        camera={{ position: [0, 0, 9], fov: 40 }}
+        camera={{ position: [0, 0, 8.8], fov: 38 }}
         className="w-full h-full pointer-events-none"
         gl={{ antialias: true, alpha: true }}
         style={{ touchAction: "none" }}

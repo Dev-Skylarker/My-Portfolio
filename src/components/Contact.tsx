@@ -80,7 +80,7 @@ export function Contact({ profile }: ContactProps) {
   };
 
   const inputClass = `
-    w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[4px]
+    w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl
     bg-white dark:bg-[#0D0F0C]
     border border-gray-300 dark:border-[#22261E]
     text-gray-950 dark:text-[#EDEDE8]
@@ -98,7 +98,7 @@ export function Contact({ profile }: ContactProps) {
         {/* Header */}
         <ScrollReveal direction="up">
           <div className="text-center mb-10 sm:mb-14">
-            <h2 className="font-['Space_Grotesk'] text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] mb-3 sm:mb-4">
+            <h2 className="font-sans text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-950 dark:text-[#EDEDE8] mb-3 sm:mb-4">
               Let's Work Together
             </h2>
             <p className="text-gray-700 dark:text-[#8F9489] max-w-xl mx-auto text-xs xs:text-sm sm:text-base leading-relaxed">
@@ -115,12 +115,12 @@ export function Contact({ profile }: ContactProps) {
                 href={`mailto:${profile.email}`}
                 className="group flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
                   <Mail size={18} />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Email</p>
-                  <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8] truncate">{profile.email}</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Email</p>
+                  <p className="font-sans text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8] truncate">{profile.email}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -128,14 +128,14 @@ export function Contact({ profile }: ContactProps) {
             <ScrollReveal direction="left" delay={150}>
               <button
                 onClick={handleWhatsApp}
-                className="group w-full flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] dark:hover:border-[#25D366] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left"
+                className="group w-full flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#25D366] dark:hover:border-[#25D366] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left cursor-pointer"
               >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] group-hover:border-[#25D366] group-hover:bg-[#25D366]/10 dark:group-hover:bg-[#25D366]/20 flex items-center justify-center transition-colors flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] group-hover:border-[#25D366] group-hover:bg-[#25D366]/10 dark:group-hover:bg-[#25D366]/20 flex items-center justify-center transition-colors flex-shrink-0">
                   <WhatsAppIcon size={20} className="group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">WhatsApp</p>
-                  <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">{profile.phone}</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">WhatsApp</p>
+                  <p className="font-sans text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">{profile.phone}</p>
                 </div>
               </button>
             </ScrollReveal>
@@ -145,12 +145,12 @@ export function Contact({ profile }: ContactProps) {
                 href={`tel:${profile.phone}`}
                 className="group flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
                   <Phone size={18} />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Phone</p>
-                  <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">{profile.phone}</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Phone</p>
+                  <p className="font-sans text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">{profile.phone}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -162,12 +162,12 @@ export function Contact({ profile }: ContactProps) {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
                   <Github size={18} />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">GitHub</p>
-                  <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">Dev-Skylarker</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">GitHub</p>
+                  <p className="font-sans text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">Dev-Skylarker</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -179,12 +179,12 @@ export function Contact({ profile }: ContactProps) {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12] dark:hover:border-[#B7E33B] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] group-hover:bg-[#658B12] group-hover:text-white dark:group-hover:bg-[#B7E33B] dark:group-hover:text-[#0D0F0C] transition-colors flex-shrink-0">
                   <Linkedin size={18} />
                 </div>
                 <div className="min-w-0">
-                  <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">LinkedIn</p>
-                  <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">mainaericdev</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">LinkedIn</p>
+                  <p className="font-sans text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">mainaericdev</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -192,50 +192,23 @@ export function Contact({ profile }: ContactProps) {
             {profile.location && (
               <ScrollReveal direction="left" delay={350}>
                 <div className="flex items-center gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] shadow-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[4px] bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] flex-shrink-0">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 dark:bg-[#0D0F0C] border border-gray-300 dark:border-[#22261E] flex items-center justify-center text-[#658B12] dark:text-[#B7E33B] flex-shrink-0">
                     <MapPin size={18} />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Location</p>
-                    <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">{profile.location}</p>
+                    <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Location</p>
+                    <p className="font-sans text-xs sm:text-sm font-semibold text-gray-950 dark:text-[#EDEDE8]">{profile.location}</p>
                   </div>
                 </div>
               </ScrollReveal>
             )}
-
-            {/* Quick Stats */}
-            <ScrollReveal direction="left" delay={400}>
-              <div className="grid grid-cols-1 gap-2 sm:gap-2.5 pt-1.5 sm:pt-2">
-                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-3.5 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] shadow-sm hover:shadow-md transition-all duration-300">
-                  <span className="w-2 h-2 rounded-full bg-[#658B12] dark:bg-[#B7E33B] flex-shrink-0" />
-                  <div>
-                    <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Response Time</p>
-                    <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-bold text-gray-950 dark:text-[#EDEDE8]">Quick — within 24 hours</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-3.5 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] shadow-sm hover:shadow-md transition-all duration-300">
-                  <span className="w-2 h-2 rounded-full bg-[#658B12] dark:bg-[#B7E33B] flex-shrink-0" />
-                  <div>
-                    <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Project Success Rate</p>
-                    <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-bold text-gray-950 dark:text-[#EDEDE8]">100% on delivered projects</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5 sm:gap-3 p-3 sm:p-3.5 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] shadow-sm hover:shadow-md transition-all duration-300">
-                  <span className="w-2 h-2 rounded-full bg-[#658B12] dark:bg-[#B7E33B] animate-pulse flex-shrink-0" />
-                  <div>
-                    <p className="font-['IBM_Plex_Mono'] text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Availability</p>
-                    <p className="font-['Space_Grotesk'] text-xs sm:text-sm font-bold text-[#658B12] dark:text-[#B7E33B]">Remote &amp; On-Site</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
           </div>
 
           {/* Contact form */}
           <div className="lg:col-span-3">
             <ScrollReveal direction="right" delay={150}>
               <div className="bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-300 dark:border-[#22261E] p-4 xs:p-6 sm:p-8 shadow-md dark:shadow-xl hover:shadow-2xl transition-all duration-300">
-                <h3 className="font-['Space_Grotesk'] text-lg sm:text-xl font-bold text-gray-950 dark:text-[#EDEDE8] mb-4 sm:mb-6">
+                <h3 className="font-sans text-lg sm:text-xl font-bold text-gray-950 dark:text-[#EDEDE8] mb-4 sm:mb-6">
                   Send a Message
                 </h3>
 
@@ -244,7 +217,7 @@ export function Contact({ profile }: ContactProps) {
                     <div className="w-14 h-14 rounded-full bg-emerald-50 dark:bg-[#0D0F0C] border border-emerald-400 dark:border-[#B7E33B]/40 flex items-center justify-center mb-4 text-[#658B12] dark:text-[#B7E33B]">
                       <CheckCircle size={28} />
                     </div>
-                    <h4 className="font-['Space_Grotesk'] text-xl font-bold text-gray-950 dark:text-[#EDEDE8] mb-2">
+                    <h4 className="font-sans text-xl font-bold text-gray-950 dark:text-[#EDEDE8] mb-2">
                       Message Sent!
                     </h4>
                     <p className="text-gray-700 dark:text-[#8F9489] text-sm max-w-xs">
@@ -255,7 +228,7 @@ export function Contact({ profile }: ContactProps) {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-name">
+                        <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-name">
                           Full Name *
                         </label>
                         <input
@@ -270,7 +243,7 @@ export function Contact({ profile }: ContactProps) {
                         />
                       </div>
                       <div>
-                        <label className="block font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-email">
+                        <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-email">
                           Email Address *
                         </label>
                         <input
@@ -287,7 +260,7 @@ export function Contact({ profile }: ContactProps) {
                     </div>
 
                     <div>
-                      <label className="block font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-subject">
+                      <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-subject">
                         Subject
                       </label>
                       <input
@@ -302,7 +275,7 @@ export function Contact({ profile }: ContactProps) {
                     </div>
 
                     <div>
-                      <label className="block font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-message">
+                      <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-[#8F9489] mb-1.5" htmlFor="contact-message">
                         Message *
                       </label>
                       <textarea
@@ -318,7 +291,7 @@ export function Contact({ profile }: ContactProps) {
                     </div>
 
                     {submitStatus === 'error' && (
-                      <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400 font-['IBM_Plex_Mono']">
+                      <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400 font-mono">
                         <AlertCircle size={16} />
                         Something went wrong. Please reach out directly via email.
                       </div>
@@ -327,17 +300,17 @@ export function Contact({ profile }: ContactProps) {
                     <button
                       type="submit"
                       disabled={submitStatus === 'sending'}
-                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#658B12] hover:bg-[#52720B] disabled:opacity-70 disabled:cursor-not-allowed text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-[4px] font-semibold font-['Space_Grotesk'] text-sm tracking-wide transition-all shadow-sm active:scale-[0.99]"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#658B12] hover:bg-[#52720B] disabled:opacity-70 disabled:cursor-not-allowed text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full font-bold uppercase tracking-wider font-sans text-xs sm:text-sm transition-all duration-200 shadow-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                     >
                       {submitStatus === 'sending' ? (
                         <>
                           <Loader2 size={16} className="animate-spin" />
-                          Sending Message...
+                          <span>Sending Message...</span>
                         </>
                       ) : (
                         <>
                           <Send size={16} />
-                          Send Message
+                          <span>Send Message</span>
                         </>
                       )}
                     </button>
@@ -347,6 +320,35 @@ export function Contact({ profile }: ContactProps) {
             </ScrollReveal>
           </div>
         </div>
+
+        {/* Quick Stats - Arranged horizontally below contact and email form */}
+        <ScrollReveal direction="up" delay={200}>
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-300 dark:border-[#22261E]">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="flex items-center gap-3 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12]/50 dark:hover:border-[#B7E33B]/50 shadow-sm hover:shadow-md transition-all duration-300">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#658B12] dark:bg-[#B7E33B] flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Response Time</p>
+                  <p className="font-sans text-xs sm:text-sm font-bold text-gray-950 dark:text-[#EDEDE8] truncate">Quick — within 24 hours</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12]/50 dark:hover:border-[#B7E33B]/50 shadow-sm hover:shadow-md transition-all duration-300">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#658B12] dark:bg-[#B7E33B] flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Project Success Rate</p>
+                  <p className="font-sans text-xs sm:text-sm font-bold text-gray-950 dark:text-[#EDEDE8] truncate">100% on delivered projects</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3.5 sm:p-4 bg-white/95 dark:bg-[#151713]/90 backdrop-blur-sm rounded-xl border border-gray-300 dark:border-[#22261E] hover:border-[#658B12]/50 dark:hover:border-[#B7E33B]/50 shadow-sm hover:shadow-md transition-all duration-300">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#658B12] dark:bg-[#B7E33B] animate-pulse flex-shrink-0" />
+                <div className="min-w-0">
+                  <p className="font-mono text-[11px] sm:text-xs text-gray-600 dark:text-[#8F9489]">Availability</p>
+                  <p className="font-sans text-xs sm:text-sm font-bold text-[#658B12] dark:text-[#B7E33B] truncate">Remote &amp; On-Site</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

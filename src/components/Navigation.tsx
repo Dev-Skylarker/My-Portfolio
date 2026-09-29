@@ -30,6 +30,11 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
     }
   };
 
+  const handleHomeClick = () => {
+    scrollToSection('profile');
+    window.dispatchEvent(new Event('triggerNameAnimation'));
+  };
+
   const currentSectionLabel = sections.find(s => s.id === activeSection)?.label || '';
 
   return (
@@ -43,28 +48,17 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Brand / Home Link */}
+            {/* Brand / Home link */}
             <button
-              onClick={() => {
-                scrollToSection('profile');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="relative flex items-center gap-2 group py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#658B12] dark:focus-visible:ring-[#B7E33B] rounded cursor-pointer transition-transform active:scale-95"
+              onClick={handleHomeClick}
+              className="flex items-center gap-2 group cursor-pointer text-left focus:outline-none"
               aria-label="Maina Eric - Home"
-              title="Maina Eric - Home"
             >
-              {/* Luminous aura behind text */}
-              <span
-                className="absolute -inset-x-2.5 -inset-y-1 rounded-lg bg-gradient-to-r from-transparent via-[#658B12]/15 dark:via-[#B7E33B]/25 to-transparent blur-md opacity-40 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                aria-hidden="true"
-              />
-
-              <span className="relative text-lg sm:text-xl font-bold font-['Space_Grotesk'] tracking-tight text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] brand-glowing-text transition-colors duration-200">
+              <span className="text-lg sm:text-xl font-bold sm:font-extrabold font-sans tracking-tight text-gray-950 dark:text-[#EDEDE8] group-hover:text-[#658B12] dark:group-hover:text-[#B7E33B] transition-colors duration-200">
                 Maina Eric
               </span>
-
               {currentSectionLabel && activeSection !== 'profile' && (
-                <span className="md:hidden text-xs font-['IBM_Plex_Mono'] font-semibold text-[#658B12] dark:text-[#B7E33B] animate-fade-in pl-1">
+                <span className="hidden xs:inline-block md:hidden text-xs font-mono font-semibold text-[#658B12] dark:text-[#B7E33B] animate-fade-in pl-1">
                   · {currentSectionLabel}
                 </span>
               )}
@@ -78,7 +72,7 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
                   <button
                     key={section.id}
                     onClick={() => scrollToSection(section.id)}
-                    className={`px-4 py-2 rounded-[4px] text-xs font-semibold uppercase tracking-wider font-['Space_Grotesk'] transition-all ${
+                    className={`px-3.5 lg:px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider font-sans transition-all ${
                       isActive
                         ? 'bg-[#658B12] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] shadow-sm font-bold'
                         : 'text-gray-700 dark:text-[#8F9489] hover:bg-gray-200/60 dark:hover:bg-[#151713] hover:text-[#658B12] dark:hover:text-[#B7E33B]'
@@ -90,23 +84,23 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
               })}
             </div>
 
-            <div className="flex items-center gap-2">
-              {/* Theme toggle (Sun / Moon) */}
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              {/* Theme toggle (Sun / Moon) - Clean borderless/no bg */}
               <button
                 onClick={toggleTheme}
-                className="relative p-2 rounded-[4px] bg-white dark:bg-[#151713] border border-gray-300 dark:border-[#22261E] text-gray-800 dark:text-gray-200 hover:border-[#658B12] dark:hover:border-[#B7E33B] hover:text-[#658B12] dark:hover:text-[#B7E33B] transition-all hover:scale-105 shadow-sm"
+                className="relative p-2 rounded-full text-gray-700 dark:text-[#8F9489] hover:text-[#658B12] dark:hover:text-[#B7E33B] hover:bg-gray-200/50 dark:hover:bg-[#1F231A]/60 transition-all duration-200 hover:scale-105 cursor-pointer"
                 aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                 title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               >
-                <div className="relative w-5 h-5 overflow-hidden">
+                <div className="relative w-5 h-5 overflow-hidden flex items-center justify-center">
                   <Sun
-                    size={18}
+                    size={19}
                     className={`absolute inset-0 transition-all duration-300 ${
                       theme === 'dark' ? 'opacity-100 rotate-0 text-[#B7E33B]' : 'opacity-0 rotate-90 text-amber-500'
                     }`}
                   />
                   <Moon
-                    size={18}
+                    size={19}
                     className={`absolute inset-0 transition-all duration-300 ${
                       theme === 'light' ? 'opacity-100 rotate-0 text-[#658B12]' : 'opacity-0 -rotate-90 text-gray-400'
                     }`}
@@ -114,10 +108,19 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
                 </div>
               </button>
 
-              {/* Mobile menu toggle */}
+              {/* Hire Me CTA Button (icon removed, refined modern pill styling) */}
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] dark:hover:bg-[#a6d132] font-sans text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm shadow-[#658B12]/20 dark:shadow-[#B7E33B]/20 cursor-pointer"
+                aria-label="Hire Me"
+              >
+                Hire Me
+              </button>
+
+              {/* Mobile menu toggle (Sidebar menu) */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-[4px] bg-white dark:bg-[#151713] border border-gray-300 dark:border-[#22261E] text-gray-800 dark:text-[#EDEDE8] hover:border-[#658B12] dark:hover:border-[#B7E33B] transition-all"
+                className="md:hidden p-2 rounded-full text-gray-800 dark:text-[#EDEDE8] hover:text-[#658B12] dark:hover:text-[#B7E33B] hover:bg-gray-200/50 dark:hover:bg-[#1F231A]/60 transition-all cursor-pointer"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -127,7 +130,7 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu (Sidebar menu drawer) */}
       <div
         className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
           mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -151,7 +154,7 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className={`px-4 py-3 rounded-[4px] text-left font-['Space_Grotesk'] text-sm font-semibold tracking-wide transition-all ${
+                  className={`px-4 py-3 rounded-full text-left font-sans text-sm font-semibold tracking-wide transition-all ${
                     isActive
                       ? 'bg-[#658B12] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C]'
                       : 'text-gray-800 dark:text-[#8F9489] hover:bg-gray-200/60 dark:hover:bg-[#151713] hover:text-[#658B12] dark:hover:text-[#EDEDE8]'
@@ -161,6 +164,12 @@ export function Navigation({ theme, toggleTheme, activeSection, sections }: Navi
                 </button>
               );
             })}
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="mt-2 flex items-center justify-center px-4 py-3 rounded-full bg-[#658B12] text-white dark:bg-[#B7E33B] dark:text-[#0D0F0C] font-sans text-sm font-bold uppercase tracking-wider shadow-sm transition-all"
+            >
+              Hire Me
+            </button>
           </div>
         </div>
       </div>
