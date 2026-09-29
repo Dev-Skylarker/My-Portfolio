@@ -348,8 +348,8 @@ function SpringConnector({
   useSpringJoint(anchorRef, badgeRef, [
     [0, 0, 0], // Anchor connection point
     [0, BH / 2 + 0.06, 0], // Badge connection point (top torus ring)
-    0.72, // Rest length
-    48, // Stiffness
+    1.15, // Rest length (increased lanyard length)
+    46, // Stiffness
     6.0, // Damping factor (rapid intact settle)
   ]);
   return null;
@@ -368,18 +368,16 @@ function BadgePhysicsScene() {
   let anchorY: number;
 
   if (w >= 1024) {
-    // Desktop: badge in right column.
-    // The canvas spans the full section (wider than the max-w-7xl content area)
-    // so the badge has full room to swing without clipping at container edges.
+    // Desktop: badge in right column, positioned closer to hero text to reduce empty gap
     const containerPx = Math.min(w, 1280); // effective content width (max-w-7xl)
     const sideMarginPx = (w - containerPx) / 2; // margin on each side
-    // Right column center in px from viewport left: sideMargin + container * (7 + 2.5) / 12
-    const rightColCenterPx = sideMarginPx + containerPx * (9.5 / 12);
+    // Position badge anchor closer to left hero column (0.72 instead of 0.792)
+    const rightColCenterPx = sideMarginPx + containerPx * 0.72;
     // Convert to viewport-centered world coords: 0 = center, +X = right
     anchorX = ((rightColCenterPx / w) - 0.5) * viewport.width;
     // Clamp so badge + rotation swing never clips at canvas edge
     anchorX = Math.min(anchorX, viewport.width / 2 - BW / 2 - 0.8);
-    anchorY = viewport.height * 0.36;
+    anchorY = viewport.height * 0.38;
   } else {
     // Stacked layout (mobile & tablet): badge centered horizontally in its dedicated hero slot
     anchorX = 0;
@@ -653,7 +651,7 @@ function BadgePhysicsScene() {
           enabledRotations={[false, false, true]}
           linearDamping={1.25}
           angularDamping={1.8}
-          position={[anchorX, anchorY - 1.55, 0]}
+          position={[anchorX, anchorY - 1.95, 0]}
         >
           <group
             ref={badgeVisualRef}
@@ -724,7 +722,7 @@ export function InteractiveBadge() {
   if (!isDesktop) return null;
 
   return (
-    <div className="hidden lg:block absolute inset-0 z-[30] pointer-events-none select-none">
+    <div className="hidden lg:block absolute inset-0 z-[20] pointer-events-none select-none">
       <Canvas
         camera={{ position: [0, 0, 8.8], fov: 38 }}
         className="w-full h-full pointer-events-none"

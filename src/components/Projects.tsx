@@ -129,9 +129,9 @@ export function Projects({ projects }: ProjectsProps) {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider font-sans bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
+                              className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide font-sans bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
                             >
-                              <Globe size={12} />
+                              <Globe size={11} />
                               <span>View Live</span>
                             </a>
                           )}
@@ -193,15 +193,15 @@ export function Projects({ projects }: ProjectsProps) {
                         </div>
 
                         {(project.links.demo || project.links.repo || project.links.catalog) && (
-                          <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
+                          <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-2">
                             {project.links.demo && (
                               <a
                                 href={project.links.demo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full xs:w-auto justify-center flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full text-xs font-bold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
+                                className="w-full xs:w-auto justify-center flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
                               >
-                                <ExternalLink size={14} />
+                                <ExternalLink size={13} />
                                 <span>Visit Live Site</span>
                               </a>
                             )}
@@ -210,9 +210,9 @@ export function Projects({ projects }: ProjectsProps) {
                                 href={project.links.catalog}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full xs:w-auto justify-center flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full text-xs font-bold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
+                                className="w-full xs:w-auto justify-center flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[#658B12] hover:bg-[#52720B] text-white dark:bg-[#B7E33B] dark:hover:bg-[#a6d132] dark:text-[#0D0F0C] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
                               >
-                                <ExternalLink size={14} />
+                                <ExternalLink size={13} />
                                 <span>View Brand Catalogue</span>
                               </a>
                             )}
@@ -221,9 +221,9 @@ export function Projects({ projects }: ProjectsProps) {
                                 href={project.links.repo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full xs:w-auto justify-center flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] rounded-full text-xs font-bold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
+                                className="w-full xs:w-auto justify-center flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 bg-white hover:bg-gray-100 border border-gray-300 hover:border-[#658B12] text-gray-900 dark:bg-[#151713] dark:hover:bg-[#0D0F0C] dark:border-[#22261E] dark:hover:border-[#B7E33B] dark:text-[#EDEDE8] rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider font-sans transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
                               >
-                                <Github size={14} />
+                                <Github size={13} />
                                 <span>Repository</span>
                               </a>
                             )}
