@@ -145,20 +145,20 @@ export function InteractiveBackground() {
       {/* Primary Interactive Aura: Electric Blue / Sky tint that brightens on hover and softly floats on idle */}
       <div
         ref={primaryLightRef}
-        className={`absolute top-0 left-0 w-[540px] h-[540px] sm:w-[660px] sm:h-[660px] rounded-full blur-[65px] sm:blur-[75px] transition-opacity duration-500 ease-out will-change-transform bg-[radial-gradient(circle_at_center,rgba(0,133,255,0.85)_0%,rgba(56,155,255,0.45)_35%,rgba(0,133,255,0.12)_60%,transparent_75%)] ${
+        className={`absolute top-0 left-0 w-[540px] h-[540px] sm:w-[660px] sm:h-[660px] rounded-full blur-[75px] sm:blur-[85px] transition-opacity duration-500 ease-out will-change-transform bg-[radial-gradient(circle_at_center,rgba(0,133,255,0.6)_0%,rgba(56,155,255,0.3)_35%,rgba(0,133,255,0.06)_60%,transparent_75%)] ${
           isHovering
-            ? 'opacity-35 dark:opacity-60'
-            : 'opacity-16 dark:opacity-28'
+            ? 'opacity-12 dark:opacity-24'
+            : 'opacity-5 dark:opacity-10'
         }`}
       />
 
       {/* Secondary Trailing Ambient Aura: Deep Cyan / Indigo tint lagging for chromatic depth */}
       <div
         ref={secondaryLightRef}
-        className={`absolute top-0 left-0 w-[400px] h-[400px] sm:w-[480px] sm:h-[480px] rounded-full blur-[55px] sm:blur-[65px] transition-opacity duration-500 ease-out will-change-transform bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.75)_0%,rgba(79,70,229,0.35)_45%,transparent_70%)] ${
+        className={`absolute top-0 left-0 w-[400px] h-[400px] sm:w-[480px] sm:h-[480px] rounded-full blur-[65px] sm:blur-[75px] transition-opacity duration-500 ease-out will-change-transform bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.5)_0%,rgba(79,70,229,0.22)_45%,transparent_70%)] ${
           isHovering
-            ? 'opacity-25 dark:opacity-45'
-            : 'opacity-12 dark:opacity-22'
+            ? 'opacity-8 dark:opacity-18'
+            : 'opacity-4 dark:opacity-8'
         }`}
       />
     </div>
